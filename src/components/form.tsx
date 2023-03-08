@@ -9,16 +9,37 @@ export default function Form() {
     messageType: "",
   });
 
+  const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const name = e.target.name;
+    let value = e.target.value;
+
+    setFormData((formData) => ({
+      ...formData,
+      [name]: value,
+    }));
+  };
+
+  const handleCheckChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const name = e.target.name;
+    const checked: boolean = e.target.checked;
+
+    setFormData((formData) => ({
+      ...formData,
+      [name]: checked,
+    }));
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData);
   };
+
   return (
     <form id="polling-form" onSubmit={handleSubmit}>
       <label htmlFor="name">Name * :</label>
-      <input type="text" id="name" />
+      <input type="text" id="name" name="name" onChange={handleTextChange} />
       <label htmlFor="phone">Phone Number * :</label>
-      <input type="text" id="phone" />
+      <input type="text" id="phone" name="phone" onChange={handleTextChange} />
       We will send you a reminder on the day of the election
       <fieldset id="reminder">
         <legend>Would you like an additional reminder?:</legend>
@@ -26,28 +47,42 @@ export default function Form() {
           One week before
           <input
             type="checkbox"
-            name="reminders[]"
+            name="oneWeek"
             id="one-week"
-            value="7 days"
+            onChange={handleCheckChange}
           />
         </label>
         <label htmlFor="three-days">
           Three days before
           <input
             type="checkbox"
-            name="reminders[]"
+            name="threeDays"
             id="three-days"
-            value="3 days"
+            onChange={handleCheckChange}
           />
         </label>
       </fieldset>
       <fieldset id="message-type">
         <legend>How would you like your reminder?</legend>
         <span>
-          Text <input type="radio" name="type" id="text" />
+          Text{" "}
+          <input
+            type="radio"
+            name="messageType"
+            id="text"
+            value="text"
+            onChange={handleTextChange}
+          />
         </span>
         <span>
-          Whatsapp <input type="radio" name="type" id="whatsapp" />
+          Whatsapp{" "}
+          <input
+            type="radio"
+            name="messageType"
+            id="whatsapp"
+            value="whatsapp"
+            onChange={handleTextChange}
+          />
         </span>
       </fieldset>
       <input type="submit" value="Submit" />

@@ -4,7 +4,7 @@ import App from "./App";
 test("full name has correct label", () => {
   const message: string = "Name * :";
   // screen.logTestingPlaygroundURL(screen.getByLabelText(message));
-  expect(screen.getByText(/name \* :/i)).toBeInTheDocument();
+  expect(screen.getByText(message)).toBeInTheDocument();
 });
 
 test("full name: incorrect label doesn't exist", () => {
