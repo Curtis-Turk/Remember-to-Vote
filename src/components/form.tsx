@@ -10,8 +10,8 @@ export default function Form() {
   });
 
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.name;
-    let value = e.target.value;
+    const name: string = e.target.name;
+    const value: string = e.target.value;
 
     setFormData((formData) => ({
       ...formData,
@@ -20,7 +20,7 @@ export default function Form() {
   };
 
   const handleCheckChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.name;
+    const name: string = e.target.name;
     const checked: boolean = e.target.checked;
 
     setFormData((formData) => ({
