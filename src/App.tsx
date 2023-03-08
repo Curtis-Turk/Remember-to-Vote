@@ -1,6 +1,5 @@
 import "./App.css";
 import Form from "./components/form";
-import Form2 from "./components/form_2";
 
 function App() {
   return (
@@ -11,7 +10,6 @@ function App() {
         details
       </h2>
       <Form></Form>
-      <Form2></Form2>
     </div>
   );
 }

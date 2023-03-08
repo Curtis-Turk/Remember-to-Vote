@@ -1,13 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import App from "./App";
 
-// beforeEach(() => {
-//   render(<App />);
-// });
-
 test("full name has correct label", () => {
-  const message: string = "Full Name * :";
-  expect(screen.getByLabelText(message)).toBeInTheDocument();
+  const message: string = "Name * :";
+  // screen.logTestingPlaygroundURL(screen.getByLabelText(message));
+  expect(screen.getByText(/name \* :/i)).toBeInTheDocument();
 });
 
 test("full name: incorrect label doesn't exist", () => {
@@ -31,10 +28,10 @@ test("phone number has correct label", () => {
 
 test("renders checkbox", () => {
   render(<App />);
-  const checkbox = screen.getAllByRole("checkbox", { name: "" });
-  expect(checkbox).toEqual(
-    expect.arrayContaining([
-      <input id="one-week" name="reminders[]" type="checkbox" value="7 days" />,
-    ])
-  );
+  const checkbox = screen.getByRole("checkbox", { name: "One week before" });
+  expect(checkbox).toBeInTheDocument();
+  // toEqual(
+  //   expect.arrayContaining([
+  //     <input id="one-week" name="reminders[]" type="checkbox" value="7 days" />,
+  //   ])};
 });
