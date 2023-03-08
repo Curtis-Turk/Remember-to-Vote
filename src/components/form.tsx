@@ -3,11 +3,12 @@ export default function Form() {
     <form id="polling-form">
       <label htmlFor="fullname">Full Name * :</label>
       <input type="text" id="fullname" />
+
       <label htmlFor="phone">Phone Number * :</label>
       <input type="text" id="phone" />
 
-      <label>When would you like a reminder?:</label>
-      <p>
+      <div id="reminder">
+        <label>When would you like a reminder?:</label>
         One week before
         <input
           type="checkbox"
@@ -24,8 +25,19 @@ export default function Form() {
         />
         On the day
         <input type="radio" name="reminders[]" id="on-the-day" value="0 days" />
-      </p>
-      <input type="submit" value="click here to submit" />
+      </div>
+
+      <div id="message-type">
+        <p>How would you like your reminder</p>
+        <span>
+          Text <input type="radio" />
+        </span>
+        <span>
+          Whatsapp <input type="radio" />
+        </span>
+      </div>
+
+      <input type="submit" value="Submit" />
     </form>
   );
 }
