@@ -1,6 +1,6 @@
 import "./App.css";
-import Form from "./components/form";
-import Title from "./components/title";
+import Form from "./components/Form";
+import Title from "./components/Title";
 
 function App() {
   return (
