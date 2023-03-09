@@ -1,14 +1,11 @@
 import "./App.css";
 import Form from "./components/form";
+import Title from "./components/title";
 
 function App() {
   return (
     <div className="App">
-      <h1>Polling Station Reminder</h1>
-      <h2>
-        Enter your details to receive a message with your polling station
-        details
-      </h2>
+      <Title></Title>
       <Form></Form>
     </div>
   );
