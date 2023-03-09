@@ -40,7 +40,8 @@ export default function Form() {
       <input type="text" id="name" name="name" onChange={handleTextChange} />
       <label htmlFor="phone">Phone Number * :</label>
       <input type="text" id="phone" name="phone" onChange={handleTextChange} />
-      We will send you a reminder on the day of the election
+      <div>We will send you a reminder on the day of the election</div>
+      <br></br>
       <fieldset id="reminder">
         <legend>Would you like an additional reminder?:</legend>
         <label htmlFor="one-week">
