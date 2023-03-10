@@ -45,6 +45,11 @@ export default function Form() {
           postcode: "W12 LKW",
           slug: "12345",
         },
+        {
+          address: "124 dawn road, London",
+          postcode: "W12 LKW",
+          slug: "67890",
+        },
       ],
     };
 
@@ -97,10 +102,30 @@ export default function Form() {
       // SET message to verify postcode
       return;
     }
+
     const res = await fetch("sendForm", {
       method: "POST",
       body: JSON.stringify(formData),
     });
+  };
+
+  const addressesSelectionDiv = () => {
+    if (addresses.length)
+      return (
+        <div>
+          <p>Select your address from the options below:</p>
+          {addresses.map((addressObject: any) => {
+            return (
+              <button
+                key={addressObject.address}
+                onClick={() => setAddress(addressObject)}
+              >
+                {addressObject.address}
+              </button>
+            );
+          })}
+        </div>
+      );
   };
 
   return (
@@ -125,17 +150,7 @@ export default function Form() {
         <button disabled={isCheckingPostCode} onClick={verifyPostCode}>
           {isCheckingPostCode ? "checking postcode" : "Verify postcode"}
         </button>
-
-        {addresses?.map((addressObject: any) => {
-          return (
-            <button
-              key={addressObject.address}
-              onClick={() => setAddress(addressObject)}
-            >
-              {addressObject.address}
-            </button>
-          );
-        })}
+        {addressesSelectionDiv()}
       </div>
 
       <fieldset id="message-type">
