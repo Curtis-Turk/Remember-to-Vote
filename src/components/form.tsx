@@ -113,7 +113,14 @@ export default function Form() {
     if (addresses.length) {
       return (
         <div>
-          <button>Cancel</button>
+          <button
+            onClick={async () => {
+              await setIsVerifyPostcodeDisabled(false);
+              await setAddresses([]);
+            }}
+          >
+            Cancel
+          </button>
           <p>Select your address from the options below:</p>
           {addresses.map((addressObject: any) => (
             <button
