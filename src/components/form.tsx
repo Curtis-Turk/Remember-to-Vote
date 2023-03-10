@@ -109,7 +109,7 @@ export default function Form() {
     });
   };
 
-  const addressesSelectionDiv = () => {
+  const renderAddressesSelectionDiv = () => {
     if (addresses.length) {
       return (
         <div>
@@ -158,7 +158,7 @@ export default function Form() {
           onChange={handleTextChange}
         />
         {renderVerifyPostcodeButton()}
-        {addressesSelectionDiv()}
+        {renderAddressesSelectionDiv()}
       </div>
 
       <fieldset id="message-type">
