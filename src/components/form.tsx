@@ -19,16 +19,6 @@ export default function Form() {
     }));
   };
 
-  const handleCheckChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const name: string = e.target.name;
-    const checked: boolean = e.target.checked;
-
-    setFormData((formData) => ({
-      ...formData,
-      [name]: checked,
-    }));
-  };
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData);
@@ -55,29 +45,6 @@ export default function Form() {
         />
       </div>
 
-      <div>We will send you a reminder on the day of the election</div>
-      <br></br>
-      <fieldset id="reminder">
-        <legend>Would you like an additional reminder?:</legend>
-        <label htmlFor="one-week">
-          One week before
-          <input
-            type="checkbox"
-            name="oneWeek"
-            id="one-week"
-            onChange={handleCheckChange}
-          />
-        </label>
-        <label htmlFor="three-days">
-          Three days before
-          <input
-            type="checkbox"
-            name="threeDays"
-            id="three-days"
-            onChange={handleCheckChange}
-          />
-        </label>
-      </fieldset>
       <fieldset id="message-type">
         <legend>How would you like your reminder?</legend>
         <span>
@@ -101,6 +68,7 @@ export default function Form() {
           />
         </span>
       </fieldset>
+      <div>We will send you a reminder on the day of the election</div>
       <input type="submit" value="Submit" />
     </form>
   );
