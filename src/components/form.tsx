@@ -36,10 +36,25 @@ export default function Form() {
 
   return (
     <form id="polling-form" onSubmit={handleSubmit}>
-      <label htmlFor="name">Name * :</label>
-      <input type="text" id="name" name="name" onChange={handleTextChange} />
-      <label htmlFor="phone">Phone Number * :</label>
-      <input type="text" id="phone" name="phone" onChange={handleTextChange} />
+      <div id="user-details">
+        <label htmlFor="name">Name * :</label>
+        <input type="text" id="name" name="name" onChange={handleTextChange} />
+        <label htmlFor="phone">Phone Number * :</label>
+        <input
+          type="text"
+          id="phone"
+          name="phone"
+          onChange={handleTextChange}
+        />
+        <label htmlFor="postcode">Postcode * :</label>
+        <input
+          type="text"
+          id="postcode"
+          name="postcode"
+          onChange={handleTextChange}
+        />
+      </div>
+
       <div>We will send you a reminder on the day of the election</div>
       <br></br>
       <fieldset id="reminder">
