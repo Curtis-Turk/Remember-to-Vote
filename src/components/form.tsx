@@ -22,12 +22,13 @@ export default function Form() {
 
   const verifyPostCode = async () => {
     await setIsCheckingPostCode(true);
-    console.log(isCheckingPostCode);
+
     const res = await fetch("verifyPostCode", {
       method: "POST",
       body: formData.postcode,
     });
-    setIsCheckingPostCode(false);
+
+    await setIsCheckingPostCode(false);
     // On success
     // Colour postcode input green
   };
