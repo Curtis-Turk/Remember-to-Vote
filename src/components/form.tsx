@@ -10,7 +10,8 @@ export default function Form() {
   });
 
   // boolean for if postcode is being checked by the Electoral Commission API
-  const [isCheckingPostCode, setIsCheckingPostCode] = useState(false);
+  const [isVerifyPostcodeDisabled, setIsVerifyPostcodeDisabled] =
+    useState(false);
   // boolean for if postcode has been verified with the Electoral Commission API
   const [isPostcodeVerified, setIsPostCodeVerified] = useState(false);
   // array of address objects from the Electoral Commision API
@@ -29,7 +30,7 @@ export default function Form() {
   };
 
   const verifyPostCode = async () => {
-    await setIsCheckingPostCode(true);
+    await setIsVerifyPostcodeDisabled(true);
 
     // const response = await fetch("verifyPostCode", {
     //   method: "POST",
@@ -75,13 +76,12 @@ export default function Form() {
       // if postcode is verified, then form can be submitted.
       await setIsPostCodeVerified(true);
       // Colour postcode input green
+      await setIsVerifyPostcodeDisabled(false);
     }
 
     if (result.pollingStations) {
       await setAddresses(result.pollingStations);
     }
-
-    await setIsCheckingPostCode(false);
   };
 
   /* takes an addressObject and sets the address in the form data to be the value of the object
@@ -110,22 +110,22 @@ export default function Form() {
   };
 
   const addressesSelectionDiv = () => {
-    if (addresses.length)
+    if (addresses.length) {
       return (
         <div>
+          <button>Cancel</button>
           <p>Select your address from the options below:</p>
-          {addresses.map((addressObject: any) => {
-            return (
-              <button
-                key={addressObject.address}
-                onClick={() => setAddress(addressObject)}
-              >
-                {addressObject.address}
-              </button>
-            );
-          })}
+          {addresses.map((addressObject: any) => (
+            <button
+              key={addressObject.address}
+              onClick={() => setAddress(addressObject)}
+            >
+              {addressObject.address}
+            </button>
+          ))}
         </div>
       );
+    }
   };
 
   return (
@@ -147,8 +147,8 @@ export default function Form() {
           name="postcode"
           onChange={handleTextChange}
         />
-        <button disabled={isCheckingPostCode} onClick={verifyPostCode}>
-          {isCheckingPostCode ? "checking postcode" : "Verify postcode"}
+        <button disabled={isVerifyPostcodeDisabled} onClick={verifyPostCode}>
+          Verify postcode
         </button>
         {addressesSelectionDiv()}
       </div>
