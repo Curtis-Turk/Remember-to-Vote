@@ -6,7 +6,7 @@ export default function Form() {
     phone: "",
     postcode: "",
     messageType: "",
-    address: "",
+    addressSlug: "",
   });
 
   // boolean for if postcode is being checked by the Electoral Commission API
@@ -31,10 +31,22 @@ export default function Form() {
   const verifyPostCode = async () => {
     await setIsCheckingPostCode(true);
 
-    const response = await fetch("verifyPostCode", {
-      method: "POST",
-      body: formData.postcode,
-    });
+    // const response = await fetch("verifyPostCode", {
+    //   method: "POST",
+    //   body: formData.postcode,
+    // });
+    // const result = await response.json();
+
+    const result: any = {
+      pollingStationFound: false,
+      pollingStations: [
+        {
+          address: "123 Privet Drive, London",
+          postcode: "W12 LKW",
+          slug: "12345",
+        },
+      ],
+    };
 
     // if polling station returned...
 
@@ -43,7 +55,6 @@ export default function Form() {
     // option 3: no postcode found
     // if response received:
     // backend response if postcode is validated as postcode format:
-    const result = await response.json();
     /*
     result => {
       pollingStationFound: false,
@@ -62,7 +73,7 @@ export default function Form() {
     }
 
     if (result.pollingStations) {
-      setAddresses(result.pollingStations);
+      await setAddresses(result.pollingStations);
     }
 
     await setIsCheckingPostCode(false);
@@ -74,14 +85,13 @@ export default function Form() {
   const setAddress = async (addressObject: any) => {
     await setFormData((formData) => ({
       ...formData,
-      address: addressObject,
+      addressSlug: addressObject.slug,
     }));
     await setAddresses([]);
     await setIsPostCodeVerified(true);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     console.log(formData);
     if (!isPostcodeVerified) {
       // SET message to verify postcode
@@ -94,7 +104,7 @@ export default function Form() {
   };
 
   return (
-    <form id="polling-form" onSubmit={handleSubmit}>
+    <div id="polling-form">
       <div id="user-details">
         <label htmlFor="name">Name * :</label>
         <input type="text" id="name" name="name" onChange={handleTextChange} />
@@ -118,8 +128,11 @@ export default function Form() {
 
         {addresses?.map((addressObject: any) => {
           return (
-            <button onClick={() => setAddress(addressObject)}>
-              {addressObject.address} {addressObject.postcode}
+            <button
+              key={addressObject.address}
+              onClick={() => setAddress(addressObject)}
+            >
+              {addressObject.address}
             </button>
           );
         })}
@@ -149,7 +162,7 @@ export default function Form() {
         </span>
       </fieldset>
       <div>We will send you a reminder on the day of the election</div>
-      <input type="submit" value="Submit" />
-    </form>
+      <button onClick={handleSubmit}>Submit</button>
+    </div>
   );
 }
