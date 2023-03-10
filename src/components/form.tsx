@@ -128,6 +128,16 @@ export default function Form() {
     }
   };
 
+  const renderVerifyPostcodeButton = () => {
+    if (!isVerifyPostcodeDisabled) {
+      return (
+        <button disabled={isVerifyPostcodeDisabled} onClick={verifyPostCode}>
+          Verify postcode
+        </button>
+      );
+    }
+  };
+
   return (
     <div id="polling-form">
       <div id="user-details">
@@ -147,9 +157,7 @@ export default function Form() {
           name="postcode"
           onChange={handleTextChange}
         />
-        <button disabled={isVerifyPostcodeDisabled} onClick={verifyPostCode}>
-          Verify postcode
-        </button>
+        {renderVerifyPostcodeButton()}
         {addressesSelectionDiv()}
       </div>
 
