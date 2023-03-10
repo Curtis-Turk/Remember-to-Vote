@@ -6,12 +6,15 @@ export default function Form() {
     phone: "",
     postcode: "",
     messageType: "",
+    address: "",
   });
 
   // boolean for if postcode is being checked by the Electoral Commission API
   const [isCheckingPostCode, setIsCheckingPostCode] = useState(false);
   // boolean for if postcode has been verified with the Electoral Commission API
   const [isPostcodeVerified, setIsPostCodeVerified] = useState(false);
+  // array of address objects from the Electoral Commision API
+  const [addresses, setAddresses] = useState([]);
 
   const handleTextChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const name: string = e.target.name;
@@ -19,7 +22,7 @@ export default function Form() {
 
     if (name === "postcode") await setIsPostCodeVerified(false);
 
-    setFormData((formData) => ({
+    await setFormData((formData) => ({
       ...formData,
       [name]: value,
     }));
@@ -44,10 +47,10 @@ export default function Form() {
     /*
     result => {
       pollingStationFound: false,
-      pollingStations: {
+      pollingStations: [
         polling1,
         polling2...
-      }
+      ]
     }
     */
 
@@ -58,7 +61,23 @@ export default function Form() {
       // Colour postcode input green
     }
 
+    if (result.pollingStations) {
+      setAddresses(result.pollingStations);
+    }
+
     await setIsCheckingPostCode(false);
+  };
+
+  /* takes an addressObject and sets the address in the form data to be the value of the object
+  removes addresses from addresses array state to clear addresses from the DOM
+  sets isPostcodeVerified to true */
+  const setAddress = async (addressObject: any) => {
+    await setFormData((formData) => ({
+      ...formData,
+      address: addressObject,
+    }));
+    await setAddresses([]);
+    await setIsPostCodeVerified(true);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -96,6 +115,14 @@ export default function Form() {
         <button disabled={isCheckingPostCode} onClick={verifyPostCode}>
           {isCheckingPostCode ? "checking postcode" : "Verify postcode"}
         </button>
+
+        {addresses?.map((addressObject: any) => {
+          return (
+            <button onClick={() => setAddress(addressObject)}>
+              {addressObject.address} {addressObject.postcode}
+            </button>
+          );
+        })}
       </div>
 
       <fieldset id="message-type">
