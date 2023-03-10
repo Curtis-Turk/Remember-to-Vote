@@ -4,10 +4,11 @@ export default function Form() {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    oneWeek: false,
-    threeDays: false,
+    postcode: "",
     messageType: "",
   });
+
+  const [isCheckingPostCode, setIsCheckingPostCode] = useState(false);
 
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name: string = e.target.name;
@@ -19,9 +20,25 @@ export default function Form() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const verifyPostCode = async () => {
+    await setIsCheckingPostCode(true);
+    console.log(isCheckingPostCode);
+    const res = await fetch("verifyPostCode", {
+      method: "POST",
+      body: formData.postcode,
+    });
+    setIsCheckingPostCode(false);
+    // On success
+    // Colour postcode input green
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData);
+    const res = await fetch("sendForm", {
+      method: "POST",
+      body: JSON.stringify(formData),
+    });
   };
 
   return (
@@ -43,12 +60,15 @@ export default function Form() {
           name="postcode"
           onChange={handleTextChange}
         />
+        <button disabled={isCheckingPostCode} onClick={verifyPostCode}>
+          {isCheckingPostCode ? "checking postcode" : "Verify postcode"}
+        </button>
       </div>
 
       <fieldset id="message-type">
         <legend>How would you like your reminder?</legend>
         <span>
-          Text{" "}
+          Text
           <input
             type="radio"
             name="messageType"
@@ -58,7 +78,7 @@ export default function Form() {
           />
         </span>
         <span>
-          Whatsapp{" "}
+          Whatsapp
           <input
             type="radio"
             name="messageType"
