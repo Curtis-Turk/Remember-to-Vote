@@ -8,11 +8,16 @@ export default function Form() {
     messageType: "",
   });
 
+  // boolean for if postcode is being checked by the Electoral Commission API
   const [isCheckingPostCode, setIsCheckingPostCode] = useState(false);
+  // boolean for if postcode has been verified with the Electoral Commission API
+  const [isPostcodeVerified, setIsPostCodeVerified] = useState(false);
 
-  const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTextChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const name: string = e.target.name;
     const value: string = e.target.value;
+
+    if (name === "postcode") await setIsPostCodeVerified(false);
 
     setFormData((formData) => ({
       ...formData,
@@ -23,19 +28,46 @@ export default function Form() {
   const verifyPostCode = async () => {
     await setIsCheckingPostCode(true);
 
-    const res = await fetch("verifyPostCode", {
+    const response = await fetch("verifyPostCode", {
       method: "POST",
       body: formData.postcode,
     });
 
+    // if polling station returned...
+
+    // option 1: found a polling station
+    // option 2: found multiple polling stations
+    // option 3: no postcode found
+    // if response received:
+    // backend response if postcode is validated as postcode format:
+    const result = await response.json();
+    /*
+    result => {
+      pollingStationFound: false,
+      pollingStations: {
+        polling1,
+        polling2...
+      }
+    }
+    */
+
+    // on single result
+    if (result.pollingStationFound) {
+      // if postcode is verified, then form can be submitted.
+      await setIsPostCodeVerified(true);
+      // Colour postcode input green
+    }
+
     await setIsCheckingPostCode(false);
-    // On success
-    // Colour postcode input green
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData);
+    if (!isPostcodeVerified) {
+      // SET message to verify postcode
+      return;
+    }
     const res = await fetch("sendForm", {
       method: "POST",
       body: JSON.stringify(formData),
