@@ -109,18 +109,16 @@ export default function Form() {
     });
   };
 
+  const cancelPostcodeSelection = async () => {
+    await setIsVerifyPostcodeDisabled(false);
+    await setAddresses([]);
+  };
+
   const renderAddressesSelectionDiv = () => {
     if (addresses.length) {
       return (
         <div>
-          <button
-            onClick={async () => {
-              await setIsVerifyPostcodeDisabled(false);
-              await setAddresses([]);
-            }}
-          >
-            Cancel
-          </button>
+          <button onClick={cancelPostcodeSelection}>Cancel</button>
           <p>Select your address from the options below:</p>
           {addresses.map((addressObject: any) => (
             <button
