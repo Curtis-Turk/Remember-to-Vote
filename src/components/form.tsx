@@ -18,14 +18,13 @@ export default function Form() {
   const [isCancelButtonRendered, setIsCancelButtonRendered] = useState(false);
   // array of address objects from the Electoral Commision API
   const [addresses, setAddresses] = useState([]);
-  // object of the selected address object
 
   interface addressObject {
     address?: string;
     postcode?: string;
     slug?: string;
   }
-
+  // object of the selected address object
   const [selectedAddress, setSelectedAddress] = useState<addressObject>({});
 
   const handleTextChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -126,6 +125,7 @@ export default function Form() {
   const cancelPostcodeSelection = async () => {
     await setIsVerifyPostcodeDisabled(false);
     await setIsCancelButtonRendered(false);
+    await setSelectedAddress({});
     await setAddresses([]);
   };
 
@@ -202,8 +202,8 @@ export default function Form() {
           onChange={handleTextChange}
         />
         {renderVerifyPostcodeButton()}
-        {renderCancelButton()}
         {renderAddressesSelectionDiv()}
+        {renderCancelButton()}
       </div>
 
       <fieldset id="message-type">
