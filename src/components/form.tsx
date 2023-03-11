@@ -131,10 +131,12 @@ export default function Form() {
   };
 
   const renderCancelButton = () => {
-    // if address.length
-    // if postcode successfully verified
     if (isCancelButtonRendered) {
-      return <button onClick={cancelPostcodeSelection}>Cancel</button>;
+      return (
+        <button id="cancel-btn" onClick={cancelPostcodeSelection}>
+          Cancel
+        </button>
+      );
     }
   };
 
@@ -146,6 +148,7 @@ export default function Form() {
           {addresses.map((addressObject: any) => (
             <button
               key={addressObject.address}
+              className="address-btn"
               onClick={() => setAddress(addressObject)}
             >
               {addressObject.address}
@@ -175,7 +178,11 @@ export default function Form() {
   const renderVerifyPostcodeButton = () => {
     if (!isVerifyPostcodeDisabled) {
       return (
-        <button disabled={isVerifyPostcodeDisabled} onClick={verifyPostCode}>
+        <button
+          id="verify-btn"
+          disabled={isVerifyPostcodeDisabled}
+          onClick={verifyPostCode}
+        >
           Verify postcode
         </button>
       );
@@ -235,7 +242,9 @@ export default function Form() {
         </span>
       </fieldset>
       <div>We will send you a reminder on the day of the election</div>
-      <button onClick={handleSubmit}>Submit</button>
+      <button onClick={handleSubmit} id="submit-form-btn">
+        Submit
+      </button>
     </div>
   );
 }
