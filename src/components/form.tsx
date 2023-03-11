@@ -53,18 +53,18 @@ export default function Form() {
     // const result = await response.json();
 
     const result: any = {
-      pollingStationFound: false,
+      pollingStationFound: true,
       pollingStations: [
-        {
-          address: "123 Privet Drive, London",
-          postcode: "W12 LKW",
-          slug: "12345",
-        },
-        {
-          address: "124 dawn road, London",
-          postcode: "W12 LKW",
-          slug: "67890",
-        },
+        // {
+        //   address: "123 Privet Drive, London",
+        //   postcode: "W12 LKW",
+        //   slug: "12345",
+        // },
+        // {
+        //   address: "124 dawn road, London",
+        //   postcode: "W12 LKW",
+        //   slug: "67890",
+        // },
       ],
     };
     // return;
@@ -86,15 +86,14 @@ export default function Form() {
     }
     */
     // on single result
-    await setIsVerifyPostcodeButtonRendered(false);
     if (result.pollingStationFound) {
       // if postcode is verified, then form can be submitted.
       await setIsPostCodeVerified(true);
       // Colour postcode input green
-      await setIsVerifyPostcodeDisabled(false);
     }
 
-    if (result.pollingStations) {
+    if (result.pollingStations.length) {
+      await setIsVerifyPostcodeButtonRendered(false);
       await setAddresses(result.pollingStations);
     }
 
@@ -130,6 +129,7 @@ export default function Form() {
   const cancelPostcodeSelection = async () => {
     await setIsVerifyPostcodeDisabled(false);
     await setIsVerifyPostcodeButtonRendered(true);
+    await setIsPostCodeVerified(false);
     await setIsCancelButtonRendered(false);
     await setSelectedAddress({});
     await setAddresses([]);
@@ -184,6 +184,9 @@ export default function Form() {
     let verifyPostCodeButtonText = "Verify postcode";
     if (isVerifyPostcodeDisabled) {
       verifyPostCodeButtonText = "Checking postcode";
+    }
+    if (isPostcodeVerified) {
+      verifyPostCodeButtonText = "Postcode verified!";
     }
     if (isVerifyPostcodeButtonRendered) {
       return (
