@@ -209,22 +209,23 @@ export default function Form() {
       <fieldset id="message-type">
         <legend>How would you like your reminder?</legend>
         <span>
-          Text
-          <input
-            type="radio"
-            name="messageType"
-            id="text"
-            value="text"
-            onChange={handleTextChange}
-          />
-        </span>
-        <span>
           Whatsapp
           <input
             type="radio"
             name="messageType"
             id="whatsapp"
             value="whatsapp"
+            defaultChecked={true}
+            onChange={handleTextChange}
+          />
+        </span>
+        <span>
+          Text
+          <input
+            type="radio"
+            name="messageType"
+            id="text"
+            value="text"
             onChange={handleTextChange}
           />
         </span>
