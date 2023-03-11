@@ -67,7 +67,7 @@ export default function Form() {
         },
       ],
     };
-    return;
+    // return;
 
     // if polling station returned...
 
@@ -129,6 +129,7 @@ export default function Form() {
 
   const cancelPostcodeSelection = async () => {
     await setIsVerifyPostcodeDisabled(false);
+    await setIsVerifyPostcodeButtonRendered(true);
     await setIsCancelButtonRendered(false);
     await setSelectedAddress({});
     await setAddresses([]);
@@ -181,8 +182,9 @@ export default function Form() {
 
   const renderVerifyPostcodeButton = () => {
     let verifyPostCodeButtonText = "Verify postcode";
-    if (isVerifyPostcodeDisabled)
+    if (isVerifyPostcodeDisabled) {
       verifyPostCodeButtonText = "Checking postcode";
+    }
     if (isVerifyPostcodeButtonRendered) {
       return (
         <button
