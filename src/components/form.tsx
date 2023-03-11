@@ -13,6 +13,9 @@ export default function Form() {
   // boolean for if postcode is being checked by the Electoral Commission API
   const [isVerifyPostcodeDisabled, setIsVerifyPostcodeDisabled] =
     useState(false);
+  // boolean for if the verify postcode button is being rendered
+  const [isVerifyPostcodeButtonRendered, setIsVerifyPostcodeButtonRendered] =
+    useState(true);
   // boolean for if postcode has been verified with the Electoral Commission API
   const [isPostcodeVerified, setIsPostCodeVerified] = useState(false);
   // boolean for if cancel button is rendered
@@ -64,6 +67,7 @@ export default function Form() {
         },
       ],
     };
+    return;
 
     // if polling station returned...
 
@@ -81,8 +85,8 @@ export default function Form() {
       ]
     }
     */
-
     // on single result
+    await setIsVerifyPostcodeButtonRendered(false);
     if (result.pollingStationFound) {
       // if postcode is verified, then form can be submitted.
       await setIsPostCodeVerified(true);
@@ -176,14 +180,17 @@ export default function Form() {
   };
 
   const renderVerifyPostcodeButton = () => {
-    if (!isVerifyPostcodeDisabled) {
+    let verifyPostCodeButtonText = "Verify postcode";
+    if (isVerifyPostcodeDisabled)
+      verifyPostCodeButtonText = "Checking postcode";
+    if (isVerifyPostcodeButtonRendered) {
       return (
         <button
           id="verify-btn"
           disabled={isVerifyPostcodeDisabled}
           onClick={verifyPostCode}
         >
-          Verify postcode
+          {verifyPostCodeButtonText}
         </button>
       );
     }
