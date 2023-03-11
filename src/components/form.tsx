@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PhoneInput from "react-phone-number-input";
 
 export default function Form() {
   const [formData, setFormData] = useState({
@@ -181,18 +182,21 @@ export default function Form() {
     }
   };
 
+  const handlePhoneInputChange = async (phoneNumber: any) => {
+    console.log(phoneNumber);
+    await setFormData((formData) => ({
+      ...formData,
+      phone: phoneNumber,
+    }));
+  };
+
   return (
     <div id="polling-form">
       <div id="user-details">
         <label htmlFor="name">Name * :</label>
         <input type="text" id="name" name="name" onChange={handleTextChange} />
         <label htmlFor="phone">Phone Number * :</label>
-        <input
-          type="text"
-          id="phone"
-          name="phone"
-          onChange={handleTextChange}
-        />
+        <PhoneInput defaultCountry="GB" onChange={handlePhoneInputChange} />
         <label htmlFor="postcode">Postcode * :</label>
         <input
           type="text"
@@ -209,7 +213,7 @@ export default function Form() {
       <fieldset id="message-type">
         <legend>How would you like your reminder?</legend>
         <span>
-          Whatsapp
+          WhatsApp
           <input
             type="radio"
             name="messageType"
