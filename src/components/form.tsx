@@ -18,6 +18,9 @@ export default function Form() {
     useState(true);
   // boolean for if postcode has been verified with the Electoral Commission API
   const [isPostcodeVerified, setIsPostCodeVerified] = useState(false);
+  // boolean for if postcode is not found
+  const [isPostcodeMissing, setIsPostcodeMissing] = useState(false);
+
   // boolean for if cancel button is rendered
   const [isCancelButtonRendered, setIsCancelButtonRendered] = useState(false);
   // array of address objects from the Electoral Commision API
@@ -44,6 +47,7 @@ export default function Form() {
   };
 
   const verifyPostCode = async () => {
+    if (isPostcodeMissing) await setIsPostcodeMissing(false);
     await setIsVerifyPostcodeDisabled(true);
 
     // const response = await fetch("verifyPostCode", {
@@ -85,6 +89,11 @@ export default function Form() {
       ]
     }
     */
+    if (!result.pollingStationFound && !result.pollingStations.length) {
+      await setIsPostcodeMissing(true);
+      await setIsVerifyPostcodeDisabled(false);
+      return;
+    }
     // on single result
     if (result.pollingStationFound) {
       // if postcode is verified, then form can be submitted.
@@ -227,6 +236,7 @@ export default function Form() {
         {renderVerifyPostcodeButton()}
         {renderAddressesSelectionDiv()}
         {renderCancelButton()}
+        {isPostcodeMissing ? <div>Postcode has not been found</div> : null}
       </div>
 
       <fieldset id="message-type">
