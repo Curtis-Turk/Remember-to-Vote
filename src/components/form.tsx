@@ -14,6 +14,8 @@ export default function Form() {
     useState(false);
   // boolean for if postcode has been verified with the Electoral Commission API
   const [isPostcodeVerified, setIsPostCodeVerified] = useState(false);
+  // boolean for if cancel button is rendered
+  const [isCancelButtonRendered, setIsCancelButtonRendered] = useState(false);
   // array of address objects from the Electoral Commision API
   const [addresses, setAddresses] = useState([]);
 
@@ -82,6 +84,8 @@ export default function Form() {
     if (result.pollingStations) {
       await setAddresses(result.pollingStations);
     }
+
+    await setIsCancelButtonRendered(true);
   };
 
   /* takes an addressObject and sets the address in the form data to be the value of the object
@@ -111,14 +115,22 @@ export default function Form() {
 
   const cancelPostcodeSelection = async () => {
     await setIsVerifyPostcodeDisabled(false);
+    await setIsCancelButtonRendered(false);
     await setAddresses([]);
+  };
+
+  const renderCancelButton = () => {
+    // if address.length
+    // if postcode successfully verified
+    if (isCancelButtonRendered) {
+      return <button onClick={cancelPostcodeSelection}>Cancel</button>;
+    }
   };
 
   const renderAddressesSelectionDiv = () => {
     if (addresses.length) {
       return (
         <div>
-          <button onClick={cancelPostcodeSelection}>Cancel</button>
           <p>Select your address from the options below:</p>
           {addresses.map((addressObject: any) => (
             <button
@@ -160,9 +172,11 @@ export default function Form() {
           type="text"
           id="postcode"
           name="postcode"
+          disabled={isVerifyPostcodeDisabled}
           onChange={handleTextChange}
         />
         {renderVerifyPostcodeButton()}
+        {renderCancelButton()}
         {renderAddressesSelectionDiv()}
       </div>
 
