@@ -18,6 +18,15 @@ export default function Form() {
   const [isCancelButtonRendered, setIsCancelButtonRendered] = useState(false);
   // array of address objects from the Electoral Commision API
   const [addresses, setAddresses] = useState([]);
+  // object of the selected address object
+
+  interface addressObject {
+    address?: string;
+    postcode?: string;
+    slug?: string;
+  }
+
+  const [selectedAddress, setSelectedAddress] = useState<addressObject>({});
 
   const handleTextChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const name: string = e.target.name;
@@ -96,6 +105,7 @@ export default function Form() {
       ...formData,
       addressSlug: addressObject.slug,
     }));
+    await setSelectedAddress(addressObject);
     await setAddresses([]);
     await setIsPostCodeVerified(true);
   };
@@ -140,6 +150,22 @@ export default function Form() {
               {addressObject.address}
             </button>
           ))}
+        </div>
+      );
+    }
+
+    // if selectedAddress object has been set
+    if (Object.keys(selectedAddress).length) {
+      return (
+        <div>
+          <label htmlFor="address">Address * :</label>
+          <input
+            type="text"
+            id="address"
+            name="address"
+            disabled={true}
+            value={selectedAddress.address}
+          />
         </div>
       );
     }
