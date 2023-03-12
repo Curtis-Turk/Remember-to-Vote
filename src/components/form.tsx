@@ -59,36 +59,19 @@ export default function Form() {
     const result: any = {
       pollingStationFound: true,
       pollingStations: [
-        // {
-        //   address: "123 Privet Drive, London",
-        //   postcode: "W12 LKW",
-        //   slug: "12345",
-        // },
-        // {
-        //   address: "124 dawn road, London",
-        //   postcode: "W12 LKW",
-        //   slug: "67890",
-        // },
+        {
+          address: "123 Privet Drive, London",
+          postcode: "W12 LKW",
+          slug: "12345",
+        },
+        {
+          address: "124 dawn road, London",
+          postcode: "W12 LKW",
+          slug: "67890",
+        },
       ],
     };
-    // return;
 
-    // if polling station returned...
-
-    // option 1: found a polling station
-    // option 2: found multiple polling stations
-    // option 3: no postcode found
-    // if response received:
-    // backend response if postcode is validated as postcode format:
-    /*
-    result => {
-      pollingStationFound: false,
-      pollingStations: [
-        polling1,
-        polling2...
-      ]
-    }
-    */
     if (!result.pollingStationFound && !result.pollingStations.length) {
       await setIsPostcodeMissing(true);
       await setIsVerifyPostcodeDisabled(false);

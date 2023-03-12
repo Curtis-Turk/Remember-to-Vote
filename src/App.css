@@ -254,3 +254,7 @@ legend {
   opacity: 1;
   color: var(--PhoneInputCountrySelectArrow-color--focus);
 }
+
+#footer {
+  text-align: center;
+}
