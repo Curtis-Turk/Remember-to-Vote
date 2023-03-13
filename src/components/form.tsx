@@ -111,17 +111,19 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
   const handleSubmit = async () => {
     if (formData.name && formData.phone && isPostcodeVerified) {
       console.log(formData);
+      console.log(process.env.REACT_APP_API as string);
+      const response = await fetch(
+        `${process.env.REACT_APP_API as string}/submit`,
+        {
+          method: "POST",
+          // body: JSON.stringify(formData),
+          body: JSON.stringify("hello world"),
+        }
+      );
 
-      const response = await fetch("", {
-        method: "POST",
-        body: JSON.stringify(formData),
-      });
       if (response.ok) {
+        await setIsFormSubmitted(true);
       }
-      // result = ??
-      // { success: true }
-      // 204 = successfully created new data
-      return;
     }
     if (!formData.name) {
       // changes state of name error

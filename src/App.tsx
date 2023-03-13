@@ -10,7 +10,16 @@ function App() {
     <div className="App">
       <Title />
       {isFormSubmitted ? (
-        <div>Form submitted</div>
+        <div>
+          <p>Submitted</p>
+          <p>
+            You will receive a message on the day of the election with your
+            polling station information
+          </p>
+          <button onClick={() => setIsFormSubmitted(false)}>
+            Back to main page
+          </button>
+        </div>
       ) : (
         <Form setIsFormSubmitted={setIsFormSubmitted} />
       )}
