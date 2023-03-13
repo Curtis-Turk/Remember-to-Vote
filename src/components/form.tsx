@@ -6,7 +6,7 @@ export default function Form() {
     name: "",
     phone: "",
     postcode: "",
-    messageType: "",
+    messageType: "WhatsApp",
     addressSlug: "",
   });
 
@@ -236,8 +236,8 @@ export default function Form() {
           <input
             type="radio"
             name="messageType"
-            id="whatsapp"
-            value="whatsapp"
+            id="WhatsApp"
+            value="WhatsApp"
             defaultChecked={true}
             onChange={handleTextChange}
           />
@@ -247,8 +247,8 @@ export default function Form() {
           <input
             type="radio"
             name="messageType"
-            id="text"
-            value="text"
+            id="Sms"
+            value="Sms"
             onChange={handleTextChange}
           />
         </span>
