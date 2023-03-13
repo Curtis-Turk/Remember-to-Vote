@@ -37,6 +37,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
   }
   // object of the selected address object
   const [selectedAddress, setSelectedAddress] = useState<addressObject>({});
+
   const handleTextChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const name: string = e.target.name;
     const value: string = e.target.value;
@@ -49,31 +50,29 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
     }));
   };
 
+  const handlePhoneInputChange = async (phoneNumber: any) => {
+    await setFormData((formData) => ({
+      ...formData,
+      phone: phoneNumber,
+    }));
+  };
+
   const verifyPostCode = async () => {
     if (isPostcodeMissing) await setIsPostcodeMissing(false);
     await setIsVerifyPostcodeDisabled(true);
 
-    // const response = await fetch("verifyPostCode", {
-    //   method: "POST",
-    //   body: formData.postcode,
-    // });
-    // const result = await response.json();
+    const response = await fetch(
+      `${process.env.REACT_APP_API as string}/postcode`,
+      {
+        method: "POST",
+        body: formData.postcode,
+      }
+    );
+    if (!response.ok) return; // TODO: Add error catching for bad responses
 
-    const result: any = {
-      pollingStationFound: true,
-      pollingStations: [
-        {
-          address: "123 Privet Drive, London",
-          postcode: "W12 LKW",
-          slug: "12345",
-        },
-        {
-          address: "124 dawn road, London",
-          postcode: "W12 LKW",
-          slug: "67890",
-        },
-      ],
-    };
+    const result = await response.json();
+
+    //
 
     if (!result.pollingStationFound && !result.pollingStations.length) {
       await setIsPostcodeMissing(true);
@@ -95,10 +94,10 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
     await setIsCancelButtonRendered(true);
   };
 
-  /* takes an addressObject and sets the address in the form data to be the value of the object
-  removes addresses from addresses array state to clear addresses from the DOM
-  sets isPostcodeVerified to true */
   const setAddress = async (addressObject: any) => {
+    /* takes an addressObject and sets the address in the form data to be the value of the object
+    removes addresses from addresses array state to clear addresses from the DOM
+    sets isPostcodeVerified to true */
     await setFormData((formData) => ({
       ...formData,
       addressSlug: addressObject.slug,
@@ -106,37 +105,6 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
     await setSelectedAddress(addressObject);
     await setAddresses([]);
     await setIsPostCodeVerified(true);
-  };
-
-  const handleSubmit = async () => {
-    if (formData.name && formData.phone && isPostcodeVerified) {
-      const response = await fetch(
-        `${process.env.REACT_APP_API as string}/submit`,
-        {
-          method: "POST",
-          body: JSON.stringify(formData),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (response.ok) {
-        await setIsFormSubmitted(true);
-      }
-    }
-    if (!formData.name) {
-      // changes state of name error
-      // change state of error object
-      return;
-    }
-    if (!formData.phone) {
-      return;
-    }
-    if (!isPostcodeVerified) {
-      // SET message to verify postcode
-      return;
-    }
   };
 
   const cancelPostcodeSelection = async () => {
@@ -214,11 +182,35 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
     }
   };
 
-  const handlePhoneInputChange = async (phoneNumber: any) => {
-    await setFormData((formData) => ({
-      ...formData,
-      phone: phoneNumber,
-    }));
+  const handleSubmit = async () => {
+    if (formData.name && formData.phone && isPostcodeVerified) {
+      const response = await fetch(
+        `${process.env.REACT_APP_API as string}/submit`,
+        {
+          method: "POST",
+          body: JSON.stringify(formData),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.ok) {
+        await setIsFormSubmitted(true);
+      }
+    }
+    if (!formData.name) {
+      // changes state of name error
+      // change state of error object
+      return;
+    }
+    if (!formData.phone) {
+      return;
+    }
+    if (!isPostcodeVerified) {
+      // SET message to verify postcode
+      return;
+    }
   };
 
   return (
