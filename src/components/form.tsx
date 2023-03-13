@@ -33,7 +33,6 @@ export default function Form() {
   }
   // object of the selected address object
   const [selectedAddress, setSelectedAddress] = useState<addressObject>({});
-
   const handleTextChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const name: string = e.target.name;
     const value: string = e.target.value;
@@ -106,16 +105,24 @@ export default function Form() {
   };
 
   const handleSubmit = async () => {
-    console.log(formData);
+    if (formData.name && formData.phone && isPostcodeVerified) {
+      console.log(formData);
+      const res = await fetch("sendForm", {
+        method: "POST",
+        body: JSON.stringify(formData),
+      });
+      return;
+    }
+    if (!formData.name) {
+      return;
+    }
+    if (!formData.phone) {
+      return;
+    }
     if (!isPostcodeVerified) {
       // SET message to verify postcode
       return;
     }
-
-    const res = await fetch("sendForm", {
-      method: "POST",
-      body: JSON.stringify(formData),
-    });
   };
 
   const cancelPostcodeSelection = async () => {
