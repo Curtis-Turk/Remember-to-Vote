@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 import PhoneInput from "react-phone-number-input";
 
-export default function Form() {
+interface formProps {
+  setIsFormSubmitted: Dispatch<SetStateAction<boolean>>;
+}
+
+export const Form = ({ setIsFormSubmitted }: formProps) => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -107,13 +111,21 @@ export default function Form() {
   const handleSubmit = async () => {
     if (formData.name && formData.phone && isPostcodeVerified) {
       console.log(formData);
-      const res = await fetch("sendForm", {
+
+      const response = await fetch("", {
         method: "POST",
         body: JSON.stringify(formData),
       });
+      if (response.ok) {
+      }
+      // result = ??
+      // { success: true }
+      // 204 = successfully created new data
       return;
     }
     if (!formData.name) {
+      // changes state of name error
+      // change state of error object
       return;
     }
     if (!formData.phone) {
@@ -201,7 +213,6 @@ export default function Form() {
   };
 
   const handlePhoneInputChange = async (phoneNumber: any) => {
-    console.log(phoneNumber);
     await setFormData((formData) => ({
       ...formData,
       phone: phoneNumber,
@@ -243,7 +254,7 @@ export default function Form() {
           />
         </span>
         <span>
-          Text
+          SMS
           <input
             type="radio"
             name="messageType"
@@ -259,4 +270,4 @@ export default function Form() {
       </button>
     </div>
   );
-}
+};
