@@ -65,14 +65,15 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
       `${process.env.REACT_APP_API as string}/postcode`,
       {
         method: "POST",
-        body: formData.postcode,
+        body: JSON.stringify({ postcode: formData.postcode }),
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
     );
     if (!response.ok) return; // TODO: Add error catching for bad responses
 
     const result = await response.json();
-
-    //
 
     if (!result.pollingStationFound && !result.pollingStations.length) {
       await setIsPostcodeMissing(true);
