@@ -71,35 +71,33 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
     if (isPostcodeMissing) await setIsPostcodeMissing(false);
     await setIsVerifyPostcodeDisabled(true);
 
-    // const response = await fetch(
-    //   `${process.env.REACT_APP_API as string}/postcode`,
-    //   {
-    //     method: "POST",
-    //     body: JSON.stringify({ postcode: formData.postcode }),
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   }
-    // );
-    // if (!response.ok) return; // TODO: Add error catching for bad responses
+    const response = await fetch(
+      `${process.env.REACT_APP_API as string}/postcode`,
+      {
+        method: "POST",
+        body: JSON.stringify({ postcode: formData.postcode }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!response.ok) return; // TODO: Add error catching for bad responses
 
-    // const result = (await response.json()) as pollingStationsObject;
-
-    const result = {
-      errorMessage: "Connection issue whilst verifying postcode",
-      pollingStationFound: false,
-      pollingStations: [],
-    } as pollingStationsObject;
+    const result = (await response.json()) as pollingStationsObject;
 
     if (!result.pollingStationFound && !result.pollingStations.length) {
-      if (result.errorMessage === "Could not geocode from any source") {
-        setVerifyPostcodeMessage("Postcode could not be found");
-      } else if (
-        result.errorMessage === "Connection issue whilst verifying postcode"
-      ) {
-        setVerifyPostcodeMessage(result.errorMessage);
-      } else {
-        setVerifyPostcodeMessage("There are no upcoming ballots in your area");
+      switch (result.errorMessage) {
+        case "Could not geocode from any source":
+          setVerifyPostcodeMessage("Postcode could not be found");
+          break;
+        case "Connection issue whilst verifying postcode":
+          setVerifyPostcodeMessage(result.errorMessage);
+          break;
+        default:
+          setVerifyPostcodeMessage(
+            "There are no upcoming ballots in your area"
+          );
+          break;
       }
       setIsVerifyPostcodeDisabled(false);
       return;
