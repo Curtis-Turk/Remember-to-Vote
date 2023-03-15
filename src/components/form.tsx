@@ -5,6 +5,18 @@ interface formProps {
   setIsFormSubmitted: Dispatch<SetStateAction<boolean>>;
 }
 
+interface addressObject {
+  address?: string;
+  postcode?: string;
+  slug?: string;
+}
+
+interface pollingStationsObject {
+  pollingStationFound: boolean;
+  pollingStations: addressObject[];
+  errorMessage?: string;
+}
+
 export const Form = ({ setIsFormSubmitted }: formProps) => {
   const [formData, setFormData] = useState({
     name: "",
@@ -28,30 +40,28 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
   // boolean for if cancel button is rendered
   const [isCancelButtonRendered, setIsCancelButtonRendered] = useState(false);
   // array of address objects from the Electoral Commision API
-  const [addresses, setAddresses] = useState([]);
+  const [addresses, setAddresses] = useState<addressObject[]>([]);
 
-  interface addressObject {
-    address?: string;
-    postcode?: string;
-    slug?: string;
-  }
   // object of the selected address object
   const [selectedAddress, setSelectedAddress] = useState<addressObject>({});
+
+  // message state for postcode verification
+  const [verifyPostcodeMessage, setVerifyPostcodeMessage] = useState("");
 
   const handleTextChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const name: string = e.target.name;
     const value: string = e.target.value;
 
-    if (name === "postcode") await setIsPostCodeVerified(false);
+    if (name === "postcode") setIsPostCodeVerified(false);
 
-    await setFormData((formData) => ({
+    setFormData((formData) => ({
       ...formData,
       [name]: value,
     }));
   };
 
   const handlePhoneInputChange = async (phoneNumber: any) => {
-    await setFormData((formData) => ({
+    setFormData((formData) => ({
       ...formData,
       phone: phoneNumber,
     }));
@@ -61,60 +71,70 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
     if (isPostcodeMissing) await setIsPostcodeMissing(false);
     await setIsVerifyPostcodeDisabled(true);
 
-    const response = await fetch(
-      `${process.env.REACT_APP_API as string}/postcode`,
-      {
-        method: "POST",
-        body: JSON.stringify({ postcode: formData.postcode }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    if (!response.ok) return; // TODO: Add error catching for bad responses
+    // const response = await fetch(
+    //   `${process.env.REACT_APP_API as string}/postcode`,
+    //   {
+    //     method: "POST",
+    //     body: JSON.stringify({ postcode: formData.postcode }),
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   }
+    // );
+    // if (!response.ok) return; // TODO: Add error catching for bad responses
 
-    const result = await response.json();
+    // const result = (await response.json()) as pollingStationsObject;
+
+    const result = {
+      // errorMessage: "Could not geocode from any source",
+      pollingStationFound: false,
+      pollingStations: [],
+    } as pollingStationsObject;
 
     if (!result.pollingStationFound && !result.pollingStations.length) {
-      await setIsPostcodeMissing(true);
-      await setIsVerifyPostcodeDisabled(false);
+      if (result.errorMessage === "Could not geocode from any source") {
+        setVerifyPostcodeMessage("Postcode could not be found");
+      } else {
+        setVerifyPostcodeMessage("There are no upcoming ballots in your area");
+      }
+      setIsVerifyPostcodeDisabled(false);
       return;
     }
     // on single result
     if (result.pollingStationFound) {
       // if postcode is verified, then form can be submitted.
-      await setIsPostCodeVerified(true);
+      setIsPostCodeVerified(true);
       // Colour postcode input green
     }
 
     if (result.pollingStations.length) {
-      await setIsVerifyPostcodeButtonRendered(false);
-      await setAddresses(result.pollingStations);
+      setIsVerifyPostcodeButtonRendered(false);
+      setAddresses(result.pollingStations);
     }
 
-    await setIsCancelButtonRendered(true);
+    setIsCancelButtonRendered(true);
   };
 
   const setAddress = async (addressObject: any) => {
     /* takes an addressObject and sets the address in the form data to be the value of the object
     removes addresses from addresses array state to clear addresses from the DOM
     sets isPostcodeVerified to true */
-    await setFormData((formData) => ({
+    setFormData((formData) => ({
       ...formData,
       addressSlug: addressObject.slug,
     }));
-    await setSelectedAddress(addressObject);
-    await setAddresses([]);
-    await setIsPostCodeVerified(true);
+    setSelectedAddress(addressObject);
+    setAddresses([]);
+    setIsPostCodeVerified(true);
   };
 
   const cancelPostcodeSelection = async () => {
-    await setIsVerifyPostcodeDisabled(false);
-    await setIsVerifyPostcodeButtonRendered(true);
-    await setIsPostCodeVerified(false);
-    await setIsCancelButtonRendered(false);
-    await setSelectedAddress({});
-    await setAddresses([]);
+    setIsVerifyPostcodeDisabled(false);
+    setIsVerifyPostcodeButtonRendered(true);
+    setIsPostCodeVerified(false);
+    setIsCancelButtonRendered(false);
+    setSelectedAddress({});
+    setAddresses([]);
   };
 
   const renderCancelButton = () => {
@@ -132,7 +152,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
       return (
         <div>
           <p>Select your address from the options below:</p>
-          {addresses.map((addressObject: any) => (
+          {addresses.map((addressObject: addressObject) => (
             <button
               key={addressObject.address}
               className="address-btn"
@@ -232,7 +252,9 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
         {renderVerifyPostcodeButton()}
         {renderAddressesSelectionDiv()}
         {renderCancelButton()}
-        {isPostcodeMissing ? <div>Postcode has not been found</div> : null}
+        {verifyPostcodeMessage.length ? (
+          <div>{verifyPostcodeMessage}</div>
+        ) : null}
       </div>
 
       <fieldset id="message-type">
