@@ -63,9 +63,18 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
     }));
   };
 
-  const verifyPostCode = async () => {
-    await setIsVerifyPostcodeDisabled(true);
+  const isPostcodeValid = (postcode: string): boolean => {
+    return /^[A-Za-z0-9 ]*$/.test(postcode);
+  };
 
+  const verifyPostCode = async () => {
+    if (!isPostcodeValid(formData.postcode)) {
+      setVerifyPostcodeMessage(
+        "Please only use alphanumeric characters and spaces"
+      );
+      return;
+    }
+    await setIsVerifyPostcodeDisabled(true);
     const response = await fetch(
       `${process.env.REACT_APP_API as string}/postcode`,
       {
@@ -109,7 +118,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
       setIsVerifyPostcodeButtonRendered(false);
       setAddresses(result.pollingStations);
     }
-
+    setVerifyPostcodeMessage("");
     setIsCancelButtonRendered(true);
   };
 
