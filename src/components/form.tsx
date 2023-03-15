@@ -86,7 +86,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
     // const result = (await response.json()) as pollingStationsObject;
 
     const result = {
-      // errorMessage: "Could not geocode from any source",
+      errorMessage: "Connection issue whilst verifying postcode",
       pollingStationFound: false,
       pollingStations: [],
     } as pollingStationsObject;
@@ -94,6 +94,10 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
     if (!result.pollingStationFound && !result.pollingStations.length) {
       if (result.errorMessage === "Could not geocode from any source") {
         setVerifyPostcodeMessage("Postcode could not be found");
+      } else if (
+        result.errorMessage === "Connection issue whilst verifying postcode"
+      ) {
+        setVerifyPostcodeMessage(result.errorMessage);
       } else {
         setVerifyPostcodeMessage("There are no upcoming ballots in your area");
       }
