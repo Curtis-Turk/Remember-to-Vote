@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import App from "./App";
 
 test("full name has correct label", () => {
-  const message: string = "Name * :";
+  const message: string = "Name:";
   // screen.logTestingPlaygroundURL(screen.getByLabelText(message));
   expect(screen.getByText(message)).toBeInTheDocument();
 });
@@ -15,7 +15,7 @@ test("full name: incorrect label doesn't exist", () => {
 
 test("phone number has correct label", () => {
   render(<App />);
-  const message: string = "Phone Number * :";
+  const message: string = "Phone Number:";
   expect(screen.getByLabelText(message)).toBeInTheDocument();
 });
 

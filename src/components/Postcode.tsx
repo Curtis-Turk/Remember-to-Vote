@@ -57,7 +57,7 @@ export const Postcode = ({
     return /^[A-Za-z0-9 ]*$/.test(postcode);
   };
 
-  const verifyPostCode = async () => {
+  const verifyPostCode = async (): Promise<void> => {
     if (!isPostcodeValid(postcode)) {
       setVerifyPostcodeMessage(
         "Please only use alphanumeric characters and spaces"
