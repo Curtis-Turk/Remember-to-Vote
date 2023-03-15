@@ -73,13 +73,11 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
   return (
     <div id="polling-form">
       <div id="user-details">
-        <label htmlFor="name">Name * :</label>
+        <label htmlFor="name">Name:</label>
         <input type="text" id="name" name="name" onChange={handleTextChange} />
-        <label htmlFor="phone">Phone Number * :</label>
+        <label htmlFor="phone">Phone Number:</label>
         <PhoneInput defaultCountry="GB" onChange={handlePhoneInputChange} />
         <Postcode
-          // isPostcodeVerified={isPostcodeVerified}
-          // setIsPostcodeVerified={setIsPostCodeVerified}
           {...{
             isPostcodeVerified,
             setIsPostCodeVerified,

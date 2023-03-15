@@ -2,9 +2,9 @@ import { useState, Dispatch, SetStateAction } from "react";
 import { formData } from "./Form";
 
 interface addressObject {
-  address?: string;
-  postcode?: string;
-  slug?: string;
+  address: string;
+  postcode: string;
+  slug: string;
 }
 
 interface pollingStationsObject {
@@ -42,8 +42,15 @@ export const Postcode = ({
   // array of address objects from the Electoral Commision API
   const [addresses, setAddresses] = useState<addressObject[]>([]);
 
+  const defaultAddressObject: addressObject = {
+    address: "",
+    postcode: "",
+    slug: "",
+  };
+
   // object of the selected address object
-  const [selectedAddress, setSelectedAddress] = useState<addressObject>({});
+  const [selectedAddress, setSelectedAddress] =
+    useState<addressObject>(defaultAddressObject);
 
   // checks postcode only has alphanumeric characters and whitespace
   const isPostcodeValid = (postcode: string): boolean => {
@@ -107,11 +114,12 @@ export const Postcode = ({
     setIsCancelButtonRendered(true);
   };
 
-  const setAddress = async (addressObject: any) => {
+  const setAddress = (addressObject: addressObject): void => {
     /* takes an addressObject and sets the address in the form data to be the value of the object
     removes addresses from addresses array state to clear addresses from the DOM
-    sets isPostcodeVerified to true */
-    setFormData((formData) => ({
+    */
+
+    setFormData((formData: formData) => ({
       ...formData,
       addressSlug: addressObject.slug,
     }));
@@ -121,16 +129,16 @@ export const Postcode = ({
     setIsPostCodeVerified(true);
   };
 
-  const cancelPostcodeSelection = async () => {
+  const cancelPostcodeSelection = (): void => {
     setIsVerifyPostcodeDisabled(false);
     setIsVerifyPostcodeButtonRendered(true);
     setIsPostCodeVerified(false);
     setIsCancelButtonRendered(false);
-    setSelectedAddress({});
+    setSelectedAddress(defaultAddressObject);
     setAddresses([]);
   };
 
-  const renderCancelButton = () => {
+  const renderCancelButton = (): JSX.Element | undefined => {
     if (isCancelButtonRendered) {
       return (
         <button id="cancel-btn" onClick={cancelPostcodeSelection}>
@@ -140,7 +148,7 @@ export const Postcode = ({
     }
   };
 
-  const renderAddressesSelectionDiv = () => {
+  const renderAddressesSelectionDiv = (): JSX.Element | undefined => {
     if (addresses.length) {
       return (
         <div>
@@ -159,7 +167,7 @@ export const Postcode = ({
     }
 
     // if selectedAddress object has been set
-    if (Object.keys(selectedAddress).length) {
+    if (selectedAddress.address.length) {
       return (
         <div>
           <label htmlFor="address">Address * :</label>
@@ -175,7 +183,7 @@ export const Postcode = ({
     }
   };
 
-  const renderVerifyPostcodeButton = () => {
+  const renderVerifyPostcodeButton = (): JSX.Element | undefined => {
     let verifyPostCodeButtonText = "Verify postcode";
     if (isVerifyPostcodeDisabled) {
       verifyPostCodeButtonText = "Checking postcode";
@@ -198,7 +206,7 @@ export const Postcode = ({
 
   return (
     <div id="postcode">
-      <label htmlFor="postcode">Postcode * :</label>
+      <label htmlFor="postcode">Postcode:</label>
       <input
         type="text"
         id="postcode"
