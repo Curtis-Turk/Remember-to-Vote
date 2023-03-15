@@ -29,24 +29,20 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
   // boolean for if postcode is being checked by the Electoral Commission API
   const [isVerifyPostcodeDisabled, setIsVerifyPostcodeDisabled] =
     useState(false);
-  // boolean for if the verify postcode button is being rendered
   const [isVerifyPostcodeButtonRendered, setIsVerifyPostcodeButtonRendered] =
     useState(true);
   // boolean for if postcode has been verified with the Electoral Commission API
   const [isPostcodeVerified, setIsPostCodeVerified] = useState(false);
-  // boolean for if postcode is not found
-  const [isPostcodeMissing, setIsPostcodeMissing] = useState(false);
 
-  // boolean for if cancel button is rendered
+  const [verifyPostcodeMessage, setVerifyPostcodeMessage] = useState("");
+
   const [isCancelButtonRendered, setIsCancelButtonRendered] = useState(false);
+
   // array of address objects from the Electoral Commision API
   const [addresses, setAddresses] = useState<addressObject[]>([]);
 
   // object of the selected address object
   const [selectedAddress, setSelectedAddress] = useState<addressObject>({});
-
-  // message state for postcode verification
-  const [verifyPostcodeMessage, setVerifyPostcodeMessage] = useState("");
 
   const handleTextChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const name: string = e.target.name;
@@ -68,7 +64,6 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
   };
 
   const verifyPostCode = async () => {
-    if (isPostcodeMissing) await setIsPostcodeMissing(false);
     await setIsVerifyPostcodeDisabled(true);
 
     const response = await fetch(
@@ -81,7 +76,8 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
         },
       }
     );
-    if (!response.ok) return; // TODO: Add error catching for bad responses
+
+    // TODO: implement error checking if fetch fails
 
     const result = (await response.json()) as pollingStationsObject;
 
