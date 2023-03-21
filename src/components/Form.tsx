@@ -41,8 +41,11 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
   };
 
   const handlePhoneInputChange = (phoneNumber: any) => {
-    if (phoneNumber && isPossiblePhoneNumber(phoneNumber))
+    if (phoneNumber && isPossiblePhoneNumber(phoneNumber)) {
       setIsNumberValid(true);
+    } else {
+      setIsNumberValid(false);
+    }
 
     setFormData((formData) => ({
       ...formData,
@@ -86,7 +89,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
         <PhoneInput
           defaultCountry="GB"
           onChange={handlePhoneInputChange}
-          className={isNameValid ? "" : "invalid"}
+          className={isNumberValid ? "" : "invalid"}
         />
         <Postcode
           {...{
