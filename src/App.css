@@ -35,7 +35,9 @@ input[type="checkbox"] {
   display: inline-block;
   margin-right: 10px;
 }
-
+.invalid {
+  border: 2px solid red !important;
+}
 #cancel-btn {
   /* display: inline-block; */
   padding: 5px 10px;

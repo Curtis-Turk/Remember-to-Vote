@@ -6,5 +6,8 @@ There will also be a reminder to bring ID to make sure that the user is aware of
 
 Made for campaign lab
 
-
 [Back end repository](https://github.com/Curtis-Turk/polling-station-express-backend)
+
+### environmental variables
+
+.env - "REACT_APP_API=""
