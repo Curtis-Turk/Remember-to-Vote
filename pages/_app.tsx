@@ -1,7 +1,7 @@
-import "./App.css";
-import Footer from "./components/Footer";
-import { Form } from "./components/Form";
-import Title from "./components/Title";
+import "../styles.css";
+import Footer from "../src/components/Footer";
+import { Form } from "../src/components/Form";
+import Title from "../src/components/Title";
 import { useState } from "react";
 
 function App() {
