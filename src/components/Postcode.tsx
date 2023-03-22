@@ -69,7 +69,7 @@ export const Postcode = ({
 
     await setIsVerifyPostcodeDisabled(true);
     const response = await fetch(
-      `${process.env.REACT_APP_API as string}/postcode`,
+      `${process.env.NEXT_PUBLIC_API as string}/postcode`,
       {
         method: "POST",
         body: JSON.stringify({ postcode: strippedPostcode }),

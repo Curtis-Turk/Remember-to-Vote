@@ -6,9 +6,10 @@ const electoralCommission = new ElectoralCommisionApi(
 );
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.headers.origin !== process.env.FRONT_END_DOMAIN) {
-    return res.status(400);
-  }
+  // if (req.headers.origin !== process.env.FRONT_END_DOMAIN) {
+  //   return res.status(400);
+  // }
+  console.log("🚀 ~ file: postcode.tsx:10 ~ origin:", req.headers.origin);
 
   const pollingStationResponse = await electoralCommission.verifyPostcode(
     req.body.postcode
