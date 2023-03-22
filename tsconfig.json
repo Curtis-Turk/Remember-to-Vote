@@ -20,12 +20,11 @@
     "noEmit": true,
     "jsx": "preserve",
     "incremental": true
-  }
+  },
   // ,
   // "include": [
   //   "src":"./jest-setup.ts"
   // ]
-  ,
   "include": [
     "next-env.d.ts",
     "**/*.ts",
