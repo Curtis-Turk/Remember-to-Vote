@@ -6,19 +6,15 @@ const electoralCommission = new ElectoralCommisionApi(
 );
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  // if (req.headers.origin !== process.env.FRONT_END_DOMAIN) {
-  //   return res.status(400);
-  // }
-  console.log("🚀 ~ file: postcode.tsx:10 ~ origin:", req.headers.origin);
+  if (req.headers.origin !== process.env.NEXT_PUBLIC_API) {
+    return res.status(400);
+  }
 
   const pollingStationResponse = await electoralCommission.verifyPostcode(
     req.body.postcode
   );
+
   const statusCode = pollingStationResponse.errorMessage ? 400 : 200;
-  // return res.status(statusCode).json({
-  //   errorMessage: "Connection issue whilst verifying postcode",
-  //   pollingStationFound: false,
-  //   pollingStations: [],
-  // });
+
   return res.status(statusCode).json(pollingStationResponse);
 };

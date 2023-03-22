@@ -68,6 +68,7 @@ export const Postcode = ({
     const strippedPostcode = postcode.replace(" ", "");
 
     await setIsVerifyPostcodeDisabled(true);
+
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API as string}/api/postcode`,
       {
