@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import App from "../pages/App";
+import App from "../pages/_app";
 
 test("full name has correct label", () => {
   const message: string = "Name:";
