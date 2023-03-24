@@ -56,7 +56,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
   const handleSubmit = async () => {
     if (formData.name && formData.phone) {
       const response = await fetch(
-        `${process.env.REACT_APP_API as string}/submit`,
+        `${process.env.NEXT_PUBLIC_API as string}/api/submit`,
         {
           method: "POST",
           body: JSON.stringify(formData),

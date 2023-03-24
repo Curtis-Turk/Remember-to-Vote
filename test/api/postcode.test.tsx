@@ -140,7 +140,7 @@ describe("/postcode api route", () => {
     });
   });
 
-  it("returns 400 if not the same origin", async () => {
+  it("returns 401 if not the same origin", async () => {
     const postcodeRequest = { postcode: "TN4TWH" };
     const { req, res } = mockRequestResponse("POST");
     req.body = postcodeRequest;
