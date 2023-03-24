@@ -145,6 +145,6 @@ describe("/postcode api route", () => {
     const { req, res } = mockRequestResponse("POST");
     req.body = postcodeRequest;
     await postcode(req, res);
-    expect(res.statusCode).toBe(400);
+    expect(res.statusCode).toBe(401);
   });
 });
