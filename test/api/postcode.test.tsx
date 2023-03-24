@@ -6,6 +6,7 @@ import axios, { AxiosError } from "axios";
 import pollingDataExistsResponse from "./mockApiResponses/pollingDataExistsResponse";
 import addressPickerResponse from "./mockApiResponses/addressPickerResponse";
 import noUpcomingBallotsResponse from "./mockApiResponses/noUpcomingBallotsResponse";
+import postcodeNotFound from "./mockApiResponses/postcodeNotFound";
 
 jest.mock("axios");
 const mockedAxiosGet = axios.get as jest.MockedFunction<typeof axios>;
@@ -62,6 +63,7 @@ describe("/postcode api route", () => {
       ],
     });
   });
+
   it("there are no upcoming ballots", async () => {
     mockedAxiosGet.mockResolvedValueOnce({ data: noUpcomingBallotsResponse });
     const { req, res } = mockRequestResponse("POST");
@@ -80,6 +82,34 @@ describe("/postcode api route", () => {
     );
     expect(res.statusCode).toBe(200);
     expect(res._getJSONData()).toEqual({
+      pollingStationFound: false,
+      pollingStations: [],
+    });
+  });
+
+  it("Returns an error message if postcode not found", async () => {
+    // axios will throw an error with status 400
+    mockedAxiosGet.mockRejectedValue({
+      response: {
+        data: postcodeNotFound,
+        status: 400,
+      },
+    });
+    const { req, res } = mockRequestResponse("POST");
+
+    req.headers = {
+      origin: process.env.NEXT_PUBLIC_API,
+    };
+
+    const postcodeRequest = { postcode: "aaaaaa" };
+    req.body = postcodeRequest;
+    await postcode(req, res);
+    expect(mockedAxiosGet).toHaveBeenCalledWith(
+      `https://api.electoralcommission.org.uk/api/v1/postcode/aaaaaa?token=${process.env.EC_API_KEY}`
+    );
+    expect(res.statusCode).toBe(400);
+    expect(res._getJSONData()).toEqual({
+      errorMessage: "Could not geocode from any source",
       pollingStationFound: false,
       pollingStations: [],
     });
