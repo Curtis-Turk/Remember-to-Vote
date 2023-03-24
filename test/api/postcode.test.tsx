@@ -139,4 +139,12 @@ describe("/postcode api route", () => {
       pollingStations: [],
     });
   });
+
+  it("returns 400 if not the same origin", async () => {
+    const postcodeRequest = { postcode: "TN4TWH" };
+    const { req, res } = mockRequestResponse("POST");
+    req.body = postcodeRequest;
+    await postcode(req, res);
+    expect(res.statusCode).toBe(400);
+  });
 });
