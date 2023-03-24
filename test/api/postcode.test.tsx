@@ -114,4 +114,29 @@ describe("/postcode api route", () => {
       pollingStations: [],
     });
   });
+
+  it("returns an error message if axios couldn't connect", async () => {
+    mockedAxiosGet.mockRejectedValue(new AxiosError());
+
+    expect(mockedAxiosGet).toHaveBeenCalledWith(
+      `https://api.electoralcommission.org.uk/api/v1/postcode/TN4TWH?token=${process.env.EC_API_KEY}`
+    );
+
+    const { req, res } = mockRequestResponse("POST");
+
+    req.headers = {
+      origin: process.env.NEXT_PUBLIC_API,
+    };
+
+    const postcodeRequest = { postcode: "aaaaaa" };
+    req.body = postcodeRequest;
+
+    await postcode(req, res);
+    expect(res.statusCode).toBe(400);
+    expect(res._getJSONData()).toEqual({
+      errorMessage: "Connection issue whilst verifying postcode",
+      pollingStationFound: false,
+      pollingStations: [],
+    });
+  });
 });
