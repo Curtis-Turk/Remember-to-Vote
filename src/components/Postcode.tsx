@@ -197,6 +197,9 @@ export const Postcode = ({
         <button
           id="verify-btn"
           disabled={isVerifyPostcodeDisabled}
+          className={
+            isVerifyPostcodeDisabled ? "verifiedPostcode" : "unVerifiedPostcode"
+          }
           onClick={verifyPostCode}
         >
           {verifyPostCodeButtonText}

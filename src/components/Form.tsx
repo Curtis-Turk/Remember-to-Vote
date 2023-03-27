@@ -20,6 +20,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
   const [isNameValid, setIsNameValid] = useState(true);
   const [isNumberValid, setIsNumberValid] = useState(true);
   const [submitError, setSubmitError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   const [formData, setFormData] = useState<formData>({
     name: "",
@@ -54,7 +55,11 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
     }));
   };
 
+  const canUserSubmit =
+    isNameValid && isNumberValid && isPostcodeVerified && !submitting;
+
   const handleSubmit = async () => {
+    setSubmitting(true);
     if (formData.name && formData.phone && isPostcodeVerified) {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API as string}/api/submit`,
@@ -75,6 +80,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
     }
     if (!formData.name) setIsNameValid(false);
     if (!formData.phone) setIsNumberValid(false);
+    setSubmitting(false);
   };
 
   return (
@@ -131,7 +137,12 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
       </fieldset>
       <div>We will send you a reminder on the day of the election</div>
       <div>
-        <button onClick={handleSubmit} id="submit-form-btn">
+        <button
+          onClick={handleSubmit}
+          id="submit-form-btn"
+          disabled={!canUserSubmit}
+          className={canUserSubmit ? "submitEnabled" : "submitDisabled"}
+        >
           Submit
         </button>
         <span>{submitError ? submitError : null}</span>
