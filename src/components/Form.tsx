@@ -67,7 +67,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
       );
 
       if (response.ok) {
-        await setIsFormSubmitted(true);
+        setIsFormSubmitted(true);
       }
     }
     if (!formData.name) setIsNameValid(false);

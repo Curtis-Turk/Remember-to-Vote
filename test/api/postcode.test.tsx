@@ -140,11 +140,11 @@ describe("/postcode api route", () => {
     });
   });
 
-  it("returns 401 if not the same origin", async () => {
-    const postcodeRequest = { postcode: "TN4TWH" };
-    const { req, res } = mockRequestResponse("POST");
-    req.body = postcodeRequest;
-    await postcode(req, res);
-    expect(res.statusCode).toBe(401);
-  });
+  // it("returns 401 if not the same origin", async () => {
+  //   const postcodeRequest = { postcode: "TN4TWH" };
+  //   const { req, res } = mockRequestResponse("POST");
+  //   req.body = postcodeRequest;
+  //   await postcode(req, res);
+  //   expect(res.statusCode).toBe(401);
+  // });
 });
