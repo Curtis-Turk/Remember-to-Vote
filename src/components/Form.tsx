@@ -13,7 +13,6 @@ export interface formData {
   messageType: string;
   addressSlug: string;
 }
-
 export const Form = ({ setIsFormSubmitted }: formProps) => {
   // boolean for if postcode has been verified with the Electoral Commission API
   const [isPostcodeVerified, setIsPostCodeVerified] = useState(false);
@@ -59,7 +58,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
     isNameValid && isNumberValid && isPostcodeVerified && !submitting;
 
   const handleSubmit = async () => {
-    setSubmitting(true);
+    await setSubmitting(true);
     if (formData.name && formData.phone && isPostcodeVerified) {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API as string}/api/submit`,
@@ -142,6 +141,9 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
           id="submit-form-btn"
           disabled={!canUserSubmit}
           className={canUserSubmit ? "submitEnabled" : "submitDisabled"}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") handleSubmit();
+          }}
         >
           Submit
         </button>
