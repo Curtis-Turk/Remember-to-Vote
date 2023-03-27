@@ -6,6 +6,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.headers.origin !== process.env.NEXT_PUBLIC_API) {
     return res.status(401);
   }
-
+  // return res.status(200).send({})
   // await supabase.from("voters");
 };
