@@ -19,6 +19,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
   const [isPostcodeVerified, setIsPostCodeVerified] = useState(false);
   const [isNameValid, setIsNameValid] = useState(true);
   const [isNumberValid, setIsNumberValid] = useState(true);
+  const [submitError, setSubmitError] = useState("");
 
   const [formData, setFormData] = useState<formData>({
     name: "",
@@ -68,6 +69,8 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
 
       if (response.ok) {
         setIsFormSubmitted(true);
+      } else {
+        setSubmitError("Something went wrong");
       }
     }
     if (!formData.name) setIsNameValid(false);
@@ -127,9 +130,12 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
         </span>
       </fieldset>
       <div>We will send you a reminder on the day of the election</div>
-      <button onClick={handleSubmit} id="submit-form-btn">
-        Submit
-      </button>
+      <div>
+        <button onClick={handleSubmit} id="submit-form-btn">
+          Submit
+        </button>
+        <span>{submitError ? submitError : null}</span>
+      </div>
     </div>
   );
 };
