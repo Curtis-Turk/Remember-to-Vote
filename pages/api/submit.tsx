@@ -11,11 +11,11 @@ const twilioApi = new TwilioApi(
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { name, phone, postcode, messageType } = req.body;
-  const body = `Hi ${name},\n\nIt's election day! Your polling station:\n\nEarlswood Social Club,\n160-164 Greenway Road,\nRumney\n\nRemember to bring your ID`;
   const messageFunction =
     messageType === "Sms"
       ? twilioApi.sendSmsMessage
       : twilioApi.sendWhatsAppMessage;
+  const body = `DemoText:\n\nHi ${name},\n\nIt's election day!🗳️ Your polling station:\n\nEarlswood Social Club,\n160-164 Greenway Road,\nRumney\n\nRemember to bring your ID`;
   const result = await messageFunction(body, phone);
   result ? res.status(201) : res.status(400);
   return res.end();
