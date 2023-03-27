@@ -32,19 +32,21 @@ export default class TwilioApi {
   If a message is unsucessful the twilio module will throw an error, otherwise it will return an object
   See here for response object examples: https://www.twilio.com/docs/usage/twilios-response */
   async sendMessage(createParams: createParams): Promise<boolean> {
-    const message = await this.client.messages.create(createParams);
-    console.log(`Message sent! SID: ${message.sid}`);
-    return true;
+    try {
+      const message = await this.client.messages.create(createParams);
+      console.log(`Message sent! SID: ${message.sid}`);
+      return true;
+    } catch (error) {
+      console.log("Twilio Error ->", error);
+      return false;
+    }
   }
 
   /* both these functions send a message to a chosen number
   Args: [body: string, toNumber: string]
   return value: bool, true if message sent succesfully, throws an error if not
   toNumber must be prefixed with an international dialling code and no 0, eg. UK = 0798... => +44798... */
-  public async sendWhatsAppMessage(
-    body: string,
-    toNumber: string
-  ): Promise<boolean> {
+  async sendWhatsAppMessage(body: string, toNumber: string): Promise<boolean> {
     return await this.sendMessage({
       body,
       from: `whatsapp:${this.fromNumberWhatsapp}`,
@@ -52,10 +54,7 @@ export default class TwilioApi {
     });
   }
 
-  public async sendSmsMessage(
-    body: string,
-    toNumber: string
-  ): Promise<boolean> {
+  async sendSmsMessage(body: string, toNumber: string): Promise<boolean> {
     return await this.sendMessage({
       body,
       messagingServiceSid: this.messagingServiceSid,

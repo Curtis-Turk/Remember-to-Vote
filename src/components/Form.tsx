@@ -65,6 +65,10 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
           },
         }
       );
+      console.log(
+        "🚀 ~ file: Form.tsx:68 ~ handleSubmit ~ response:",
+        response
+      );
 
       if (response.ok) {
         setIsFormSubmitted(true);
