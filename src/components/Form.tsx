@@ -111,7 +111,8 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
       </div>
 
       <fieldset id="message-type">
-        <legend>How would you like your reminder?</legend>
+        {/* <legend>How would you like your reminder?</legend> */}
+        <legend>How would you like your demo text?</legend>
         <span>
           WhatsApp
           <input
@@ -134,8 +135,17 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
           />
         </span>
       </fieldset>
-      <div>We will send you a reminder on the day of the election</div>
+      {/* <div>We will send you a reminder on the day of the election</div> */}
       <div>
+        <div
+          style={{
+            fontWeight: "bold",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <p>All fields are required including a verified postcode</p>
+        </div>
         <button
           onClick={handleSubmit}
           id="submit-form-btn"
@@ -145,9 +155,9 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
             if (e.key === "Enter") handleSubmit();
           }}
         >
-          Submit
+          {submitting ? "Submitting..." : "Submit"}
         </button>
-        <span>{submitError ? submitError : null}</span>
+        <div>{submitError ? submitError : null}</div>
       </div>
     </div>
   );
