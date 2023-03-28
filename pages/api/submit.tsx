@@ -16,7 +16,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     messageType === "Sms"
       ? twilioApi.sendSmsMessage
       : twilioApi.sendWhatsAppMessage;
-  const body = `DemoText:\n\nHi ${name},\n\nIt's election day!🗳️ Your polling station:\n\nEarlswood Social Club,\n160-164 Greenway Road,\nRumney\n\nRemember to bring your ID`;
+  const body = `DemoText:\n\nHi ${name},\n\n\🗳️ It's election day! 🗳️ \n\nYour polling station:\n\nEarlswood Social Club,\n160-164 Greenway Road,\nRumney\n\nRemember to bring your ID.`;
 
   // Brought in for demo
   const result = await messageFunction(body, phone);
