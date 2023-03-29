@@ -12,8 +12,12 @@ export default function SubmittedForm({ setIsFormSubmitted }: formProps) {
     You will receive a message on the day of the election with your
     polling station information
   </p> */}
+      <p>You should now receive 2 test texts</p>
       <p>
-        You should now receive a test text with an example polling station of:
+        The first will have a confirmation text example with the instructions to cancel if needed
+      </p>
+      <p>
+        The second will have an example polling station of:
         <h4>Earlswood Social Club, 160-164 Greenway Road, Rumney.</h4>
       </p>
       <p>
