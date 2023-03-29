@@ -144,6 +144,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
             onChange={handleTextChange}
           />
         </span>
+        <p>Note: Whatsapp not available for the demo</p>
       </fieldset>
       {/* <div>We will send you a reminder on the day of the election</div> */}
       <div>
