@@ -1,5 +1,5 @@
-import { useState, Dispatch, SetStateAction } from "react";
-import { formData } from "./Form";
+import { useState, Dispatch, SetStateAction } from 'react';
+import { formData } from './Form';
 
 interface addressObject {
   address: string;
@@ -29,13 +29,11 @@ export const Postcode = ({
   handleTextChange,
 }: props) => {
   // boolean for if postcode is being checked by the Electoral Commission API
-  const [isVerifyPostcodeDisabled, setIsVerifyPostcodeDisabled] =
-    useState(false);
+  const [isVerifyPostcodeDisabled, setIsVerifyPostcodeDisabled] = useState(false);
 
-  const [isVerifyPostcodeButtonRendered, setIsVerifyPostcodeButtonRendered] =
-    useState(true);
+  const [isVerifyPostcodeButtonRendered, setIsVerifyPostcodeButtonRendered] = useState(true);
 
-  const [verifyPostcodeMessage, setVerifyPostcodeMessage] = useState("");
+  const [verifyPostcodeMessage, setVerifyPostcodeMessage] = useState('');
 
   const [isCancelButtonRendered, setIsCancelButtonRendered] = useState(false);
 
@@ -43,14 +41,13 @@ export const Postcode = ({
   const [addresses, setAddresses] = useState<addressObject[]>([]);
 
   const defaultAddressObject: addressObject = {
-    address: "",
-    postcode: "",
-    slug: "",
+    address: '',
+    postcode: '',
+    slug: '',
   };
 
   // object of the selected address object
-  const [selectedAddress, setSelectedAddress] =
-    useState<addressObject>(defaultAddressObject);
+  const [selectedAddress, setSelectedAddress] = useState<addressObject>(defaultAddressObject);
 
   // checks postcode only has alphanumeric characters and whitespace
   const isPostcodeValid = (postcode: string): boolean => {
@@ -59,43 +56,36 @@ export const Postcode = ({
 
   const verifyPostCode = async (): Promise<void> => {
     if (!isPostcodeValid(postcode)) {
-      setVerifyPostcodeMessage(
-        "Please only use alphanumeric characters and spaces"
-      );
+      setVerifyPostcodeMessage('Please only use alphanumeric characters and spaces');
       return;
     }
     // strip postcode of whitespace
-    const strippedPostcode = postcode.replace(" ", "");
+    const strippedPostcode = postcode.replace(' ', '');
 
     await setIsVerifyPostcodeDisabled(true);
 
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API as string}/api/postcode`,
-      {
-        method: "POST",
-        body: JSON.stringify({ postcode: strippedPostcode }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API as string}/api/postcode`, {
+      method: 'POST',
+      body: JSON.stringify({ postcode: strippedPostcode }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-    // TODO: implement error checking if fetch fails
+    // TODO: implement error checking if fetch failss
 
     const result = (await response.json()) as pollingStationsObject;
 
     if (!result.pollingStationFound && !result.pollingStations.length) {
       switch (result.errorMessage) {
-        case "Could not geocode from any source":
-          setVerifyPostcodeMessage("Postcode could not be found");
+        case 'Could not geocode from any source':
+          setVerifyPostcodeMessage('Postcode could not be found');
           break;
-        case "Connection issue whilst verifying postcode":
+        case 'Connection issue whilst verifying postcode':
           setVerifyPostcodeMessage(result.errorMessage);
           break;
         default:
-          setVerifyPostcodeMessage(
-            "There are no upcoming ballots in your area"
-          );
+          setVerifyPostcodeMessage('There are no upcoming ballots in your area');
           break;
       }
       setIsVerifyPostcodeDisabled(false);
@@ -111,7 +101,7 @@ export const Postcode = ({
       setIsVerifyPostcodeButtonRendered(false);
       setAddresses(result.pollingStations);
     }
-    setVerifyPostcodeMessage("");
+    setVerifyPostcodeMessage('');
     setIsCancelButtonRendered(true);
   };
 
@@ -185,21 +175,19 @@ export const Postcode = ({
   };
 
   const renderVerifyPostcodeButton = (): JSX.Element | undefined => {
-    let verifyPostCodeButtonText = "Verify postcode";
+    let verifyPostCodeButtonText = 'Verify postcode';
     if (isVerifyPostcodeDisabled) {
-      verifyPostCodeButtonText = "Checking postcode";
+      verifyPostCodeButtonText = 'Checking postcode';
     }
     if (isPostcodeVerified) {
-      verifyPostCodeButtonText = "Postcode verified!";
+      verifyPostCodeButtonText = 'Postcode verified!';
     }
     if (isVerifyPostcodeButtonRendered) {
       return (
         <button
           id="verify-btn"
           disabled={isVerifyPostcodeDisabled}
-          className={
-            isVerifyPostcodeDisabled ? "verifiedPostcode" : "unVerifiedPostcode"
-          }
+          className={isVerifyPostcodeDisabled ? 'verifiedPostcode' : 'unVerifiedPostcode'}
           onClick={verifyPostCode}
         >
           {verifyPostCodeButtonText}
