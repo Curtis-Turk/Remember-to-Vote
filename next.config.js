@@ -1,12 +1,13 @@
 module.exports = {
-  // async rewrites() {
-  //   return [
-  //     {
-  //       source: '/api/:path*',
-  //       destination: 'https://remembertovote.org.uk/:path*',
-  //     },
-  //   ];
-  // },
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'https://remembertovote.org.uk/:path*',
+      },
+    ];
+  },
+
   // async headers() {
   //   return [
   //     {
