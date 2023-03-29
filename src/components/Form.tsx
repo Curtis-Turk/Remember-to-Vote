@@ -58,6 +58,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
 
   const handleSubmit = async () => {
     await setSubmitting(true);
+
     if (formData.name && formData.phone && isPostcodeVerified) {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API as string}/api/submit`, {
         method: 'POST',
