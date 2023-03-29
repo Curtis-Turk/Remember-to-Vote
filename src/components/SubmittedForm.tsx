@@ -17,7 +17,8 @@ export default function SubmittedForm({ setIsFormSubmitted }: formProps) {
         The first will have a confirmation text example with the instructions to cancel if needed
       </p>
       <p>
-        The second will have an example polling station of:
+        The second will an example of what to expect on the day and have an example polling station
+        of:
         <h4>Earlswood Social Club, 160-164 Greenway Road, Rumney.</h4>
       </p>
       <p>
