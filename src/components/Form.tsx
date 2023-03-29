@@ -123,19 +123,26 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
         {/* <legend>How would you like your reminder?</legend> */}
         <legend>How would you like your demo text?</legend>
         <span>
+          SMS
+          <input
+            type="radio"
+            name="messageType"
+            defaultChecked={true}
+            id="Sms"
+            value="Sms"
+            onChange={handleTextChange}
+          />
+        </span>
+        <span>
           WhatsApp
           <input
             type="radio"
             name="messageType"
             id="WhatsApp"
             value="WhatsApp"
-            defaultChecked={true}
+            disabled={true}
             onChange={handleTextChange}
           />
-        </span>
-        <span>
-          SMS
-          <input type="radio" name="messageType" id="Sms" value="Sms" onChange={handleTextChange} />
         </span>
       </fieldset>
       {/* <div>We will send you a reminder on the day of the election</div> */}
