@@ -15,7 +15,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const messageFunction =
     messageType === 'Sms' ? twilioApi.sendSmsMessage : twilioApi.sendWhatsAppMessage;
   const body =
-    "You have been signed up to RememberToVote.co.uk \n\n If you think this was in error, reply 'STOP' and we won't text you again.";
+    "You have been signed up to RememberToVote.org.uk \n\n If you think this was in error, reply 'STOP' and we won't text you again.";
 
   // Brought in for demo
   const result = await messageFunction(body, phone);
