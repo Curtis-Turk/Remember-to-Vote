@@ -23,10 +23,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     "You have been signed up to RememberToVote.org.uk \n\n If you think this was in error, reply 'STOP' and we won't text you again.";
 
   // Brought in for demo
-  const result = await messageFunction(body, phone);
+  // const result = await messageFunction(body, phone);
 
   // Stop twilio api call
-  // const result = true;
+  const result = true;
   result ? res.status(201) : res.status(400);
   return res.end();
 };
