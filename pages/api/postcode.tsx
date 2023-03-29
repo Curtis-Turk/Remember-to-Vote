@@ -8,6 +8,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   //   return res.status(401);
   // }
 
+  // if (req.method == 'OPTIONS') {
+  //   res.setHeader('Allow', 'POST');
+  //   return res.status(202).json({});
+  // }
+
   // using EC API
   // const pollingStationResponse = await electoralCommission.verifyPostcode(
   //   req.body.postcode
