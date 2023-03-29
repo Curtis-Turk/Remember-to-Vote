@@ -11,6 +11,11 @@ const twilioApi = new TwilioApi(
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   console.log(req.body);
+  if (req.method == 'OPTIONS') {
+    res.setHeader('Allow', 'POST');
+    return res.status(202).json({});
+  }
+
   const { name, phone, postcode, messageType } = req.body;
   const messageFunction =
     messageType === 'Sms' ? twilioApi.sendSmsMessage : twilioApi.sendWhatsAppMessage;
