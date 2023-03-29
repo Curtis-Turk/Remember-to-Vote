@@ -18,7 +18,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     pollingStationFound: true,
     pollingStations: [],
   };
-  const statusCode = 400;
+  const statusCode = 200;
 
   // Live response information
   // const statusCode = pollingStationResponse.errorMessage ? 400 : 200;
