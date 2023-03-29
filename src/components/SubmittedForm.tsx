@@ -20,6 +20,7 @@ export default function SubmittedForm({ setIsFormSubmitted }: formProps) {
         For the live version you would be messaged on the day of the election with the current
         polling station for your address.
       </p>
+      <p>No details have been saved for this demo</p>
       <div
         style={{
           display: 'flex',
