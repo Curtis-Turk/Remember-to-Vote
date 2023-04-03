@@ -1,27 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import TwilioApi from '../../lib/twilioApi';
-
-console.log('general namespace');
-const twilioApi = new TwilioApi(
-  process.env.TWILIO_ACCOUNT_SID as string,
-  process.env.TWILIO_AUTH_TOKEN as string,
-  process.env.TWILIO_FROM_NUMBER_WHATSAPP as string,
-  process.env.TWILIO_MESSAGING_SERVICE_SID as string
-);
-
-const createMessageBody = (name: string) =>
-  `Hello ${name}, You have been signed up to RememberToVote.org.uk \n\n If you think this was in error, reply 'STOP' and we won't text you again.`;
+import * as TwilioApi from '../../lib/twilioApi';
 
 export const sendConfirmationText = async (name: string, phone: string, messageType: string) => {
   const messageFunction =
-    messageType === 'Sms' ? twilioApi.sendSmsMessage : twilioApi.sendWhatsAppMessage;
-  const body = createMessageBody(name);
-
-  // Brought in for demo to send the text
+    messageType === 'Sms' ? TwilioApi.sendSmsMessage : TwilioApi.sendWhatsAppMessage;
+  const body = `Hello ${name}, You have been signed up to RememberToVote.org.uk \n\n If you think this was in error, reply 'STOP' and we won't text you again.`;
   return await messageFunction(body, phone);
-
-  // Stop twilio api call
-  // return true;
 };
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
