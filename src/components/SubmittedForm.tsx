@@ -8,24 +8,9 @@ export default function SubmittedForm({ setIsFormSubmitted }: formProps) {
   return (
     <div id="polling-form">
       <h2>Submitted</h2>
-      {/* <p>
-    You will receive a message on the day of the election with your
-    polling station information
-  </p> */}
-      <p>You should now receive 2 test texts</p>
       <p>
-        The first will have a confirmation text example with the instructions to cancel if needed
+        You will receive a message on the day of the election with your polling station information
       </p>
-      <p>
-        The second will an example of what to expect on the day and have an example polling station
-        of:
-        <h4>Earlswood Social Club, 160-164 Greenway Road, Rumney.</h4>
-      </p>
-      <p>
-        For the live version you would be messaged on the day of the election with the current
-        polling station for your address.
-      </p>
-      <p>No details have been saved for this demo</p>
       <div
         style={{
           display: 'flex',
