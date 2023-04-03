@@ -8,6 +8,19 @@ const twilioApi = new TwilioApi(
   process.env.TWILIO_MESSAGING_SERVICE_SID as string
 );
 
+export const sendConfirmationText = async (name: string, phone: string, messageType: string) => {
+  const messageFunction =
+    messageType === 'Sms' ? twilioApi.sendSmsMessage : twilioApi.sendWhatsAppMessage;
+  const body =
+    "You have been signed up to RememberToVote.org.uk \n\n If you think this was in error, reply 'STOP' and we won't text you again.";
+
+  // Brought in for demo
+  return await messageFunction(body, phone);
+
+  // Stop twilio api call
+  // return true;
+};
+
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   console.log(req.body);
 
@@ -17,17 +30,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   const { name, phone, postcode, messageType } = req.body;
-  const messageFunction =
-    messageType === 'Sms' ? twilioApi.sendSmsMessage : twilioApi.sendWhatsAppMessage;
-  const body =
-    "You have been signed up to RememberToVote.org.uk \n\n If you think this was in error, reply 'STOP' and we won't text you again.";
 
-  // Brought in for demo
-  const result = await messageFunction(body, phone);
-
-  // Stop twilio api call
-  // const result = true;
-
+  const result = await sendConfirmationText(name, phone, messageType);
   result ? res.status(201) : res.status(400);
   return res.end();
 };
