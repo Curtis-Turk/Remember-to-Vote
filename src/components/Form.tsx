@@ -77,18 +77,6 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
     if (!formData.name) setIsNameValid(false);
     if (!formData.phone) setIsNumberValid(false);
     setSubmitting(false);
-
-    setTimeout(
-      () =>
-        fetch(`${process.env.NEXT_PUBLIC_API as string}/api/demoSubmit`, {
-          method: 'POST',
-          body: JSON.stringify(formData),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }),
-      7000
-    );
   };
 
   return (
