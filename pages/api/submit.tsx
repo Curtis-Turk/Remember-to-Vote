@@ -8,11 +8,13 @@ const twilioApi = new TwilioApi(
   process.env.TWILIO_MESSAGING_SERVICE_SID as string
 );
 
+const createMessageBody = (name: string) =>
+  `Hello ${name}, You have been signed up to RememberToVote.org.uk \n\n If you think this was in error, reply 'STOP' and we won't text you again.`;
+
 export const sendConfirmationText = async (name: string, phone: string, messageType: string) => {
   const messageFunction =
     messageType === 'Sms' ? twilioApi.sendSmsMessage : twilioApi.sendWhatsAppMessage;
-  const body =
-    "You have been signed up to RememberToVote.org.uk \n\n If you think this was in error, reply 'STOP' and we won't text you again.";
+  const body = createMessageBody(name);
 
   // Brought in for demo
   return await messageFunction(body, phone);
