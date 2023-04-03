@@ -25,7 +25,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
     name: '',
     phone: '',
     postcode: '',
-    messageType: 'Sms',
+    messageType: 'WhatsApp',
     addressSlug: '',
   });
 
