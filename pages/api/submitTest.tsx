@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { submitToVotersTable } from '../../utils/supabase';
+import { submitToVotersTable } from '../../lib/supabase';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const formData = {

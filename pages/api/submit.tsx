@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import TwilioApi from '../../lib/twilioApi';
 
+console.log('general namespace');
 const twilioApi = new TwilioApi(
   process.env.TWILIO_ACCOUNT_SID as string,
   process.env.TWILIO_AUTH_TOKEN as string,
@@ -16,7 +17,7 @@ export const sendConfirmationText = async (name: string, phone: string, messageT
     messageType === 'Sms' ? twilioApi.sendSmsMessage : twilioApi.sendWhatsAppMessage;
   const body = createMessageBody(name);
 
-  // Brought in for demo
+  // Brought in for demo to send the text
   return await messageFunction(body, phone);
 
   // Stop twilio api call

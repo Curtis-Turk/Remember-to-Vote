@@ -5,7 +5,7 @@ interface createParams {
   messagingServiceSid?: string;
 }
 
-import { Twilio } from "twilio";
+import { Twilio } from 'twilio';
 
 export default class TwilioApi {
   fromNumberWhatsapp: string;
@@ -20,6 +20,7 @@ export default class TwilioApi {
     fromNumberWhatsapp: string,
     messagingServiceSid: string
   ) {
+    console.log('this has constructed');
     this.accountSid = accountSid;
     this.authToken = authToken;
     this.fromNumberWhatsapp = fromNumberWhatsapp;
@@ -37,7 +38,7 @@ export default class TwilioApi {
       console.log(`Message sent! SID: ${message.sid}`);
       return true;
     } catch (error) {
-      console.log("Twilio Error ->", error);
+      console.log('Twilio Error ->', error);
       return false;
     }
   };
@@ -46,10 +47,7 @@ export default class TwilioApi {
   Args: [body: string, toNumber: string]
   return value: bool, true if message sent succesfully, throws an error if not
   toNumber must be prefixed with an international dialling code and no 0, eg. UK = 0798... => +44798... */
-  sendWhatsAppMessage = async (
-    body: string,
-    toNumber: string
-  ): Promise<boolean> => {
+  sendWhatsAppMessage = async (body: string, toNumber: string): Promise<boolean> => {
     return await this.sendMessage({
       body,
       from: `whatsapp:${this.fromNumberWhatsapp}`,
