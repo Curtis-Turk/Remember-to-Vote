@@ -27,6 +27,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   // Stop twilio api call
   // const result = true;
+
   result ? res.status(201) : res.status(400);
   return res.end();
 };

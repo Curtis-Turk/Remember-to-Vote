@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import supabase from '../../utils/supabase';
 import TwilioApi from '../../lib/twilioApi';
 
 const twilioApi = new TwilioApi(
