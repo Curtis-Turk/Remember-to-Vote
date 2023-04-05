@@ -40,8 +40,33 @@ export const submitToSupabase = async (
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { name, phone, postcode, messageType, addressSlug } = req.body as formData;
-  await submitToSupabase(name, phone, messageType, addressSlug, postcode);
+
+  const supabaseResponse = await submitToSupabase(name, phone, messageType, addressSlug, postcode);
+  if (supabaseResponse.error !== null) {
+    res.status(400);
+    return res.end();
+  }
+  // get a response from Supabase, successful?
+  /*
+  response if phone number already exists
+  response if connection error "Something went wrong" 400 status
+  */
   const result = await sendConfirmationText(name, phone, messageType);
+  // interact with Twilio, successful?
+  /*
+  if error, do something
+
+  if phone number bounces?
+  does twilio know if a phone number? test with phone number that doesnt exist?
+  should do something if phone number is wrong
+
+  should do something if it fails to send "Something went wrong" 400 status
+
+  if twilio error, remove user
+  */
+
+  // deleteFromSupabase
+  // should this change a VerifiedTextSent field?
   result ? res.status(201) : res.status(400);
   return res.end();
 };

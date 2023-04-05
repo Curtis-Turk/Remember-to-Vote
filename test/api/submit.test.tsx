@@ -61,13 +61,14 @@ describe('/submit API route', () => {
     phone: '+447777777777',
     postcode: 'ST7 2AE',
   };
+  const smsReqBody = { ...reqBody, addressSlug: '', messageType: 'Sms' };
   mockedTwilioApi.sendSmsMessage.mockResolvedValue(true);
   mockedTwilioApi.sendWhatsAppMessage.mockResolvedValue(true);
   mockedSupabase.submitToVotersTable.mockResolvedValue(successfulSupabaseResponse);
 
   it('status 201 when an Sms message is succesfully sent and supabase row inserted', async () => {
     const { req, res } = mockRequestResponse('POST');
-    req.body = { ...reqBody, addressSlug: '', messageType: 'Sms' };
+    req.body = smsReqBody;
     await submit(req, res);
     expect(mockedTwilioApi.sendSmsMessage).toHaveBeenCalledWith(
       mockMessageBody(reqBody.name),
@@ -85,6 +86,20 @@ describe('/submit API route', () => {
       '+447777777777'
     );
     expect(res.statusCode).toBe(201);
+  });
+
+  it('status 400 if Supabase returns an error code', async () => {
+    const { req, res } = mockRequestResponse('POST');
+    req.body = smsReqBody;
+    mockedSupabase.submitToVotersTable.mockResolvedValue({
+      status: 400, // could be any number beginning with 4
+      statusText: 'Conflict', // could be any status text
+      error: { code: 'code', message: 'message', details: 'details', hint: 'hint' },
+      data: null,
+      count: null,
+    });
+    await submit(req, res);
+    expect(res.statusCode).toBe(400);
   });
 });
 
