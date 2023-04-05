@@ -5,7 +5,7 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string
 );
 
-export interface voterTable {
+export interface voterTableRow {
   name: string;
   phone_number: string;
   postcode: string;
@@ -24,7 +24,7 @@ returns the object:
   count: number of data objects | null if no number
 }
 */
-export const submitToVotersTable = async (voterTable: voterTable) => {
-  const response = await supabase.from('voters').insert([voterTable]);
+export const submitToVotersTable = async (voterTableRow: voterTableRow) => {
+  const response = await supabase.from('voters').insert([voterTableRow]);
   return response;
 };
