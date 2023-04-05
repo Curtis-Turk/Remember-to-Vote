@@ -91,7 +91,7 @@ describe('/submit API route', () => {
   it('status 400 if Supabase returns an error code', async () => {
     const { req, res } = mockRequestResponse('POST');
     req.body = smsReqBody;
-    mockedSupabase.submitToVotersTable.mockResolvedValue({
+    mockedSupabase.submitToVotersTable.mockResolvedValueOnce({
       status: 400, // could be any number beginning with 4
       statusText: 'Conflict', // could be any status text
       error: { code: 'code', message: 'message', details: 'details', hint: 'hint' },
@@ -100,6 +100,25 @@ describe('/submit API route', () => {
     });
     await submit(req, res);
     expect(res.statusCode).toBe(400);
+  });
+
+  it('status 409 if Supabase returns a unique conflict', async () => {
+    const { req, res } = mockRequestResponse('POST');
+    req.body = smsReqBody;
+    mockedSupabase.submitToVotersTable.mockResolvedValueOnce({
+      status: 409,
+      statusText: 'Conflict',
+      error: {
+        code: '23505',
+        details: 'Key (handle)=(saoirse) already exists.',
+        hint: 'null', // is this null?? says string in types but null in docs??
+        message: 'duplicate key value violates unique constraint "users_handle_key"',
+      },
+      data: null,
+      count: null,
+    });
+    await submit(req, res);
+    expect(res.statusCode).toBe(409);
   });
 });
 

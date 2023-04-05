@@ -42,8 +42,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { name, phone, postcode, messageType, addressSlug } = req.body as formData;
 
   const supabaseResponse = await submitToSupabase(name, phone, messageType, addressSlug, postcode);
+
   if (supabaseResponse.error !== null) {
-    res.status(400);
+    /* '23505' is a unique violation in PostGres (field must be unique)
+    This will only happen if a voter's phone number is already in the database */
+    supabaseResponse.error.code === '23505' ? res.status(409) : res.status(400);
     return res.end();
   }
   // get a response from Supabase, successful?
