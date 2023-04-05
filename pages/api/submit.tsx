@@ -34,6 +34,7 @@ export const submitToSupabase = async (
     address_slug: addressSlug,
     postcode,
     created_at: new Date(),
+    sent_confirmation_text: false,
   };
   return await supabase.submitToVotersTable(voterTableRow);
 };

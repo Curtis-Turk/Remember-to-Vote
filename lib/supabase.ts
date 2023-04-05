@@ -12,6 +12,7 @@ export interface voterTableRow {
   address_slug: string;
   message_type: string;
   created_at: Date;
+  sent_confirmation_text: false;
 }
 
 /*
