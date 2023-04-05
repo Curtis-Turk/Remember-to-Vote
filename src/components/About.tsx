@@ -19,7 +19,7 @@ export default function About() {
   return (
     <div id="about">
       <button id="about-btn" onClick={toggleAboutSection}>
-        About
+        {aboutToggle ? 'back to form' : 'About'}
       </button>
       {aboutToggle ? aboutSection() : null}
     </div>
