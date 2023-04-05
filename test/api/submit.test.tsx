@@ -61,14 +61,26 @@ describe('/submit API route', () => {
     phone: '+447777777777',
     postcode: 'ST7 2AE',
   };
+  mockedTwilioApi.sendSmsMessage.mockResolvedValue(true);
+  mockedTwilioApi.sendWhatsAppMessage.mockResolvedValue(true);
+  mockedSupabase.submitToVotersTable.mockResolvedValue(successfulSupabaseResponse);
 
   it('status 201 when an Sms message is succesfully sent and supabase row inserted', async () => {
     const { req, res } = mockRequestResponse('POST');
     req.body = { ...reqBody, addressSlug: '', messageType: 'Sms' };
-    mockedTwilioApi.sendSmsMessage.mockResolvedValueOnce(true);
-    mockedSupabase.submitToVotersTable.mockResolvedValueOnce(successfulSupabaseResponse);
     await submit(req, res);
     expect(mockedTwilioApi.sendSmsMessage).toHaveBeenCalledWith(
+      mockMessageBody(reqBody.name),
+      '+447777777777'
+    );
+    expect(res.statusCode).toBe(201);
+  });
+
+  it('status 201 if a WhatsApp message is succesfully sent and supabase row inserted', async () => {
+    const { req, res } = mockRequestResponse('POST');
+    req.body = { ...reqBody, addressSlug: '', messageType: 'WhatsApp' };
+    await submit(req, res);
+    expect(mockedTwilioApi.sendWhatsAppMessage).toHaveBeenCalledWith(
       mockMessageBody(reqBody.name),
       '+447777777777'
     );
