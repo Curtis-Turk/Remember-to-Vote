@@ -150,12 +150,12 @@ describe('/submit API route', () => {
     expect(res.statusCode).toBe(409);
   });
 
-  it('status 400 if Twilio has an error sending a message', async () => {
+  it('status 201 but updateSentConfirmationTextField should not be called if Twilio fails to send a message', async () => {
     const { req, res } = mockRequestResponse('POST');
     req.body = smsReqBody;
     mockedTwilioApi.sendSmsMessage.mockResolvedValueOnce(false);
     await submit(req, res);
     expect(supabase.updateSentConfirmationTextField).not.toHaveBeenCalled();
-    expect(res.statusCode).toBe(400);
+    expect(res.statusCode).toBe(201);
   });
 });

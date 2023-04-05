@@ -50,31 +50,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     supabaseResponse.error.code === '23505' ? res.status(409) : res.status(400);
     return res.end();
   }
-  // get a response from Supabase, successful?
-  /*
-  response if phone number already exists
-  response if connection error "Something went wrong" 400 status
-  */
+
+  // send a confirmation text using Twilio
   const result = await sendConfirmationText(name, phone, messageType);
+  // resolves to false if there is an error sending the text (eg connection to Twilio)
   if (result === false) {
-    res.status(400);
+    res.status(201);
     return res.end();
   }
-  // interact with Twilio, successful?
-  /*
-  if error, do something
 
-  if phone number bounces?
-  does twilio know if a phone number? test with phone number that doesnt exist?
-  should do something if phone number is wrong
-
-  should do something if it fails to send "Something went wrong" 400 status
-
-  if twilio error, remove user
-  */
   supabase.updateSentConfirmationTextField(phone);
-  // deleteFromSupabase
-  // should this change a VerifiedTextSent field?
   result ? res.status(201) : res.status(400);
   return res.end();
 };
