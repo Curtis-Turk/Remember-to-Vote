@@ -68,7 +68,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   if twilio error, remove user
   */
-
+  supabase.updateSentConfirmationTextField(phone);
   // deleteFromSupabase
   // should this change a VerifiedTextSent field?
   result ? res.status(201) : res.status(400);

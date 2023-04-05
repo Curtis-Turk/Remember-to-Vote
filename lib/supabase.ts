@@ -38,7 +38,7 @@ export const updateSentConfirmationTextField = async (
   // updates filtering for phone_number as it a unique field
   const response = await supabaseDb
     .from('voters')
-    .update({ set_confirmation_text: true })
+    .update({ sent_confirmation_text: true })
     .eq('phone_number', phone_number);
   return response;
 };

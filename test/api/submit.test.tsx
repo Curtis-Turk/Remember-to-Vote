@@ -58,6 +58,14 @@ describe('/submit submitToSupabase method', () => {
   });
 });
 
+const successfulSupabaseUpdateResponse = {
+  error: null,
+  data: null,
+  count: null,
+  status: 204,
+  statusText: 'No Content',
+};
+
 describe('/submit API route', () => {
   const reqBody = {
     name: 'Curtis Turk',
@@ -68,6 +76,9 @@ describe('/submit API route', () => {
   mockedTwilioApi.sendSmsMessage.mockResolvedValue(true);
   mockedTwilioApi.sendWhatsAppMessage.mockResolvedValue(true);
   mockedSupabase.submitToVotersTable.mockResolvedValue(successfulSupabaseResponse);
+  mockedSupabase.updateSentConfirmationTextField.mockResolvedValue(
+    successfulSupabaseUpdateResponse
+  );
 
   it('status 201 when an Sms message is succesfully sent and supabase row inserted', async () => {
     const { req, res } = mockRequestResponse('POST');
@@ -77,6 +88,7 @@ describe('/submit API route', () => {
       mockMessageBody(reqBody.name),
       '+447777777777'
     );
+    expect(mockedSupabase.updateSentConfirmationTextField).toHaveBeenCalledWith(req.body.phone);
     expect(res.statusCode).toBe(201);
   });
 
@@ -88,6 +100,7 @@ describe('/submit API route', () => {
       mockMessageBody(reqBody.name),
       '+447777777777'
     );
+    expect(mockedSupabase.updateSentConfirmationTextField).toHaveBeenCalledWith(req.body.phone);
     expect(res.statusCode).toBe(201);
   });
 
