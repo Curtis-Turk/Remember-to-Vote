@@ -11,6 +11,15 @@ export const sendConfirmationText = async (name: string, phone: string, messageT
   return await messageFunction(body, phone);
 };
 
+/* converts formData to a voterTableRow object and then submits it to supabase
+returns the object:
+  {
+    status: number, status code for request made to server
+    statusText: string, description of status response (eg. "Created")
+    data: object with requested data | null if no data requested
+    error: object with error data | null if no error
+    count: number of data objects | null if no number
+  } */
 export const submitToSupabase = async (
   name: string,
   phone: string,
@@ -30,15 +39,13 @@ export const submitToSupabase = async (
 };
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  console.log(req.body);
-
   if (req.method == 'OPTIONS') {
     res.setHeader('Allow', 'POST');
     return res.status(202).json({});
   }
 
   const { name, phone, postcode, messageType, addressSlug } = req.body as formData;
-
+  await submitToSupabase(name, phone, messageType, addressSlug, postcode);
   const result = await sendConfirmationText(name, phone, messageType);
   result ? res.status(201) : res.status(400);
   return res.end();
