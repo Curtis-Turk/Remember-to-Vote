@@ -4,7 +4,11 @@ import { formData } from '../../src/components/Form';
 import * as supabase from '../../lib/supabase';
 import { PostgrestSingleResponse } from '@supabase/supabase-js';
 
-export const sendConfirmationText = async (name: string, phone: string, messageType: string) => {
+export const sendConfirmationText = async (
+  name: string,
+  phone: string,
+  messageType: string
+): Promise<boolean> => {
   const messageFunction =
     messageType === 'Sms' ? TwilioApi.sendSmsMessage : TwilioApi.sendWhatsAppMessage;
   const body = `Hello ${name}, You have been signed up to RememberToVote.org.uk \n\n If you think this was in error, reply 'STOP' and we won't text you again.`;
