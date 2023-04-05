@@ -1,26 +1,24 @@
 import '../styles.css';
-import { useState } from 'react';
-import Footer from '../src/components/Footer';
-import { Form } from '../src/components/Form';
+import 'bootstrap/dist/css/bootstrap.css';
+
+import { useState, useEffect } from 'react';
 import Title from '../src/components/Title';
 import About from '../src/components/About';
+import Footer from '../src/components/Footer';
+import { Form } from '../src/components/Form';
 import SubmittedForm from '../src/components/SubmittedForm';
 
 function App() {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-  const [aboutToggle, setAboutToggle] = useState(false);
 
-  const toggleAboutSection = () => {
-    aboutToggle ? setAboutToggle(false) : setAboutToggle(true);
-  };
+  useEffect(() => {
+    const bootstrap = require('bootstrap');
+  }, []);
 
   return (
     <div id="App">
       <Title />
-      <button id="about-btn" onClick={toggleAboutSection}>
-        About
-      </button>
-      {aboutToggle ? <About /> : null}
+      <About />
       {isFormSubmitted ? (
         <SubmittedForm setIsFormSubmitted={setIsFormSubmitted} />
       ) : (

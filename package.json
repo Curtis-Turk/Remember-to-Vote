@@ -10,6 +10,7 @@
     "@types/react-dom": "^18.0.11",
     "add": "^2.0.6",
     "axios": "^1.3.4",
+    "bootstrap": "^5.2.3",
     "next": "^13.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -30,14 +31,12 @@
       "react-app/jest"
     ]
   },
-
   "prettier": {
     "printWidth": 100,
     "semi": true,
     "singleQuote": true,
     "trailingComma": "es5"
   },
-
   "browserslist": {
     "production": [
       ">0.2%",
