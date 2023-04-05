@@ -14,7 +14,17 @@ interface formData {
   created_at: Date;
 }
 
+/*
+returns the object:
+{
+  status: number, status code for request made to server
+  statusText: string, description of status response (eg. "Created")
+  data: object with requested data | null if no data requested
+  error: object with error data | null if no error
+  count: number of data objects | null if no number
+}
+*/
 export const submitToVotersTable = async (formData: formData) => {
-  const { data, error } = await supabase.from('voters').insert([formData]);
-  return { data, error };
+  const response = await supabase.from('voters').insert([formData]);
+  return response;
 };
