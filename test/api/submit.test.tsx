@@ -2,8 +2,11 @@ import submit, { sendConfirmationText, submitToSupabase } from '../../pages/api/
 import * as supabase from '../../lib/supabase';
 import * as TwilioApi from '../../lib/twilioApi';
 import { mockRequestResponse } from './apiSetup';
+
+// mocking the message body for if/when copy changes
 const mockMessageBody = (name: string) =>
   `Hello ${name}, You have been signed up to RememberToVote.org.uk \n\n If you think this was in error, reply 'STOP' and we won't text you again.`;
+
 jest.mock('../../lib/twilioApi');
 jest.mock('../../lib/supabase');
 const mockedTwilioApi = TwilioApi as jest.Mocked<typeof TwilioApi>;
