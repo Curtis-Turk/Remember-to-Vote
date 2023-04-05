@@ -58,7 +58,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (supabaseResponse.error !== null) {
     /* '23505' is a unique violation in PostGres (field must be unique)
     This will only happen if a voter's phone number is already in the database
-    409 stauts = unique conflict, 400 status = general error */
+    409 status = unique conflict, 400 status = generic error */
     status = supabaseResponse.error.code === '23505' ? 409 : 400;
   } else {
     // if supabase did not throw an error, send a confirmation text using Twilio
