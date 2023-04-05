@@ -73,12 +73,21 @@ describe('/submit API route', () => {
     postcode: 'ST7 2AE',
   };
   const smsReqBody = { ...reqBody, addressSlug: '', messageType: 'Sms' };
-  mockedTwilioApi.sendSmsMessage.mockResolvedValue(true);
-  mockedTwilioApi.sendWhatsAppMessage.mockResolvedValue(true);
-  mockedSupabase.submitToVotersTable.mockResolvedValue(successfulSupabaseResponse);
-  mockedSupabase.updateSentConfirmationTextField.mockResolvedValue(
-    successfulSupabaseUpdateResponse
-  );
+
+  beforeEach(() => {
+    // reset mocks
+    mockedTwilioApi.sendSmsMessage.mockReset();
+    mockedTwilioApi.sendWhatsAppMessage.mockReset();
+    mockedSupabase.submitToVotersTable.mockReset();
+    mockedSupabase.updateSentConfirmationTextField.mockReset();
+    // resolve to values
+    mockedTwilioApi.sendSmsMessage.mockResolvedValue(true);
+    mockedTwilioApi.sendWhatsAppMessage.mockResolvedValue(true);
+    mockedSupabase.submitToVotersTable.mockResolvedValue(successfulSupabaseResponse);
+    mockedSupabase.updateSentConfirmationTextField.mockResolvedValue(
+      successfulSupabaseUpdateResponse
+    );
+  });
 
   it('status 201 when an Sms message is succesfully sent and supabase row inserted', async () => {
     const { req, res } = mockRequestResponse('POST');
@@ -115,6 +124,8 @@ describe('/submit API route', () => {
       count: null,
     });
     await submit(req, res);
+    expect(mockedTwilioApi.sendSmsMessage).not.toHaveBeenCalled();
+    expect(supabase.updateSentConfirmationTextField).not.toHaveBeenCalled();
     expect(res.statusCode).toBe(400);
   });
 
@@ -125,15 +136,26 @@ describe('/submit API route', () => {
       status: 409,
       statusText: 'Conflict',
       error: {
-        code: '23505',
-        details: 'Key (handle)=(saoirse) already exists.',
+        code: '23505', // PostGres error code for unique conflict https://www.postgresql.org/docs/8.2/errcodes-appendix.html
+        details: 'Key (handle)=(saoirse) already exists.', // mock details from docs
         hint: 'null', // is this null?? says string in types but null in docs??
-        message: 'duplicate key value violates unique constraint "users_handle_key"',
+        message: 'duplicate key value violates unique constraint "users_handle_key"', // mock message from docs
       },
       data: null,
       count: null,
     });
     await submit(req, res);
+    expect(mockedTwilioApi.sendSmsMessage).not.toHaveBeenCalled();
+    expect(supabase.updateSentConfirmationTextField).not.toHaveBeenCalled();
     expect(res.statusCode).toBe(409);
+  });
+
+  it('status 400 if Twilio has an error sending a message', async () => {
+    const { req, res } = mockRequestResponse('POST');
+    req.body = smsReqBody;
+    mockedTwilioApi.sendSmsMessage.mockResolvedValueOnce(false);
+    await submit(req, res);
+    expect(supabase.updateSentConfirmationTextField).not.toHaveBeenCalled();
+    expect(res.statusCode).toBe(400);
   });
 });

@@ -56,6 +56,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   response if connection error "Something went wrong" 400 status
   */
   const result = await sendConfirmationText(name, phone, messageType);
+  if (result === false) {
+    res.status(400);
+    return res.end();
+  }
   // interact with Twilio, successful?
   /*
   if error, do something
