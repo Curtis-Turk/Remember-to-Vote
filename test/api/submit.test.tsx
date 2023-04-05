@@ -1,6 +1,7 @@
-import { sendConfirmationText, submitToSupabase } from '../../pages/api/submit';
+import submit, { sendConfirmationText, submitToSupabase } from '../../pages/api/submit';
 import * as supabase from '../../lib/supabase';
 import * as TwilioApi from '../../lib/twilioApi';
+import { mockRequestResponse } from './apiSetup';
 const mockMessageBody = (name: string) =>
   `Hello ${name}, You have been signed up to RememberToVote.org.uk \n\n If you think this was in error, reply 'STOP' and we won't text you again.`;
 jest.mock('../../lib/twilioApi');
@@ -26,7 +27,13 @@ describe('/submit sendConfirmationText method', () => {
     expect(result).toBe(true);
   });
 });
-
+const successfulSupabaseResponse = {
+  status: 201,
+  statusText: 'Created',
+  error: null,
+  data: null,
+  count: null,
+};
 describe('/submit submitToSupabase method', () => {
   it('returns a response object when submitted to Supabase', async () => {
     const name = 'Curtis';
@@ -34,13 +41,6 @@ describe('/submit submitToSupabase method', () => {
     const message_type = 'Sms';
     const address_slug = '';
     const postcode = 'W11 A11';
-    const successfulSupabaseResponse = {
-      status: 201,
-      statusText: 'Created',
-      error: null,
-      data: null,
-      count: null,
-    };
     mockedSupabase.submitToVotersTable.mockResolvedValueOnce(successfulSupabaseResponse);
     const result = await submitToSupabase(name, phone_number, message_type, address_slug, postcode);
     expect(mockedSupabase.submitToVotersTable).toHaveBeenCalledWith({
@@ -52,6 +52,27 @@ describe('/submit submitToSupabase method', () => {
       created_at: mockedDateNow,
     });
     expect(result).toBe(successfulSupabaseResponse);
+  });
+});
+
+describe('/submit API route', () => {
+  const reqBody = {
+    name: 'Curtis Turk',
+    phone: '+447777777777',
+    postcode: 'ST7 2AE',
+  };
+
+  it('status 201 when an Sms message is succesfully sent and supabase row inserted', async () => {
+    const { req, res } = mockRequestResponse('POST');
+    req.body = { ...reqBody, addressSlug: '', messageType: 'Sms' };
+    mockedTwilioApi.sendSmsMessage.mockResolvedValueOnce(true);
+    mockedSupabase.submitToVotersTable.mockResolvedValueOnce(successfulSupabaseResponse);
+    await submit(req, res);
+    expect(mockedTwilioApi.sendSmsMessage).toHaveBeenCalledWith(
+      mockMessageBody(reqBody.name),
+      '+447777777777'
+    );
+    expect(res.statusCode).toBe(201);
   });
 });
 // xit('returns 201 for a WhatsApp message successfully sent', async () => {
