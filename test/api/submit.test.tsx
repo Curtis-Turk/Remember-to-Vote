@@ -137,19 +137,3 @@ describe('/submit API route', () => {
     expect(res.statusCode).toBe(409);
   });
 });
-
-// xit('returns 400 if there is an issue sending with Twilio', async () => {
-//   const { req, res } = mockRequestResponse('POST');
-//   req.body = {
-//     name: 'Curtis Turk',
-//     phone: '+447777777777',
-//     postcode: 'ST7 2AE',
-//     messageType: 'WhatsApp',
-//     addressSlug: '',
-//   };
-//   mockedApi.sendWhatsAppMessage.mockResolvedValueOnce(false);
-//   await submit(req, res);
-//   expect(mockedApi.sendWhatsAppMessage).toHaveBeenCalledWith(successfulBody, '+447777777777');
-//   expect(res.statusCode).toBe(400);
-// });
-// });
