@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import * as TwilioApi from '../../lib/twilioApi';
 import { formData } from '../../src/components/Form';
 import * as supabase from '../../lib/supabase';
-import { PostgrestResponse, PostgrestSingleResponse } from '@supabase/supabase-js';
+import { PostgrestSingleResponse } from '@supabase/supabase-js';
 
 export const sendConfirmationText = async (name: string, phone: string, messageType: string) => {
   const messageFunction =
