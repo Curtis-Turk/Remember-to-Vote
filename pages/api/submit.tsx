@@ -41,25 +41,27 @@ export const submitToSupabase = async (
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { name, phone, postcode, messageType, addressSlug } = req.body as formData;
-
-  const supabaseResponse = await submitToSupabase(name, phone, messageType, addressSlug, postcode);
-
+  // insert formData into Supabase table as new row
+  const supabaseResponse: PostgrestSingleResponse<null> = await submitToSupabase(
+    name,
+    phone,
+    messageType,
+    addressSlug,
+    postcode
+  );
+  // default success status
+  let status = 201;
   if (supabaseResponse.error !== null) {
     /* '23505' is a unique violation in PostGres (field must be unique)
-    This will only happen if a voter's phone number is already in the database */
-    supabaseResponse.error.code === '23505' ? res.status(409) : res.status(400);
-    return res.end();
+    This will only happen if a voter's phone number is already in the database
+    409 stauts = unique conflict, 400 status = general error */
+    status = supabaseResponse.error.code === '23505' ? 409 : 400;
+  } else {
+    // if supabase did not throw an error, send a confirmation text using Twilio
+    const isConfirmationTextSent: boolean = await sendConfirmationText(name, phone, messageType);
+    // resolves to false if there is an error sending the text (eg connection to Twilio)
+    if (isConfirmationTextSent === true) supabase.updateSentConfirmationTextField(phone);
   }
-
-  // send a confirmation text using Twilio
-  const result = await sendConfirmationText(name, phone, messageType);
-  // resolves to false if there is an error sending the text (eg connection to Twilio)
-  if (result === false) {
-    res.status(201);
-    return res.end();
-  }
-
-  supabase.updateSentConfirmationTextField(phone);
-  result ? res.status(201) : res.status(400);
+  res.status(status);
   return res.end();
 };
