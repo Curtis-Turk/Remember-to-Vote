@@ -11,14 +11,11 @@ export const sendConfirmationText = async (name: string, phone: string, messageT
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   console.log(req.body);
 
-  if (req.method == 'OPTIONS') {
-    res.setHeader('Allow', 'POST');
-    return res.status(202).json({});
-  }
-
   const { name, phone, postcode, messageType } = req.body;
 
-  const result = await sendConfirmationText(name, phone, messageType);
+  // const result = await sendConfirmationText(name, phone, messageType);
+
+  const result = true;
   result ? res.status(201) : res.status(400);
   return res.end();
 };
