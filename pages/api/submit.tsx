@@ -39,11 +39,6 @@ export const submitToSupabase = async (
 };
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method == 'OPTIONS') {
-    res.setHeader('Allow', 'POST');
-    return res.status(202).json({});
-  }
-
   const { name, phone, postcode, messageType, addressSlug } = req.body as formData;
   await submitToSupabase(name, phone, messageType, addressSlug, postcode);
   const result = await sendConfirmationText(name, phone, messageType);
