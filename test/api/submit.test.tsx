@@ -28,12 +28,12 @@ describe('/submit sendConfirmationText method', () => {
 });
 
 describe('/submit submitToSupabase method', () => {
+  const name = 'Curtis';
+  const phone_number = '+447777777777';
+  const message_type = 'Sms';
+  const address_slug = '';
+  const postcode = 'W11 A11';
   it('returns true if successfully submitted to Supabase', async () => {
-    const name = 'Curtis';
-    const phone_number = '+447777777777';
-    const message_type = 'Sms';
-    const address_slug = '';
-    const postcode = 'W11 A11';
     const successfulSupabaseResponse = {
       status: 201,
       statusText: 'Created',
