@@ -16,6 +16,5 @@ interface formData {
 
 export const submitToVotersTable = async (formData: formData) => {
   const { data, error } = await supabase.from('voters').insert([formData]);
-
   return { data, error };
 };
