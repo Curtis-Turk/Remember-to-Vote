@@ -27,6 +27,7 @@ describe('/submit sendConfirmationText method', () => {
     expect(result).toBe(true);
   });
 });
+
 const successfulSupabaseResponse = {
   status: 201,
   statusText: 'Created',
@@ -34,6 +35,7 @@ const successfulSupabaseResponse = {
   data: null,
   count: null,
 };
+
 describe('/submit submitToSupabase method', () => {
   it('returns a response object when submitted to Supabase', async () => {
     const name = 'Curtis';
