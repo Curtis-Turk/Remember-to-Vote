@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
+import { PostgrestSingleResponse, createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL as string,
@@ -24,7 +24,9 @@ returns the object:
   count: number of data objects | null if no number
 }
 */
-export const submitToVotersTable = async (voterTableRow: voterTableRow) => {
+export const submitToVotersTable = async (
+  voterTableRow: voterTableRow
+): Promise<PostgrestSingleResponse<null>> => {
   const response = await supabase.from('voters').insert([voterTableRow]);
   return response;
 };

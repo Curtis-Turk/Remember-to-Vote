@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import * as TwilioApi from '../../lib/twilioApi';
 import { formData } from '../../src/components/Form';
 import * as supabase from '../../lib/supabase';
+import { PostgrestResponse, PostgrestSingleResponse } from '@supabase/supabase-js';
 
 export const sendConfirmationText = async (name: string, phone: string, messageType: string) => {
   const messageFunction =
@@ -16,7 +17,7 @@ export const submitToSupabase = async (
   messageType: string,
   addressSlug: string,
   postcode: string
-): Promise<boolean> => {
+): Promise<PostgrestSingleResponse<null>> => {
   const voterTableRow: supabase.voterTableRow = {
     name,
     phone_number: phone,
@@ -25,8 +26,7 @@ export const submitToSupabase = async (
     postcode,
     created_at: new Date(),
   };
-  const supabaseResponse = await supabase.submitToVotersTable(voterTableRow);
-  return true;
+  return await supabase.submitToVotersTable(voterTableRow);
 };
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
