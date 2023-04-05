@@ -1,6 +1,6 @@
 import { PostgrestSingleResponse, createClient } from '@supabase/supabase-js';
 
-const supabase = createClient(
+const supabaseDb = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL as string,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string
 );
@@ -12,7 +12,7 @@ export interface voterTableRow {
   address_slug: string;
   message_type: string;
   created_at: Date;
-  sent_confirmation_text: false;
+  sent_confirmation_text: boolean;
 }
 
 /*
@@ -28,6 +28,17 @@ returns the object:
 export const submitToVotersTable = async (
   voterTableRow: voterTableRow
 ): Promise<PostgrestSingleResponse<null>> => {
-  const response = await supabase.from('voters').insert([voterTableRow]);
+  const response = await supabaseDb.from('voters').insert([voterTableRow]);
+  return response;
+};
+
+export const updateSentConfirmationTextField = async (
+  phone_number: string
+): Promise<PostgrestSingleResponse<null>> => {
+  // updates filtering for phone_number as it a unique field
+  const response = await supabaseDb
+    .from('voters')
+    .update({ set_confirmation_text: true })
+    .eq('phone_number', phone_number);
   return response;
 };
