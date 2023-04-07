@@ -125,7 +125,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
           <input type="radio" name="messageType" id="Sms" value="Sms" onChange={handleTextChange} />
         </span>
       </fieldset>
-      <div>We will send you a reminder on the day of the election</div>
+      {/* <div>We will send you a reminder on the day of the election</div> */}
       <div>
         <div
           style={{
@@ -134,7 +134,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
             justifyContent: 'center',
           }}
         >
-          <p>All fields are required including a verified postcode</p>
+          {/* <p>All fields are required including a verified postcode</p> */}
         </div>
         <button
           onClick={handleSubmit}
@@ -145,7 +145,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
             if (e.key === 'Enter') handleSubmit();
           }}
         >
-          {submitting ? 'Submitting...' : 'Submit'}
+          {submitting ? 'Submitting...' : 'Remind me on the day!'}
         </button>
         <div>{submitError ? submitError : null}</div>
       </div>

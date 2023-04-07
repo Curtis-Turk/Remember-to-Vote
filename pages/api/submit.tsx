@@ -67,5 +67,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (isConfirmationTextSent === true) supabase.updateSentConfirmationTextField(phone);
   }
   res.status(status);
+
   return res.end();
 };

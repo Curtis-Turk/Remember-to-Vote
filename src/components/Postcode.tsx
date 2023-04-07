@@ -142,17 +142,31 @@ export const Postcode = ({
   const renderAddressesSelectionDiv = (): JSX.Element | undefined => {
     if (addresses.length) {
       return (
+        // <div>
+        //   <p>Select your address from the options below:</p>
+        //   {addresses.map((addressObject: addressObject) => (
+        //     <button
+        //       key={addressObject.address}
+        //       className="address-btn"
+        //       onClick={() => setAddress(addressObject)}
+        //     >
+        //       {addressObject.address}
+        //     </button>
+        //   ))}
+        // </div>
         <div>
-          <p>Select your address from the options below:</p>
-          {addresses.map((addressObject: addressObject) => (
-            <button
-              key={addressObject.address}
-              className="address-btn"
-              onClick={() => setAddress(addressObject)}
-            >
-              {addressObject.address}
-            </button>
-          ))}
+          <label htmlFor="addresses ">Select your address from the options below:</label>
+          <select
+            name="addresses"
+            id="addresses"
+            onChange={(event) => setAddress(JSON.parse(event.target.value))}
+          >
+            {addresses.map((addressObject) => (
+              <option key={addressObject.address} value={JSON.stringify(addressObject)}>
+                {addressObject.address}
+              </option>
+            ))}
+          </select>
         </div>
       );
     }
@@ -161,7 +175,7 @@ export const Postcode = ({
     if (selectedAddress.address.length) {
       return (
         <div>
-          <label htmlFor="address">Address * :</label>
+          <label htmlFor="address">Address:</label>
           <input
             type="text"
             id="address"

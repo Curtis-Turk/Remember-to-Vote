@@ -8,21 +8,32 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   //   return res.status(401);
   // }
 
-  if (req.method == 'OPTIONS') {
-    res.setHeader('Allow', 'POST');
-    return res.status(202).json({});
-  }
-
   // using EC API
   // const pollingStationResponse = await electoralCommission.verifyPostcode(
   //   req.body.postcode
   // );
-
-  // demo response
   const pollingStationResponse = {
     pollingStationFound: true,
-    pollingStations: [],
+    pollingStations: [
+      {
+        address: '16 DUNCAN CLOSE, ST. MELLONS, CARDIFF',
+        postcode: 'CF3 1NP',
+        slug: '100100106448',
+        url: 'http://developers.democracyclub.org.uk/api/v1address/100100106448',
+      },
+      {
+        address: '26 DUNCAN CLOSE, ST. MELLONS, CARDIFF',
+        postcode: 'CF3 1NP',
+        slug: '100100106458',
+        url: 'http://developers.democracyclub.org.uk/api/v1address/100100106458',
+      },
+    ],
   };
+  // demo response
+  // const pollingStationResponse = {
+  //   pollingStationFound: true,
+  //   pollingStations: [],
+  // };
   const statusCode = 200;
 
   // Live response information
