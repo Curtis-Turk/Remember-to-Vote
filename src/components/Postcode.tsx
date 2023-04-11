@@ -142,7 +142,6 @@ export const Postcode = ({
     if (addresses.length) {
       return (
         <div>
-          {/* <label htmlFor="addresses ">Select your address from the options below:</label> */}
           <select
             name="addresses"
             id="addresses"
