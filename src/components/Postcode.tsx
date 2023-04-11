@@ -109,7 +109,6 @@ export const Postcode = ({
     /* takes an addressObject and sets the address in the form data to be the value of the object
     removes addresses from addresses array state to clear addresses from the DOM
     */
-
     setFormData((formData: formData) => ({
       ...formData,
       addressSlug: addressObject.slug,
@@ -142,25 +141,16 @@ export const Postcode = ({
   const renderAddressesSelectionDiv = (): JSX.Element | undefined => {
     if (addresses.length) {
       return (
-        // <div>
-        //   <p>Select your address from the options below:</p>
-        //   {addresses.map((addressObject: addressObject) => (
-        //     <button
-        //       key={addressObject.address}
-        //       className="address-btn"
-        //       onClick={() => setAddress(addressObject)}
-        //     >
-        //       {addressObject.address}
-        //     </button>
-        //   ))}
-        // </div>
         <div>
-          <label htmlFor="addresses ">Select your address from the options below:</label>
+          {/* <label htmlFor="addresses ">Select your address from the options below:</label> */}
           <select
             name="addresses"
             id="addresses"
-            onChange={(event) => setAddress(JSON.parse(event.target.value))}
+            onChange={(event) => {
+              if (event.target.value !== '') setAddress(JSON.parse(event.target.value));
+            }}
           >
+            <option value={''}>Select your address from the options below:</option>
             {addresses.map((addressObject) => (
               <option key={addressObject.address} value={JSON.stringify(addressObject)}>
                 {addressObject.address}
