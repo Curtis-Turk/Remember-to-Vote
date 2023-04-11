@@ -75,6 +75,7 @@ export const Postcode = ({
     // TODO: implement error checking if fetch failss
 
     const result = (await response.json()) as pollingStationsObject;
+    console.log('🚀 ~ file: Postcode.tsx:78 ~ verifyPostCode ~ result:', result);
 
     if (!result.pollingStationFound && !result.pollingStations.length) {
       switch (result.errorMessage) {

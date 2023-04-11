@@ -13,6 +13,7 @@ export interface formData {
   messageType: string;
   addressSlug: string;
 }
+
 export const Form = ({ setIsFormSubmitted }: formProps) => {
   // boolean for if postcode has been verified with the Electoral Commission API
   const [isPostcodeVerified, setIsPostCodeVerified] = useState(false);
@@ -55,6 +56,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
   };
 
   const canUserSubmit = isNameValid && isNumberValid && isPostcodeVerified && !submitting;
+  console.log('🚀 ~ file: Form.tsx:59 ~ Form ~ canUserSubmit:', canUserSubmit);
 
   const handleSubmit = async () => {
     await setSubmitting(true);
