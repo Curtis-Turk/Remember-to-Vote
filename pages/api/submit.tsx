@@ -58,14 +58,17 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (supabaseResponse.error !== null) {
     /* '23505' is a unique violation in PostGres (field must be unique)
     This will only happen if a voter's phone number is already in the database
-    409 status = unique conflict, 400 status = generic error */
-    status = supabaseResponse.error.code === '23505' ? 409 : 400;
+    Status: 400 - something went wrong / 409 - unique conflict
+    */
+    const uniqueConstraintErrorCode = '23505';
+    status = supabaseResponse.error.code === uniqueConstraintErrorCode ? 409 : 400;
   } else {
     // if supabase did not throw an error, send a confirmation text using Twilio
     const isConfirmationTextSent: boolean = await sendConfirmationText(name, phone, messageType);
     // resolves to false if there is an error sending the text (eg connection to Twilio)
     if (isConfirmationTextSent === true) supabase.updateSentConfirmationTextField(phone);
   }
+
   res.status(status);
 
   return res.end();
