@@ -2,6 +2,10 @@ import { useState, Dispatch, SetStateAction } from 'react';
 import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
 import { Postcode } from './Postcode';
 
+// import { Form } from 'react-bootstrap';
+import { InputGroup } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+
 interface formProps {
   setIsFormSubmitted: Dispatch<SetStateAction<boolean>>;
 }
@@ -56,7 +60,6 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
   };
 
   const canUserSubmit = isNameValid && isNumberValid && isPostcodeVerified && !submitting;
-  console.log('🚀 ~ file: Form.tsx:59 ~ Form ~ canUserSubmit:', canUserSubmit);
 
   const handleSubmit = async () => {
     await setSubmitting(true);
@@ -127,7 +130,6 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
           <input type="radio" name="messageType" id="Sms" value="Sms" onChange={handleTextChange} />
         </span>
       </fieldset>
-      {/* <div>We will send you a reminder on the day of the election</div> */}
       <div>
         <div
           style={{
@@ -135,20 +137,24 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
             display: 'flex',
             justifyContent: 'center',
           }}
-        >
-          {/* <p>All fields are required including a verified postcode</p> */}
+        ></div>
+
+        <div className="d-grid gap-2">
+          <Button
+            size="lg"
+            variant="success"
+            style={{ backgroundColor: '#28A745', borderColor: '#28A745' }}
+            onClick={handleSubmit}
+            // id="submit-form-btn"
+            disabled={!canUserSubmit}
+            // className={canUserSubmit ? 'submitEnabled' : 'submitDisabled'}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') handleSubmit();
+            }}
+          >
+            {submitting ? 'Submitting...' : 'Submit'}
+          </Button>
         </div>
-        <button
-          onClick={handleSubmit}
-          id="submit-form-btn"
-          disabled={!canUserSubmit}
-          className={canUserSubmit ? 'submitEnabled' : 'submitDisabled'}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') handleSubmit();
-          }}
-        >
-          {submitting ? 'Submitting...' : 'Remind me on the day!'}
-        </button>
         <div>{submitError ? submitError : null}</div>
       </div>
     </div>

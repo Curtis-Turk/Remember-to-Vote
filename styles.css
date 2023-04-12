@@ -10,7 +10,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-#title-card {
+h1,
+h2 {
   text-align: center;
 }
 
@@ -20,7 +21,7 @@ code {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
-  background-color: #ffffff;
+  /* background-color: #f5f5f5; */
   font-family: Arial, sans-serif;
 }
 
@@ -93,9 +94,15 @@ input[type='checkbox'] {
 }
 
 .submitDisabled {
-  background-color: #74768bb0;
+  background-color: #28a745;
+}
+.btn-submitDisabled {
+  background-color: #89cf99;
 }
 .submitEnabled {
+  background-color: #4caf50;
+}
+.btn-submitEnabled {
   background-color: #4caf50;
 }
 
@@ -105,7 +112,7 @@ input[type='checkbox'] {
   margin-top: 10px;
   border: none;
   border-radius: 5px;
-  color: #fff;
+  /* color: #fff; */
   font-size: 16px;
   cursor: pointer;
 }
