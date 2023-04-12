@@ -2,7 +2,7 @@ import { useState, Dispatch, SetStateAction } from 'react';
 import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
 import { Postcode } from './Postcode';
 
-// import { Form } from 'react-bootstrap';
+import { Form as BForm } from 'react-bootstrap';
 import { InputGroup } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 
@@ -85,71 +85,79 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
   };
 
   return (
-    <div id="polling-form">
-      <div id="user-details">
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          className={isNameValid ? '' : 'invalid'}
-          onChange={handleTextChange}
-        />
-        <label htmlFor="phone">Phone Number:</label>
-        <PhoneInput
-          defaultCountry="GB"
-          onChange={handlePhoneInputChange}
-          className={isNumberValid ? '' : 'invalid'}
-        />
-        <Postcode
-          {...{
-            isPostcodeVerified,
-            setIsPostCodeVerified,
-            postcode: formData.postcode,
-            setFormData,
-            handleTextChange,
-          }}
-        />
-      </div>
-      <fieldset id="message-type">
-        <legend>How would you like your reminder?</legend>
-        <span>
-          WhatsApp
+    <BForm>
+      <div id="polling-form">
+        <div id="user-details">
+          <label htmlFor="name">Name:</label>
           <input
-            type="radio"
-            name="messageType"
-            defaultChecked={true}
-            id="WhatsApp"
-            value="WhatsApp"
+            type="text"
+            id="name"
+            name="name"
+            className={isNameValid ? '' : 'invalid'}
             onChange={handleTextChange}
           />
-        </span>
-        <span>
-          SMS
-          <input type="radio" name="messageType" id="Sms" value="Sms" onChange={handleTextChange} />
-        </span>
-      </fieldset>
-      <div>
-        <div className="d-grid">
-          <Button
-            size="lg"
-            variant="success"
-            style={{
-              backgroundColor: '#28A745',
-              borderColor: '#28A745',
-              textAlign: 'left',
+          <label htmlFor="phone">Phone Number:</label>
+          <PhoneInput
+            defaultCountry="GB"
+            onChange={handlePhoneInputChange}
+            className={isNumberValid ? '' : 'invalid'}
+          />
+          <Postcode
+            {...{
+              isPostcodeVerified,
+              setIsPostCodeVerified,
+              postcode: formData.postcode,
+              setFormData,
+              handleTextChange,
             }}
-            onClick={handleSubmit}
-            disabled={!canUserSubmit}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') handleSubmit();
-            }}
-          >
-            {submitting ? 'Submitting...' : 'Submit'}
-          </Button>
+          />
         </div>
-        <div>{submitError ? submitError : null}</div>
+        <fieldset id="message-type">
+          <legend>How would you like your reminder?</legend>
+          <span>
+            WhatsApp
+            <input
+              type="radio"
+              name="messageType"
+              defaultChecked={true}
+              id="WhatsApp"
+              value="WhatsApp"
+              onChange={handleTextChange}
+            />
+          </span>
+          <span>
+            SMS
+            <input
+              type="radio"
+              name="messageType"
+              id="Sms"
+              value="Sms"
+              onChange={handleTextChange}
+            />
+          </span>
+        </fieldset>
+        <div>
+          <div className="d-grid">
+            <Button
+              size="lg"
+              variant="success"
+              style={{
+                backgroundColor: '#28A745',
+                borderColor: '#28A745',
+                textAlign: 'left',
+              }}
+              onClick={handleSubmit}
+              disabled={!canUserSubmit}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') handleSubmit();
+              }}
+            >
+              {submitting ? 'Submitting...' : 'Submit'}
+            </Button>
+          </div>
+          <div>{submitError ? submitError : null}</div>
+        </div>
       </div>
-    </div>
+    </BForm>
   );
 };
