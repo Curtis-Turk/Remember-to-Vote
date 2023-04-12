@@ -93,34 +93,6 @@ input[type='checkbox'] {
   cursor: pointer;
 }
 
-.submitDisabled {
-  background-color: #28a745;
-}
-.btn-submitDisabled {
-  background-color: #89cf99;
-}
-.submitEnabled {
-  background-color: #4caf50;
-}
-.btn-submitEnabled {
-  background-color: #4caf50;
-}
-
-#submit-form-btn {
-  display: inline-block;
-  padding: 10px 20px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 5px;
-  /* color: #fff; */
-  font-size: 16px;
-  cursor: pointer;
-}
-
-#submit-form-btn.submitEnabled:hover {
-  background-color: #3e8e41;
-}
-
 fieldset {
   margin-bottom: 10px;
 }
@@ -145,6 +117,7 @@ legend {
 
 /* CSS variables. */
 :root {
+  /* --success: #28a745; */
   --PhoneInput-color--focus: #03b2cb;
   --PhoneInputInternationalIconPhone-opacity: 0.8;
   --PhoneInputInternationalIconGlobe-opacity: 0.65;

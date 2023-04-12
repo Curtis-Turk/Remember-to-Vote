@@ -111,7 +111,6 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
           }}
         />
       </div>
-
       <fieldset id="message-type">
         <legend>How would you like your reminder?</legend>
         <span>
@@ -131,23 +130,17 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
         </span>
       </fieldset>
       <div>
-        <div
-          style={{
-            fontWeight: 'bold',
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        ></div>
-
-        <div className="d-grid gap-2">
+        <div className="d-grid">
           <Button
             size="lg"
             variant="success"
-            style={{ backgroundColor: '#28A745', borderColor: '#28A745' }}
+            style={{
+              backgroundColor: '#28A745',
+              borderColor: '#28A745',
+              textAlign: 'left',
+            }}
             onClick={handleSubmit}
-            // id="submit-form-btn"
             disabled={!canUserSubmit}
-            // className={canUserSubmit ? 'submitEnabled' : 'submitDisabled'}
             onKeyDown={(e) => {
               if (e.key === 'Enter') handleSubmit();
             }}
