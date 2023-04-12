@@ -1,5 +1,5 @@
 import '../styles.css';
-import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { useState, useEffect } from 'react';
 import Title from '../src/components/Title';
