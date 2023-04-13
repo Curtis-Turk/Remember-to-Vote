@@ -1,4 +1,12 @@
-import { useState, Dispatch, SetStateAction } from 'react';
+import {
+  useState,
+  Dispatch,
+  SetStateAction,
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+  useEffect,
+} from 'react';
 import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
 import { Postcode } from './Postcode';
 
@@ -84,24 +92,38 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
     setSubmitting(false);
   };
 
+  const phoneNumberClassName = () => {
+    const invalidClass =
+      isNumberValid || (!isNumberValid && formData.phone === undefined) ? '' : ' is-invalid';
+    return 'form-control' + invalidClass;
+  };
+
   return (
     <BForm>
       <div id="polling-form">
         <div id="user-details">
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            className={isNameValid ? '' : 'invalid'}
-            onChange={handleTextChange}
-          />
-          <label htmlFor="phone">Phone Number:</label>
-          <PhoneInput
-            defaultCountry="GB"
-            onChange={handlePhoneInputChange}
-            className={isNumberValid ? '' : 'invalid'}
-          />
+          <BForm.Group controlId="name">
+            <BForm.Label>Name:</BForm.Label>
+            <BForm.Control
+              type="text"
+              placeholder="a name"
+              name="name"
+              className={isNameValid ? '' : 'invalid'}
+              onChange={handleTextChange}
+            />
+          </BForm.Group>
+
+          <BForm.Group key="hello" controlId="phone">
+            <BForm.Label>Phone Number:</BForm.Label>
+            <PhoneInput
+              autofocus
+              key="why"
+              defaultCountry="GB"
+              onChange={handlePhoneInputChange}
+              numberInputProps={{ className: phoneNumberClassName() }}
+            />
+          </BForm.Group>
+
           <Postcode
             {...{
               isPostcodeVerified,
