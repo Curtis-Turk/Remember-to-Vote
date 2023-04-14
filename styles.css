@@ -25,6 +25,11 @@ h2 {
   padding-bottom: 55px;
   border: 1px solid #ccc;
   box-sizing: border-box;
+  /* display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 14px 16px;
+  gap: 8px; */
 
   /* position: absolute; */
   width: 818px;
