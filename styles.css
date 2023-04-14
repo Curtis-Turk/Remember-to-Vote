@@ -16,11 +16,21 @@ h2 {
 }
 
 #polling-form {
-  max-width: 500px;
+  /* max-width: 500px; */
   margin: auto;
-  padding: 20px;
+  /* padding: 55px; */
+  padding-left: 55px;
+  padding-right: 55px;
+  padding-top: 38px;
+  padding-bottom: 55px;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  box-sizing: border-box;
+
+  /* position: absolute; */
+  width: 818px;
+  /* height: 740px; */
+  left: 347px;
+  /* top: 1503px; */
   /* background-color: #f5f5f5; */
   font-family: Arial, sans-serif;
 }
