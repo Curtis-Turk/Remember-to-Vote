@@ -200,7 +200,7 @@ export const Postcode = ({
       return (
         <Button
           // id="verify-btn"
-          // variant="success"
+          variant="outline-success"
           style={{ whiteSpace: 'nowrap' }}
           disabled={isVerifyPostcodeDisabled}
           className={isVerifyPostcodeDisabled ? 'verifiedPostcode' : 'unVerifiedPostcode'}

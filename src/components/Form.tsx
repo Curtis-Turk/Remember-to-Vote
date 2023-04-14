@@ -167,6 +167,9 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
                 size="lg"
                 variant="success"
                 className="joe"
+                style={{
+                  textAlign: 'left',
+                }}
                 onClick={handleSubmit}
                 disabled={!canUserSubmit}
                 onKeyDown={(e) => {
