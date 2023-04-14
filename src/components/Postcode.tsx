@@ -35,6 +35,8 @@ export const Postcode = ({
 
   const [isVerifyPostcodeButtonRendered, setIsVerifyPostcodeButtonRendered] = useState(true);
 
+  const [postcodeError, setPostcodeError] = useState(false);
+
   const [verifyPostcodeMessage, setVerifyPostcodeMessage] = useState('');
 
   const [isCancelButtonRendered, setIsCancelButtonRendered] = useState(false);
@@ -51,16 +53,19 @@ export const Postcode = ({
   // object of the selected address object
   const [selectedAddress, setSelectedAddress] = useState<addressObject>(defaultAddressObject);
 
-  // checks postcode only has alphanumeric characters and whitespace
-  const checkValidChars = (postcode: string): boolean => {
-    return /^[A-Za-z0-9 ]*$/.test(postcode);
-  };
+  // // checks postcode only has alphanumeric characters and whitespace
+  // const checkValidChars = (postcode: string): boolean => {
+  //   return /^[A-Za-z0-9 ]*$/.test(postcode);
+  // };
 
   const verifyPostCode = async (): Promise<void> => {
-    if (!checkValidChars(postcode)) {
-      // setVerifyPostcodeMessage('Please only use alphanumeric characters and spaces');
-      return;
-    }
+    // if (!checkValidChars(postcode)) {
+    //   setPostcodeError(true);
+    //   // setVerifyPostcodeMessage('Please only use alphanumeric characters and spaces');
+    //   return;
+    // }
+    // console.log('Is this happening');
+
     // strip postcode of whitespace
     const strippedPostcode = postcode.replace(' ', '');
 
@@ -74,12 +79,13 @@ export const Postcode = ({
       },
     });
 
-    // TODO: implement error checking if fetch failss
+    // TODO: implement error checking if fetch fails
 
     const result = (await response.json()) as pollingStationsObject;
     console.log('🚀 ~ file: Postcode.tsx:78 ~ verifyPostCode ~ result:', result);
 
     if (!result.pollingStationFound && !result.pollingStations.length) {
+      setPostcodeError(true);
       switch (result.errorMessage) {
         case 'Could not geocode from any source':
           setVerifyPostcodeMessage('Postcode could not be found');
@@ -106,6 +112,7 @@ export const Postcode = ({
     }
     setVerifyPostcodeMessage('');
     setIsCancelButtonRendered(true);
+    setPostcodeError(false);
   };
 
   const setAddress = (addressObject: addressObject): void => {
@@ -208,6 +215,7 @@ export const Postcode = ({
       <Form.Control
         type="text"
         name="postcode"
+        isInvalid={postcodeError}
         disabled={isVerifyPostcodeDisabled}
         onChange={handleTextChange}
       />
