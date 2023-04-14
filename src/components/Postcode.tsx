@@ -1,6 +1,8 @@
 import { useState, Dispatch, SetStateAction } from 'react';
 import { formData } from './Form';
 
+import { Form } from 'react-bootstrap';
+
 interface addressObject {
   address: string;
   postcode: string;
@@ -50,13 +52,13 @@ export const Postcode = ({
   const [selectedAddress, setSelectedAddress] = useState<addressObject>(defaultAddressObject);
 
   // checks postcode only has alphanumeric characters and whitespace
-  const isPostcodeValid = (postcode: string): boolean => {
+  const checkValidChars = (postcode: string): boolean => {
     return /^[A-Za-z0-9 ]*$/.test(postcode);
   };
 
   const verifyPostCode = async (): Promise<void> => {
-    if (!isPostcodeValid(postcode)) {
-      setVerifyPostcodeMessage('Please only use alphanumeric characters and spaces');
+    if (!checkValidChars(postcode)) {
+      // setVerifyPostcodeMessage('Please only use alphanumeric characters and spaces');
       return;
     }
     // strip postcode of whitespace
@@ -201,11 +203,10 @@ export const Postcode = ({
   };
 
   return (
-    <div id="postcode">
-      <label htmlFor="postcode">Postcode:</label>
-      <input
+    <Form.Group controlId="postcode">
+      <Form.Label>Postcode:</Form.Label>
+      <Form.Control
         type="text"
-        id="postcode"
         name="postcode"
         disabled={isVerifyPostcodeDisabled}
         onChange={handleTextChange}
@@ -214,6 +215,6 @@ export const Postcode = ({
       {renderAddressesSelectionDiv()}
       {renderCancelButton()}
       {verifyPostcodeMessage.length ? <div>{verifyPostcodeMessage}</div> : null}
-    </div>
+    </Form.Group>
   );
 };

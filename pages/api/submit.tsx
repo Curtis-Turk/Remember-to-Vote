@@ -45,6 +45,10 @@ export const submitToSupabase = async (
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { name, phone, postcode, messageType, addressSlug } = req.body as formData;
+  console.log(req.body);
+  res.status(201);
+
+  return res.end();
   // insert formData into Supabase table as new row
   const supabaseResponse: PostgrestSingleResponse<null> = await submitToSupabase(
     name,
@@ -55,6 +59,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   );
   // default success status
   let status = 201;
+
   if (supabaseResponse.error !== null) {
     /* '23505' is a unique violation in PostGres (field must be unique)
     This will only happen if a voter's phone number is already in the database

@@ -113,11 +113,9 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
             />
           </BForm.Group>
 
-          <BForm.Group key="hello" controlId="phone">
+          <BForm.Group controlId="phone">
             <BForm.Label>Phone Number:</BForm.Label>
             <PhoneInput
-              autofocus
-              key="why"
               defaultCountry="GB"
               onChange={handlePhoneInputChange}
               numberInputProps={{ className: phoneNumberClassName() }}

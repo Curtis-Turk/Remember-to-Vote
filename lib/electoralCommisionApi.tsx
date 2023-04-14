@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from 'axios';
 
 interface addressObject {
   address: string;
@@ -42,12 +42,10 @@ export default class ElectoralCommisionApi {
         };
 
       if (result.address_picker) {
-        const pollingStations = result.addresses.map(
-          (addressObject: responseAddressObject) => {
-            const { address, postcode, slug } = addressObject;
-            return { address, postcode, slug };
-          }
-        );
+        const pollingStations = result.addresses.map((addressObject: responseAddressObject) => {
+          const { address, postcode, slug } = addressObject;
+          return { address, postcode, slug };
+        });
         return {
           pollingStationFound: false,
           pollingStations,
@@ -60,10 +58,9 @@ export default class ElectoralCommisionApi {
       };
     } catch (e: any) {
       const errorMessage =
-        e.response &&
-        e.response.data.message === "Could not geocode from any source"
+        e.response && e.response.data.message === 'Could not geocode from any source'
           ? e.response?.data.message
-          : "Connection issue whilst verifying postcode";
+          : 'Connection issue whilst verifying postcode';
       return { errorMessage, pollingStationFound: false, pollingStations: [] };
     }
   }
@@ -91,10 +88,9 @@ export default class ElectoralCommisionApi {
       };
     } catch (e: any) {
       const errorMessage =
-        e.response &&
-        e.response.data.message === "Could not geocode from any source"
+        e.response && e.response.data.message === 'Could not geocode from any source'
           ? e.response?.data.message
-          : "Connection issue whilst verifying postcode";
+          : 'Connection issue whilst verifying postcode';
       return { errorMessage, pollingStationFound: false, pollingStations: [] };
     }
   }
