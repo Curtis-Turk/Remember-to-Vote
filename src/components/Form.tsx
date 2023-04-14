@@ -166,11 +166,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
               <Button
                 size="lg"
                 variant="success"
-                style={{
-                  backgroundColor: '#28A745',
-                  borderColor: '#28A745',
-                  textAlign: 'left',
-                }}
+                className="joe"
                 onClick={handleSubmit}
                 disabled={!canUserSubmit}
                 onKeyDown={(e) => {

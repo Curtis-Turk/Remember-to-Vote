@@ -15,6 +15,12 @@ h2 {
   text-align: center;
 }
 
+.btn-success {
+  background-color: #28a745 !important;
+  border-color: #28a745 !important;
+  text-align: left !important;
+}
+
 #polling-form {
   /* max-width: 500px; */
   margin: auto;
