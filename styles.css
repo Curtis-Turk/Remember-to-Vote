@@ -31,14 +31,14 @@ label {
   font-weight: bold;
 }
 
-input[type='text'],
+/* input[type='text'],
 input[type='tel'],
 input[type='radio'],
 input[type='checkbox'] {
   width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
+  padding: 8px; */
+/* margin-bottom: 10px; */
+/* border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
 }
@@ -47,10 +47,12 @@ input[type='radio'],
 input[type='checkbox'] {
   display: inline-block;
   margin-right: 10px;
-}
+} */
+
 .invalid {
   border: 1px solid red !important;
 }
+
 #cancel-btn {
   /* display: inline-block; */
   padding: 5px 10px;
@@ -83,6 +85,20 @@ input[type='checkbox'] {
   background-color: #000000;
 }
 
+#postcodePicker {
+  display: flex;
+  justify-content: 'center';
+  align-items: 'center';
+  flex-direction: row;
+}
+
+#postcodeInput {
+  /* align-items: center; */
+  /* padding: 14px 16px; */
+  /* gap: 8px;  */
+  /* padding-left: 1rem; */
+}
+
 #verify-btn {
   padding: 5px 10px;
   margin: 5px;
@@ -113,6 +129,17 @@ legend {
 
 #message-type label {
   font-weight: normal;
+}
+
+#footer {
+  text-align: center;
+  width: 70%;
+  margin: auto;
+}
+
+#gdpr-text {
+  color: #00000092;
+  font-size: small;
 }
 
 /* CSS variables. */
@@ -251,15 +278,4 @@ legend {
 .PhoneInputCountrySelect:focus + .PhoneInputCountryIcon .PhoneInputInternationalIconGlobe {
   opacity: 1;
   color: var(--PhoneInputCountrySelectArrow-color--focus);
-}
-
-#footer {
-  text-align: center;
-  width: 70%;
-  margin: auto;
-}
-
-#gdpr-text {
-  color: #00000092;
-  font-size: small;
 }

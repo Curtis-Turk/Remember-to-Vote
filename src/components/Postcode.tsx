@@ -1,7 +1,8 @@
 import { useState, Dispatch, SetStateAction } from 'react';
 import { formData } from './Form';
 
-import { Form } from 'react-bootstrap';
+import { Form, Row, Col, Container, Stack } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 
 interface addressObject {
   address: string;
@@ -197,14 +198,15 @@ export const Postcode = ({
     }
     if (isVerifyPostcodeButtonRendered) {
       return (
-        <button
-          id="verify-btn"
+        <Button
+          // id="verify-btn"
+          style={{ whiteSpace: 'nowrap' }}
           disabled={isVerifyPostcodeDisabled}
-          className={isVerifyPostcodeDisabled ? 'verifiedPostcode' : 'unVerifiedPostcode'}
+          // className={isVerifyPostcodeDisabled ? 'verifiedPostcode' : 'unVerifiedPostcode'}
           onClick={verifyPostCode}
         >
           {verifyPostCodeButtonText}
-        </button>
+        </Button>
       );
     }
   };
@@ -212,14 +214,35 @@ export const Postcode = ({
   return (
     <Form.Group controlId="postcode">
       <Form.Label>Postcode:</Form.Label>
-      <Form.Control
-        type="text"
-        name="postcode"
-        isInvalid={postcodeError}
-        disabled={isVerifyPostcodeDisabled}
-        onChange={handleTextChange}
-      />
-      {renderVerifyPostcodeButton()}
+      {/* <div id="postcodePicker"> */}
+      {/* <Container>
+        <Row>
+          <Col>
+            <Form.Control
+              // id="postcodeInput"
+              type="text"
+              name="postcode"
+              isInvalid={postcodeError}
+              disabled={isVerifyPostcodeDisabled}
+              onChange={handleTextChange}
+            />
+          </Col>
+          <Col>{renderVerifyPostcodeButton()}</Col>
+        </Row>
+      </Container> */}
+
+      <Stack direction="horizontal" gap={3}>
+        <Form.Control
+          // id="postcodeInput"
+          type="text"
+          name="postcode"
+          isInvalid={postcodeError}
+          disabled={isVerifyPostcodeDisabled}
+          onChange={handleTextChange}
+        />
+        {renderVerifyPostcodeButton()}
+      </Stack>
+      {/* </div> */}
       {renderAddressesSelectionDiv()}
       {renderCancelButton()}
       {verifyPostcodeMessage.length ? <div>{verifyPostcodeMessage}</div> : null}
