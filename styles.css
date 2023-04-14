@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  /* Font family needs to be double checked, is this Inter? Will it be Inter on all systems? */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -60,11 +61,9 @@ h2 {
   left: 347px;
   /* top: 1503px; */
   /* background-color: #f5f5f5; */
-  font-family: Arial, sans-serif;
 }
 
 .form-label {
-  /* font-family: 'Inter'; */
   font-style: normal;
   font-weight: 600;
   font-size: 20px;

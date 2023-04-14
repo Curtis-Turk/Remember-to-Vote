@@ -114,7 +114,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
         </BForm.Group>
 
         <BForm.Group className="mb-4" controlId="phone">
-          <BForm.Label>Phone Number:</BForm.Label>
+          <BForm.Label>Phone number:</BForm.Label>
           <PhoneInput
             defaultCountry="GB"
             onChange={handlePhoneInputChange}
