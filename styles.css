@@ -20,6 +20,7 @@ h2 {
   background-color: #28a745 !important;
   border-color: #28a745 !important;
   text-align: left !important;
+  font-size: 16px !important;
 }
 
 .btn-outline-success {
@@ -37,6 +38,10 @@ h2 {
   --bs-btn-disabled-bg: transparent;
   --bs-btn-disabled-border-color: #28a745 !important;
   --bs-gradient: none;
+  font-size: 16px !important;
+  line-height: 18px !important;
+  font-weight: 600 !important;
+  padding: 14px 24px !important;
 }
 
 #polling-form {
@@ -86,8 +91,8 @@ h2 {
   padding: 14px 16px;
   gap: 8px;
   font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: 400 !important;
+  font-size: 16px !important;
   line-height: 20px;
   width: 707px;
   height: 48px;
