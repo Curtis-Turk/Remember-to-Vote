@@ -102,7 +102,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
     <BForm>
       <div id="polling-form">
         {/* <div id="user-details"> */}
-        <BForm.Group className="mb-4" controlId="name">
+        <BForm.Group className="form-margin-bottom" controlId="name">
           <BForm.Label>Name:</BForm.Label>
           <BForm.Control
             type="text"
@@ -113,7 +113,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
           />
         </BForm.Group>
 
-        <BForm.Group className="mb-4" controlId="phone">
+        <BForm.Group className="form-margin-bottom" controlId="phone">
           <BForm.Label>Phone number:</BForm.Label>
           <PhoneInput
             defaultCountry="GB"
@@ -132,7 +132,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
           }}
         />
         {/* </div> */}
-        <BForm.Group className="mb-4">
+        <BForm.Group className="form-margin-bottom">
           <BForm.Label></BForm.Label>
 
           <fieldset id="message-type">
@@ -160,7 +160,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
             </span>
           </fieldset>
         </BForm.Group>
-        <BForm.Group className="mb-4">
+        <BForm.Group className="form-margin-bottom">
           <div>
             <div className="d-grid">
               <Button
