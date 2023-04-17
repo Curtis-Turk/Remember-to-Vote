@@ -214,22 +214,23 @@ export const Postcode = ({
   };
 
   return (
-    <Form.Group controlId="postcode" className="form-margin-bottom">
-      <Form.Label>Postcode:</Form.Label>
-      <Stack direction="horizontal" gap={3}>
-        <Form.Control
-          // id="postcodeInput"
-          type="text"
-          name="postcode"
-          isInvalid={postcodeError}
-          disabled={isVerifyPostcodeDisabled}
-          onChange={handleTextChange}
-        />
-        {renderVerifyPostcodeButton()}
-      </Stack>
+    <div>
+      <Form.Group controlId="postcode" className="form-margin-bottom">
+        <Form.Label>Postcode:</Form.Label>
+        <Stack direction="horizontal" gap={3}>
+          <Form.Control
+            type="text"
+            name="postcode"
+            isInvalid={postcodeError}
+            disabled={isVerifyPostcodeDisabled}
+            onChange={handleTextChange}
+          />
+          {renderVerifyPostcodeButton()}
+        </Stack>
+      </Form.Group>
       {renderAddressesSelectionDiv()}
       {renderCancelButton()}
       {verifyPostcodeMessage.length ? <div>{verifyPostcodeMessage}</div> : null}
-    </Form.Group>
+    </div>
   );
 };
