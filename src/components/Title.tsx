@@ -1,11 +1,19 @@
+import { Button, Stack } from 'react-bootstrap';
+import About from './About';
+
 export default function Title() {
   return (
     <div id="title-card">
-      <h1>🗳️ Remember To Vote 🗳️ </h1>
-      {/* <p>
-          Enter your details to receive a reminder message on the day of the election with your
-          polling station information
-        </p> */}
+      <Stack direction="horizontal">
+        <Stack>
+          <h1 id="main-title">
+            Remember <br />
+            To <span id="vote-title">Vote</span>
+          </h1>
+          <Button>Register for your reminder</Button>
+        </Stack>
+        <About />
+      </Stack>
     </div>
   );
 }

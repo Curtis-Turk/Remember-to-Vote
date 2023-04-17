@@ -15,7 +15,6 @@ function App() {
   return (
     <div id="App">
       <Title />
-      <About />
       <FormSection />
       <Footer />
     </div>
