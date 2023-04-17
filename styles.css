@@ -113,6 +113,14 @@ h2 {
   height: 48px;
 }
 
+.form-check-label {
+  /* font-size: 12px !important; */
+}
+
+.form-check-inline {
+  /* align-items: center !important; */
+}
+
 /* input[type='text'],
 input[type='tel'],
 input[type='radio'],
