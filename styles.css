@@ -63,12 +63,12 @@ weight: 600
   background-color: #e6f2ec !important;
   box-shadow: 4px 4px 0px 0px #bdccc4;
   color: #107c46 !important;
-  font-style: normal;
+  font-style: normal !important;
   /* laptop styling */
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-  letter-spacing: 0.02em;
+  font-weight: 600 !important;
+  font-size: 20px !important;
+  line-height: 24px !important;
+  letter-spacing: 0.02em !important;
   padding-top: 25px !important;
   padding-bottom: 25px !important;
 }
