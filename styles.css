@@ -99,6 +99,20 @@ h2 {
   height: 48px;
 }
 
+.form-select {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 14px 16px;
+  gap: 8px;
+  font-style: normal;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 20px;
+  width: 707px;
+  height: 48px;
+}
+
 /* input[type='text'],
 input[type='tel'],
 input[type='radio'],
