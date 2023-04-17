@@ -26,8 +26,8 @@ export default function About() {
       <p>
         <strong>Does this cost me money?</strong>
         <br></br>
-        No. However, if you were signed up in error, you would be able to remove yourself from the
-        service by texting STOP, and this text would be under your normal price plan.
+        No. However, if you have been signed up in error, you will be able to remove yourself from
+        the service by texting STOP. This text would be under your normal price plan.
       </p>
       <p>
         <strong>What happens to my data?</strong>
