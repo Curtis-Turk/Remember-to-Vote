@@ -205,9 +205,18 @@ export const Postcode = ({
     }
   };
 
+  const verifyPostcodeMessageElement = () => {
+    if (verifyPostcodeMessage.length) {
+      return <div>{verifyPostcodeMessage}</div>;
+    }
+  };
+
   return (
-    <div>
-      <Form.Group controlId="postcode" className="form-margin-bottom">
+    <div className="form-margin-bottom">
+      <Form.Group
+        controlId="postcode"
+        className={addresses.length || selectedAddress.address.length ? 'form-margin-bottom' : ''}
+      >
         <Form.Label>Postcode</Form.Label>
         <Stack direction="horizontal" gap={3}>
           <Form.Control
@@ -219,7 +228,7 @@ export const Postcode = ({
           />
           {renderVerifyPostcodeButton()}
         </Stack>
-        {verifyPostcodeMessage.length ? <div>{verifyPostcodeMessage}</div> : null}
+        {verifyPostcodeMessageElement()}
       </Form.Group>
       {renderAddressesSelectionDiv()}
       {renderCancelButton()}

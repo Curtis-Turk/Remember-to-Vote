@@ -32,13 +32,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   //   return res.status(401);
   // }
 
-  // const pollingStationResponse = await electoralCommission.verifyPostcode(req.body.postcode);
+  const pollingStationResponse = await electoralCommission.verifyPostcode(req.body.postcode);
+  // console.log('🚀 ~ file: postcode.tsx:36 ~ pollingStationResponse:', pollingStationResponse);
 
-  const pollingStationResponse = {
-    errorMessage: 'Could not geocode from any source',
-    pollingStationFound: false,
-    pollingStations: [],
-  };
+  // const pollingStationResponse = {
+  //   errorMessage: 'Could not geocode from any source',
+  //   pollingStationFound: false,
+  //   pollingStations: [],
+  // };
 
   // const pollingStationResponse = {
   //   pollingStationFound: false,
