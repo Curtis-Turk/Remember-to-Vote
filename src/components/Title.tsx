@@ -7,7 +7,8 @@ export default function Title() {
       <Stack direction="horizontal" style={{ gap: '89px' }}>
         <Stack>
           <h1 id="main-title">
-            Remember <br />
+            Remember
+            <br />
             To <span id="vote-title">Vote</span>
           </h1>
           <Button>Register for your reminder</Button>
