@@ -160,7 +160,7 @@ export const Postcode = ({
             if (event.target.value !== '') setAddress(JSON.parse(event.target.value));
           }}
         >
-          <option value={''}>Select your address from the options below:</option>
+          <option value={''}>Select your address</option>
           {addresses.map((addressObject) => (
             <option key={addressObject.address} value={JSON.stringify(addressObject)}>
               {addressObject.address}
@@ -216,7 +216,7 @@ export const Postcode = ({
   return (
     <div>
       <Form.Group controlId="postcode" className="form-margin-bottom">
-        <Form.Label>Postcode:</Form.Label>
+        <Form.Label>Postcode</Form.Label>
         <Stack direction="horizontal" gap={3}>
           <Form.Control
             type="text"
