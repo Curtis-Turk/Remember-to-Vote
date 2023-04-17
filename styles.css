@@ -35,14 +35,15 @@ h2 {
   font-size: 20px;
   font-weight: 600; } */
 
-/* .register-button-desktop {
+/* .register-button-tablet {
   height: 74px;
-  width: 654px;
-  border-radius: 16px;
-  font-size: 20px;
-  font-weight: 600; } */
+width: 619px;
+border-radius: 14px;
+text size: 20px;
+weight: 600
+ } */
 
-/* .register-button-desktop {
+/* .register-button-mobile {
   height: 74px;
   width: 654px;
   border-radius: 16px;
@@ -60,6 +61,7 @@ h2 {
   border-color: #28a745 !important;
   background-color: #e6f2ec !important;
   box-shadow: 4px 4px 0px 0px #bdccc4;
+  color: #28a745 !important;
 }
 
 .btn-success {
