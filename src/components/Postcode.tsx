@@ -214,25 +214,8 @@ export const Postcode = ({
   };
 
   return (
-    <Form.Group controlId="postcode">
+    <Form.Group controlId="postcode" className="form-margin-bottom">
       <Form.Label>Postcode:</Form.Label>
-      {/* <div id="postcodePicker"> */}
-      {/* <Container>
-        <Row>
-          <Col>
-            <Form.Control
-              // id="postcodeInput"
-              type="text"
-              name="postcode"
-              isInvalid={postcodeError}
-              disabled={isVerifyPostcodeDisabled}
-              onChange={handleTextChange}
-            />
-          </Col>
-          <Col>{renderVerifyPostcodeButton()}</Col>
-        </Row>
-      </Container> */}
-
       <Stack direction="horizontal" gap={3}>
         <Form.Control
           // id="postcodeInput"
@@ -244,7 +227,6 @@ export const Postcode = ({
         />
         {renderVerifyPostcodeButton()}
       </Stack>
-      {/* </div> */}
       {renderAddressesSelectionDiv()}
       {renderCancelButton()}
       {verifyPostcodeMessage.length ? <div>{verifyPostcodeMessage}</div> : null}
