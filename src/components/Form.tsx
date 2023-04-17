@@ -115,6 +115,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
         <BForm.Group className="form-margin-bottom" controlId="phone">
           <BForm.Label>Phone number</BForm.Label>
           <PhoneInput
+            style={{ '--PhoneInputCountryFlag-height': '20px' }}
             defaultCountry="GB"
             onChange={handlePhoneInputChange}
             numberInputProps={{ className: phoneNumberClassName() }}

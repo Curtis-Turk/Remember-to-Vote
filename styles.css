@@ -47,7 +47,8 @@ h2 {
 
 #form-section {
   background-color: #f9d9dc;
-  height: 1160px;
+  /* height: 1160px; */
+  padding-bottom: 168px;
 }
 
 #form-section-title {
@@ -67,6 +68,7 @@ h2 {
   /* max-width: 500px; */
   margin: auto;
   /* padding: 55px; */
+
   padding-left: 55px;
   padding-right: 55px;
   padding-top: 38px;
