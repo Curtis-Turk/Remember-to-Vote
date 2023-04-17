@@ -4,15 +4,18 @@ export default function About() {
   return (
     <div id="about-section">
       <h3>
-        Already lost the piece of paper with your polling station details? Us too.
+        Already lost the piece of paper with your polling station details?
+        <br />
+        Us too.
+        <br />
         <br />
       </h3>
-      <p>
-        <h4>What is this?</h4>
-        <br></br>A service to help people vote in these May elections. It has been made by volunteer
-        group <a href="https://www.campaignlab.uk/">Campaign lab</a>, who use technology to improve
-        campaigns.
-      </p>
+      <br />
+      <h4>What is this?</h4>
+      <br></br>A service to help people vote in these May elections. It has been made by volunteer
+      group <a href="https://www.campaignlab.uk/">Campaign lab</a>, who use technology to improve
+      campaigns.
+      {/* </p> */}
       <p>
         <h4>How does it work?</h4>
         <br></br>
