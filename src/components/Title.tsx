@@ -4,7 +4,7 @@ import About from './About';
 export default function Title() {
   return (
     <div id="title-card">
-      <Stack direction="horizontal">
+      <Stack direction="horizontal" style={{ gap: '89px' }}>
         <Stack>
           <h1 id="main-title">
             Remember <br />
