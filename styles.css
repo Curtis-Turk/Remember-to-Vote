@@ -47,6 +47,19 @@ h2 {
 
 #form-section {
   background-color: #f9d9dc;
+  height: 1160px;
+}
+
+#form-section-title {
+  white-space: nowrap;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 58px;
+  line-height: 70px;
+  padding-top: 104px;
+  margin-bottom: 78px;
+  align-items: center;
+  text-align: center;
 }
 
 #polling-form {

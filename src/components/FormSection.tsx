@@ -8,6 +8,7 @@ function FormSection() {
 
   return (
     <div id="form-section">
+      <h2 id="form-section-title">Get your reminder here</h2>
       {isFormSubmitted ? (
         <SubmittedForm setIsFormSubmitted={setIsFormSubmitted} />
       ) : (

@@ -153,7 +153,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
             onChange={handleTextChange}
           />
         </BForm.Group>
-        <BForm.Group className="form-margin-bottom">
+        <BForm.Group>
           <div>
             <div className="d-grid">
               <Button
