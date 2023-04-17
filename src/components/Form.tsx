@@ -101,7 +101,6 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
   return (
     <BForm>
       <div id="polling-form">
-        {/* <div id="user-details"> */}
         <BForm.Group className="form-margin-bottom" controlId="name">
           <BForm.Label>Name</BForm.Label>
           <BForm.Control
@@ -131,7 +130,6 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
             handleTextChange,
           }}
         />
-        {/* </div> */}
         <BForm.Group className="form-margin-bottom">
           <BForm.Label>How would you like your reminder?</BForm.Label>
           <BForm.Check
@@ -153,31 +151,6 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
             value="WhatsApp"
             onChange={handleTextChange}
           />
-
-          {/* <fieldset id="message-type">
-            <legend>How would you like your reminder?</legend>
-            <span>
-              WhatsApp
-              <input
-                type="radio"
-                name="messageType"
-                defaultChecked={true}
-                id="WhatsApp"
-                value="WhatsApp"
-                onChange={handleTextChange}
-              />
-            </span>
-            <span>
-              SMS
-              <input
-                type="radio"
-                name="messageType"
-                id="Sms"
-                value="Sms"
-                onChange={handleTextChange}
-              />
-            </span>
-          </fieldset> */}
         </BForm.Group>
         <BForm.Group className="form-margin-bottom">
           <div>
@@ -191,7 +164,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
                 }}
                 onClick={handleSubmit}
                 disabled={!canUserSubmit}
-                onKeyDown={(e) => {
+                onKeyDown={(e: any) => {
                   if (e.key === 'Enter') handleSubmit();
                 }}
               >

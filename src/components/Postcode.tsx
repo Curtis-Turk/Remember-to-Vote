@@ -83,7 +83,6 @@ export const Postcode = ({
     // TODO: implement error checking if fetch fails
 
     const result = (await response.json()) as pollingStationsObject;
-    console.log('🚀 ~ file: Postcode.tsx:78 ~ verifyPostCode ~ result:', result);
 
     if (!result.pollingStationFound && !result.pollingStations.length) {
       setPostcodeError(true);
@@ -124,7 +123,6 @@ export const Postcode = ({
       ...formData,
       addressSlug: addressObject.slug,
     }));
-    console.log(addressObject);
     setSelectedAddress(addressObject);
     setAddresses([]);
     setIsPostCodeVerified(true);
@@ -142,7 +140,7 @@ export const Postcode = ({
   const renderCancelButton = (): JSX.Element | undefined => {
     if (isCancelButtonRendered) {
       return (
-        <button id="cancel-btn" onClick={cancelPostcodeSelection}>
+        <button id="cancel-btn" className="form-margin-bottom" onClick={cancelPostcodeSelection}>
           Cancel
         </button>
       );
@@ -215,7 +213,10 @@ export const Postcode = ({
 
   return (
     <div>
-      <Form.Group controlId="postcode" className="form-margin-bottom">
+      <Form.Group
+        controlId="postcode"
+        className={addresses.length || selectedAddress.address.length ? 'form-margin-bottom' : ''}
+      >
         <Form.Label>Postcode</Form.Label>
         <Stack direction="horizontal" gap={3}>
           <Form.Control
