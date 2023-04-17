@@ -146,7 +146,10 @@ input[type='checkbox'] {
 .unverified-postcode-disabled {
   background-color: rgb(238, 238, 238) !important;
 }
-
+.btn-outline-danger {
+  margin-top: 14px !important;
+  margin-bottom: 35px !important;
+}
 #cancel-btn {
   padding: 5px 10px;
   margin-top: 14px;

@@ -139,9 +139,9 @@ export const Postcode = ({
   const renderCancelButton = (): JSX.Element | undefined => {
     if (isCancelButtonRendered) {
       return (
-        <button id="cancel-btn" className="form-margin-bottom" onClick={cancelPostcodeSelection}>
+        <Button variant="outline-danger" onClick={cancelPostcodeSelection}>
           Cancel
-        </button>
+        </Button>
       );
     }
   };
