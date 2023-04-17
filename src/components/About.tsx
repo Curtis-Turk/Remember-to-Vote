@@ -3,7 +3,7 @@ import { useState } from 'react';
 export default function About() {
   return (
     <div id="about-section">
-      <h3 id="about-tagline">
+      <h3>
         Already lost the piece of paper with your polling station details?
         <br />
         Us too.
