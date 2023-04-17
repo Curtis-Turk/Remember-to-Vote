@@ -87,6 +87,10 @@ weight: 600
 }
 
 #about-tagline {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 34px;
 }
 
 .btn {
