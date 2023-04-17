@@ -105,7 +105,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
           <BForm.Label>Name</BForm.Label>
           <BForm.Control
             type="text"
-            placeholder="a name"
+            placeholder="Jane Appleseed"
             name="name"
             className={isNameValid ? '' : 'invalid'}
             onChange={handleTextChange}
@@ -118,6 +118,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
             defaultCountry="GB"
             onChange={handlePhoneInputChange}
             numberInputProps={{ className: phoneNumberClassName() }}
+            placeholder="07700 900684"
           />
         </BForm.Group>
 

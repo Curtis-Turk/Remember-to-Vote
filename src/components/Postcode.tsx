@@ -220,6 +220,7 @@ export const Postcode = ({
         <Form.Label>Postcode</Form.Label>
         <Stack direction="horizontal" gap={3}>
           <Form.Control
+            placeholder="SW1A 2AA"
             type="text"
             name="postcode"
             isInvalid={postcodeError}

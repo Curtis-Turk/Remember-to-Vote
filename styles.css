@@ -113,32 +113,6 @@ h2 {
   height: 48px;
 }
 
-.form-check-label {
-  /* font-size: 12px !important; */
-}
-
-.form-check-inline {
-  /* align-items: center !important; */
-}
-
-/* input[type='text'],
-input[type='tel'],
-input[type='radio'],
-input[type='checkbox'] {
-  width: 100%;
-  padding: 8px; */
-/* margin-bottom: 10px; */
-/* border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-input[type='radio'],
-input[type='checkbox'] {
-  display: inline-block;
-  margin-right: 10px;
-} */
-
 .invalid {
   border: 1px solid red !important;
 }
@@ -186,13 +160,6 @@ input[type='checkbox'] {
   justify-content: 'center';
   align-items: 'center';
   flex-direction: row;
-}
-
-#postcodeInput {
-  /* align-items: center; */
-  /* padding: 14px 16px; */
-  /* gap: 8px;  */
-  /* padding-left: 1rem; */
 }
 
 #verify-btn {
