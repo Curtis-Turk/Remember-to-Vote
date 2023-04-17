@@ -44,17 +44,20 @@ weight: 600
  } */
 
 /* .register-button-mobile {
-  height: 74px;
-  width: 654px;
-  border-radius: 16px;
-  font-size: 20px;
-  font-weight: 600; } */
+  height: 46px;
+width: 333px;
+border-radius: 8px;
+text size: 18px;
+weight: 600
+ } */
 
 .btn {
   padding: 14px 24px !important;
   font-size: 16px !important;
   line-height: 18px !important;
   font-weight: 600 !important;
+  padding-top: 25px !important;
+  padding-bottom: 25px !important;
 }
 
 .btn-register {
