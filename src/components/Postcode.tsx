@@ -181,7 +181,7 @@ export const Postcode = ({
     if (addresses.length || selectedAddress.address.length) {
       return (
         <Form.Group>
-          <Form.Label>Select your address:</Form.Label>
+          <Form.Label>Address</Form.Label>
           {addressesFormSelect}
         </Form.Group>
       );

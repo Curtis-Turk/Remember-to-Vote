@@ -133,9 +133,28 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
         />
         {/* </div> */}
         <BForm.Group className="form-margin-bottom">
-          <BForm.Label></BForm.Label>
+          <BForm.Label>How would you like your reminder?</BForm.Label>
+          <BForm.Check
+            inline
+            label="SMS"
+            name="messageType"
+            type={'radio'}
+            id={`inline-radio`}
+            value="Sms"
+            onChange={handleTextChange}
+          />
+          <BForm.Check
+            inline
+            label="WhatsApp"
+            name="messageType"
+            type={'radio'}
+            id={`inline-radio`}
+            defaultChecked={true}
+            value="WhatsApp"
+            onChange={handleTextChange}
+          />
 
-          <fieldset id="message-type">
+          {/* <fieldset id="message-type">
             <legend>How would you like your reminder?</legend>
             <span>
               WhatsApp
@@ -158,7 +177,7 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
                 onChange={handleTextChange}
               />
             </span>
-          </fieldset>
+          </fieldset> */}
         </BForm.Group>
         <BForm.Group className="form-margin-bottom">
           <div>
