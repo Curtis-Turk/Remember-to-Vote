@@ -160,7 +160,7 @@ export const Postcode = ({
             if (event.target.value !== '') setAddress(JSON.parse(event.target.value));
           }}
         >
-          <option value={''}>Select your address</option>
+          <option value={''}>Select your address here</option>
           {addresses.map((addressObject) => (
             <option key={addressObject.address} value={JSON.stringify(addressObject)}>
               {addressObject.address}
