@@ -107,7 +107,7 @@ export const Postcode = ({
     }
 
     if (result.pollingStations.length) {
-      setIsVerifyPostcodeButtonRendered(false);
+      // setIsVerifyPostcodeButtonRendered(true);
       setAddresses(result.pollingStations);
     }
     setVerifyPostcodeMessage('');
@@ -188,9 +188,9 @@ export const Postcode = ({
 
   const renderVerifyPostcodeButton = (): JSX.Element | undefined => {
     let verifyPostCodeButtonText = 'Verify postcode';
-    if (isVerifyPostcodeDisabled) {
-      verifyPostCodeButtonText = 'Checking postcode';
-    }
+    // if (isVerifyPostcodeDisabled) {
+    // verifyPostCodeButtonText = 'Checking postcode';
+    // }
     if (isPostcodeVerified) {
       verifyPostCodeButtonText = 'Postcode verified!';
     }
