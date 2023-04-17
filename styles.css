@@ -16,12 +16,16 @@ h2 {
   text-align: center;
 }
 #main-title {
-  font-size: 124px;
   text-align: left;
   margin-bottom: 89px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 124px;
+  line-height: 150px;
+  color: #adadad;
 }
 #vote-title {
-  color: red;
+  color: #dc3545;
 }
 
 #reminder-button {
