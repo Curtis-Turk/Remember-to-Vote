@@ -28,25 +28,21 @@ h2 {
   color: #dc3545;
 }
 
-#reminder-button {
-  box-shadow: 4px 4px 0px 0px #bdccc4;
-}
-
-/* .reminder-button-desktop {
+/* .register-button-desktop {
   height: 74px;
   width: 654px;
   border-radius: 16px;
   font-size: 20px;
   font-weight: 600; } */
 
-/* .reminder-button-desktop {
+/* .register-button-desktop {
   height: 74px;
   width: 654px;
   border-radius: 16px;
   font-size: 20px;
   font-weight: 600; } */
 
-/* .reminder-button-desktop {
+/* .register-button-desktop {
   height: 74px;
   width: 654px;
   border-radius: 16px;
@@ -63,6 +59,7 @@ h2 {
 .btn-register {
   border-color: #28a745 !important;
   background-color: #e6f2ec !important;
+  box-shadow: 4px 4px 0px 0px #bdccc4;
 }
 
 .btn-success {
