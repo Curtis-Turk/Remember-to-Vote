@@ -150,7 +150,7 @@ export const Postcode = ({
   };
 
   const renderAddressesSelectionDiv = (): JSX.Element | undefined => {
-    // only render if the address picker is returned by API
+    // only render the address selection if the address picker is returned by API
     let addressesFormSelect;
 
     if (addresses.length) {
@@ -184,40 +184,8 @@ export const Postcode = ({
           <Form.Label>Select your address:</Form.Label>
           {addressesFormSelect}
         </Form.Group>
-        // <div>
-        //   <select
-        //     name="addresses"
-        //     id="addresses"
-        // onChange={(event) => {
-        //   if (event.target.value !== '') setAddress(JSON.parse(event.target.value));
-        // }}
-        //   >
-        //     <option value={''}>Select your address from the options below:</option>
-        //     {addresses.map((addressObject) => (
-        //       <option key={addressObject.address} value={JSON.stringify(addressObject)}>
-        //         {addressObject.address}
-        //       </option>
-        //     ))}
-        //   </select>
-        // </div>
       );
     }
-
-    // if selectedAddress object has been set
-    // if (selectedAddress.address.length) {
-    //   return (
-    //     <div>
-    //       <label htmlFor="address">Address:</label>
-    //       <input
-    //         type="text"
-    //         id="address"
-    //         name="address"
-    //         disabled={true}
-    //         value={selectedAddress.address}
-    //       />
-    //     </div>
-    //   );
-    // }
   };
 
   const renderVerifyPostcodeButton = (): JSX.Element | undefined => {
