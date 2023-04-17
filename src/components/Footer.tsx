@@ -8,7 +8,7 @@ export default function Footer() {
         Data provided in part by
         <a href="https://democracyclub.org.uk/"> Democracy Club. </a>
       </p>
-      <p>Curtis, Zac and Harry</p>
+      <p>Created by Curtis, Harry, Joe and Zac</p>
       <p id="gdpr-text">
         You can manage your preferences or unsubscribe at any time. We may use the information you
         provide, such as name and postcode, to match the data provided to your electoral register

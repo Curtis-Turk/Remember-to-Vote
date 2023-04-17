@@ -10,7 +10,7 @@ export default function About() {
       </h3>
       <br />
       <h4>What is this?</h4>A service to help people vote in these May elections. It has been made
-      by volunteer group <a href="https://www.campaignlab.uk/">Campaign lab</a>, who use technology
+      by volunteer group <a href="https://www.campaignlab.uk/">Campaign Lab</a>, who use technology
       to improve campaigns.
       <br />
       <br />
