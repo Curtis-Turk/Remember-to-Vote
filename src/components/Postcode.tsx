@@ -107,7 +107,6 @@ export const Postcode = ({
     }
 
     if (result.pollingStations.length) {
-      // setIsVerifyPostcodeButtonRendered(true);
       setAddresses(result.pollingStations);
     }
     setVerifyPostcodeMessage('');
@@ -188,21 +187,16 @@ export const Postcode = ({
 
   const renderVerifyPostcodeButton = (): JSX.Element | undefined => {
     let verifyPostCodeButtonText = 'Verify postcode';
-    // if (isVerifyPostcodeDisabled) {
-    // verifyPostCodeButtonText = 'Checking postcode';
-    // }
-    if (isPostcodeVerified) {
+    if ((isVerifyPostcodeDisabled && !isPostcodeVerified) || isPostcodeVerified) {
       verifyPostCodeButtonText = 'Postcode verified!';
     }
     if (isVerifyPostcodeButtonRendered) {
       return (
         <Button
-          // id="verify-btn"
           size="lg"
           variant="outline-success"
           style={{ whiteSpace: 'nowrap' }}
           disabled={isVerifyPostcodeDisabled}
-          className={isVerifyPostcodeDisabled ? 'verifiedPostcode' : 'unVerifiedPostcode'}
           onClick={verifyPostCode}
         >
           {verifyPostCodeButtonText}

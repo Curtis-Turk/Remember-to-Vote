@@ -143,8 +143,11 @@ input[type='checkbox'] {
   border: 1px solid red !important;
 }
 
+.unverified-postcode-disabled {
+  background-color: rgb(238, 238, 238) !important;
+}
+
 #cancel-btn {
-  /* display: inline-block; */
   padding: 5px 10px;
   margin-top: 14px;
   border: none;
