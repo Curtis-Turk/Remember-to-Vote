@@ -124,7 +124,7 @@ export const Postcode = ({
       ...formData,
       addressSlug: addressObject.slug,
     }));
-
+    console.log(addressObject);
     setSelectedAddress(addressObject);
     setAddresses([]);
     setIsPostCodeVerified(true);
@@ -150,42 +150,74 @@ export const Postcode = ({
   };
 
   const renderAddressesSelectionDiv = (): JSX.Element | undefined => {
+    // only render if the address picker is returned by API
+    let addressesFormSelect;
+
     if (addresses.length) {
+      addressesFormSelect = (
+        <Form.Select
+          onChange={(event) => {
+            if (event.target.value !== '') setAddress(JSON.parse(event.target.value));
+          }}
+        >
+          <option value={''}>Select your address from the options below:</option>
+          {addresses.map((addressObject) => (
+            <option key={addressObject.address} value={JSON.stringify(addressObject)}>
+              {addressObject.address}
+            </option>
+          ))}
+        </Form.Select>
+      );
+    }
+
+    if (selectedAddress.address.length) {
+      addressesFormSelect = (
+        <Form.Select disabled={true}>
+          <option>{selectedAddress.address}</option>
+        </Form.Select>
+      );
+    }
+
+    if (addresses.length || selectedAddress.address.length) {
       return (
-        <div>
-          <select
-            name="addresses"
-            id="addresses"
-            onChange={(event) => {
-              if (event.target.value !== '') setAddress(JSON.parse(event.target.value));
-            }}
-          >
-            <option value={''}>Select your address from the options below:</option>
-            {addresses.map((addressObject) => (
-              <option key={addressObject.address} value={JSON.stringify(addressObject)}>
-                {addressObject.address}
-              </option>
-            ))}
-          </select>
-        </div>
+        <Form.Group>
+          <Form.Label>Select your address:</Form.Label>
+          {addressesFormSelect}
+        </Form.Group>
+        // <div>
+        //   <select
+        //     name="addresses"
+        //     id="addresses"
+        // onChange={(event) => {
+        //   if (event.target.value !== '') setAddress(JSON.parse(event.target.value));
+        // }}
+        //   >
+        //     <option value={''}>Select your address from the options below:</option>
+        //     {addresses.map((addressObject) => (
+        //       <option key={addressObject.address} value={JSON.stringify(addressObject)}>
+        //         {addressObject.address}
+        //       </option>
+        //     ))}
+        //   </select>
+        // </div>
       );
     }
 
     // if selectedAddress object has been set
-    if (selectedAddress.address.length) {
-      return (
-        <div>
-          <label htmlFor="address">Address:</label>
-          <input
-            type="text"
-            id="address"
-            name="address"
-            disabled={true}
-            value={selectedAddress.address}
-          />
-        </div>
-      );
-    }
+    // if (selectedAddress.address.length) {
+    //   return (
+    //     <div>
+    //       <label htmlFor="address">Address:</label>
+    //       <input
+    //         type="text"
+    //         id="address"
+    //         name="address"
+    //         disabled={true}
+    //         value={selectedAddress.address}
+    //       />
+    //     </div>
+    //   );
+    // }
   };
 
   const renderVerifyPostcodeButton = (): JSX.Element | undefined => {
