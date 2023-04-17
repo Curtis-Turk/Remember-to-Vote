@@ -60,6 +60,11 @@ h2 {
   font-weight: 600 !important;
 }
 
+.btn-register {
+  border-color: #28a745 !important;
+  background-color: #e6f2ec !important;
+}
+
 .btn-success {
   background-color: #28a745 !important;
   border-color: #28a745 !important;

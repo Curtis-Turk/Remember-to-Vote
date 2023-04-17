@@ -11,7 +11,7 @@ export default function Title() {
             <br />
             To <span id="vote-title">Vote</span>
           </h1>
-          <Button>Register for your reminder</Button>
+          <Button variant="register">Register for your reminder</Button>
         </Stack>
         <About />
       </Stack>
