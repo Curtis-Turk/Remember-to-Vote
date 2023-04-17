@@ -207,10 +207,7 @@ export const Postcode = ({
 
   return (
     <div>
-      <Form.Group
-        controlId="postcode"
-        className={addresses.length || selectedAddress.address.length ? 'form-margin-bottom' : ''}
-      >
+      <Form.Group controlId="postcode" className="form-margin-bottom">
         <Form.Label>Postcode</Form.Label>
         <Stack direction="horizontal" gap={3}>
           <Form.Control
