@@ -219,10 +219,10 @@ export const Postcode = ({
           />
           {renderVerifyPostcodeButton()}
         </Stack>
+        {verifyPostcodeMessage.length ? <div>{verifyPostcodeMessage}</div> : null}
       </Form.Group>
       {renderAddressesSelectionDiv()}
       {renderCancelButton()}
-      {verifyPostcodeMessage.length ? <div>{verifyPostcodeMessage}</div> : null}
     </div>
   );
 };
