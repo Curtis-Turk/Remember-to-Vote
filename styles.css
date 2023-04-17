@@ -45,6 +45,10 @@ h2 {
   --bs-gradient: none;
 }
 
+#form-section {
+  background-color: #f9d9dc;
+}
+
 #polling-form {
   /* max-width: 500px; */
   margin: auto;
