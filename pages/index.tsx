@@ -11,7 +11,7 @@ const inter = Inter({
   subsets: ['latin'],
 });
 
-function App() {
+export default function App() {
   useEffect(() => {
     const bootstrap = require('bootstrap');
   }, []);
@@ -24,4 +24,3 @@ function App() {
     </div>
   );
 }
-export default App;
