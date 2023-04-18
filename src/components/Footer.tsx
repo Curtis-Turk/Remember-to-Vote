@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import ballotIcon from '../../assets/icon.svg';
+import downArrow from '../../assets/down-arrow.svg';
+import Link from 'next/link';
 
 export default function Footer() {
   return (
@@ -22,6 +24,9 @@ export default function Footer() {
         would like to know more about how we use your information click{' '}
         <a href="https://labour.org.uk/privacy-policy">here</a>.
       </p>
+      <Link href="#title-card" scroll={false}>
+        <Image src={downArrow} alt="up-arrow" id="up-arrow"></Image>
+      </Link>
     </div>
   );
 }

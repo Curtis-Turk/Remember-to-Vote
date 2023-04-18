@@ -375,6 +375,10 @@ legend {
   font-size: small;
 }
 
+#up-arrow {
+  transform: scaleY(-1);
+}
+
 /* CSS variables. */
 :root {
   /* --success: #28a745; */
