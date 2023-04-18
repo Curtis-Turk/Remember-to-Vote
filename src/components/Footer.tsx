@@ -1,6 +1,10 @@
+import Image from 'next/image';
+import ballotIcon from '../../assets/icon.png';
+
 export default function Footer() {
   return (
     <div id="footer">
+      <Image src={ballotIcon} alt="ballot-icon"></Image>
       <p>
         Made for <a href="https://www.campaignlab.uk/">Campaign lab</a>
       </p>
