@@ -361,8 +361,13 @@ legend {
 #footer {
   text-align: center;
   width: 70%;
-  margin: auto;
-  background-image: url(assets/pattern\ background.jpg);
+  /* margin: auto; */
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 80px;
+  margin-top: 86px;
+  width: 60%;
+  /* background-image: url(assets/pattern\ background.jpg); */
 }
 
 #gdpr-text {

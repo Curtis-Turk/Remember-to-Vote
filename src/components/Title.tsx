@@ -11,8 +11,8 @@ import downArrow from '../../assets/down-arrow.svg';
 
 export default function Title() {
   const ballotIconRef = useRef(null);
-  const ballotIconRect = ballotIconRef.current.getBoundingClientRect();
-  console.log(ballotIconRect.left);
+  // const ballotIconRect = ballotIconRef.current.getBoundingClientRect();
+  // console.log(ballotIconRect.left);
   return (
     <div id="title-card">
       <Image src={headerEllipse} alt="header-ellipse" id="header-ellipse"></Image>
