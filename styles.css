@@ -56,6 +56,11 @@ text-align: left;
  */
 #vote-title {
   color: #dc3545;
+  z-index: 2;
+}
+#pink-oval {
+  position: absolute;
+  z-index: 0;
 }
 
 /* .register-button-desktop {
