@@ -6,6 +6,7 @@ import ballotIcon from '../../assets/icon.svg';
 import pinkOval from '../../assets/pink oval line.svg';
 import ballotBox from '../../assets/Ballot box.svg';
 import headerEllipse from '../../assets/header.svg';
+import downArrow from '../../assets/down-arrow.svg';
 
 export default function Title() {
   return (
@@ -26,7 +27,12 @@ export default function Title() {
             </Link>
             <Image src={ballotBox} alt="ballot-box"></Image>
           </Stack>
-          <About />
+          <Stack>
+            <About />
+            <Link href="#form-section" scroll={false}>
+              <Image src={downArrow} alt="down-arrow"></Image>
+            </Link>
+          </Stack>
         </Stack>
       </Container>
     </div>
