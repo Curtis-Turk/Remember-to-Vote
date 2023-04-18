@@ -10,11 +10,7 @@ import headerEllipse from '../../assets/header.svg';
 export default function Title() {
   return (
     <div id="title-card">
-      <Image
-        src={headerEllipse}
-        alt="header-ellipse"
-        style={{ position: 'absolute', left: '50%', transform: 'translate(-50%, 0%)' }}
-      ></Image>
+      <Image src={headerEllipse} alt="header-ellipse" id="header-ellipse"></Image>
       <Container style={{ paddingTop: '107px' }}>
         <Stack direction="horizontal" style={{ gap: '89px' }}>
           <Stack>

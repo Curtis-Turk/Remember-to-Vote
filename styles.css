@@ -31,6 +31,12 @@ h4 {
   color: #dc3545;
 }
 
+#header-ellipse {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
 #main-title {
   text-align: left;
   margin-bottom: 89px;
