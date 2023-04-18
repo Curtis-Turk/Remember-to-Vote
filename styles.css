@@ -191,6 +191,9 @@ weight: 600
   background-image: url('assets/Pink\ background.jpg');
   /* height: 1160px; */
   padding-bottom: 168px;
+  background-color: #f9d9dc;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 #form-section-title {
