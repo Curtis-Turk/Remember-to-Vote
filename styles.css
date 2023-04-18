@@ -41,7 +41,9 @@ h4 {
   line-height: 150px !important;
   color: #adadad;
 }
-
+#title-card {
+  background-image: url(assets/pattern\ background.jpg);
+}
 .vstack {
   flex: none !important;
 }
@@ -315,6 +317,7 @@ legend {
   text-align: center;
   width: 70%;
   margin: auto;
+  background-image: url(assets/pattern\ background.jpg);
 }
 
 #gdpr-text {
