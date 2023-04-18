@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { submitToVotersTable } from '../../lib/supabase';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const formData = {
     name: 'Bob',
     phone_number: '6876757657',
@@ -10,4 +10,4 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     message_type: 'WhatsApp',
     created_at: new Date(),
   };
-};
+}

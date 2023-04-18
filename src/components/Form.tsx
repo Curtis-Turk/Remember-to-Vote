@@ -1,6 +1,6 @@
 import { useState, Dispatch, SetStateAction } from 'react';
 import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
-import { Postcode } from './Postcode';
+import Postcode from './Postcode';
 
 import { Form as BForm } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
@@ -17,7 +17,7 @@ export interface formData {
   addressSlug: string;
 }
 
-export const Form = ({ setIsFormSubmitted }: formProps) => {
+export default function Form({ setIsFormSubmitted }: formProps) {
   // boolean for if postcode has been verified with the Electoral Commission API
   const [isPostcodeVerified, setIsPostCodeVerified] = useState(false);
   const [isNameValid, setIsNameValid] = useState(true);
@@ -170,4 +170,4 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
       </div>
     </BForm>
   );
-};
+}

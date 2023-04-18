@@ -1,9 +1,9 @@
-import { Form } from './Form';
+import Form from './Form';
 import SubmittedForm from './SubmittedForm';
 
 import { useState } from 'react';
 
-function FormSection() {
+export default function FormSection() {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   return (
@@ -17,5 +17,3 @@ function FormSection() {
     </div>
   );
 }
-
-export default FormSection;

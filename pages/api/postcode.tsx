@@ -27,7 +27,7 @@ const electoralCommission = new ElectoralCommisionApi(process.env.EC_API_KEY as 
 //   ],
 // };
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   // if (req.headers.origin !== process.env.NEXT_PUBLIC_API) {
   //   return res.status(401);
   // }
@@ -61,4 +61,4 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   const statusCode = pollingStationResponse.errorMessage ? 400 : 200;
   return res.status(statusCode).json(pollingStationResponse);
-};
+}

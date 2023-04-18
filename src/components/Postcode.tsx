@@ -24,13 +24,13 @@ interface props {
   handleTextChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Postcode = ({
+export default function Postcode({
   isPostcodeVerified,
   setIsPostCodeVerified,
   setFormData,
   postcode,
   handleTextChange,
-}: props) => {
+}: props) {
   // boolean for if postcode is being checked by the Electoral Commission API
   const [isVerifyPostcodeDisabled, setIsVerifyPostcodeDisabled] = useState(false);
 
@@ -235,4 +235,4 @@ export const Postcode = ({
       {renderCancelButton()}
     </div>
   );
-};
+}
