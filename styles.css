@@ -140,7 +140,8 @@ weight: 600
 }
 
 #form-section {
-  background-color: #f9d9dc;
+  /* background-color: #f9d9dc; */
+  background-image: url('assets/Pink\ background.jpg');
   /* height: 1160px; */
   padding-bottom: 168px;
 }

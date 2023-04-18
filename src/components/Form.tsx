@@ -1,17 +1,8 @@
-import {
-  useState,
-  Dispatch,
-  SetStateAction,
-  forwardRef,
-  useImperativeHandle,
-  useRef,
-  useEffect,
-} from 'react';
+import { useState, Dispatch, SetStateAction } from 'react';
 import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
 import { Postcode } from './Postcode';
 
 import { Form as BForm } from 'react-bootstrap';
-import { InputGroup } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 
 interface formProps {
