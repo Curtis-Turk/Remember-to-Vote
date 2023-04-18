@@ -25,7 +25,7 @@ export default function Title() {
             <Link href="#form-section" scroll={false}>
               <Button variant="register">Register for your reminder</Button>
             </Link>
-            <Image src={ballotBox} alt="ballot-box"></Image>
+            <Image src={ballotBox} alt="ballot-box" id="ballot-box"></Image>
           </Stack>
           <Stack>
             <About />

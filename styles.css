@@ -79,6 +79,10 @@ text-align: left;
   z-index: 0;
 }
 
+#ballot-box {
+  margin-top: 55px;
+}
+
 /* .register-button-desktop {
   height: 74px;
   width: 654px;
