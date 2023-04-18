@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import ballotIcon from '../../assets/icon.png';
+import ballotIcon from '../../assets/icon.svg';
 
 export default function Footer() {
   return (

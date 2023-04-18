@@ -2,7 +2,7 @@ import { Button, Container, Stack } from 'react-bootstrap';
 import About from './About';
 import Link from 'next/link';
 import Image from 'next/image';
-import ballotIcon from '../../assets/icon.png';
+import ballotIcon from '../../assets/icon.svg';
 import pinkOval from '../../assets/pink oval line.png';
 import ballotBox from '../../assets/Ballot box.svg';
 
