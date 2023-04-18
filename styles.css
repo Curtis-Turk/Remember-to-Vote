@@ -43,6 +43,7 @@ h4 {
 
 #title-stack {
   gap: 89px;
+  align-items: normal !important;
 }
 
 #main-title {
@@ -102,8 +103,8 @@ weight: 600
  } */
 
 #about-section {
-  /* margin-top: 45px; */
-  /* width: 495px; */
+  margin-top: 96px;
+  width: 495px;
 }
 
 .btn {
