@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ballotIcon from '../../assets/icon.png';
 import pinkOval from '../../assets/pink oval line.png';
-import ballotBox from '../../assets/Ballot box.png';
+import ballotBox from '../../assets/Ballot box.svg';
 
 export default function Title() {
   return (
