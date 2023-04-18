@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ballotIcon from '../../assets/icon.png';
 import pinkOval from '../../assets/pink oval line.png';
+import ballotBox from '../../assets/Ballot box.png';
 
 export default function Title() {
   return (
@@ -22,6 +23,7 @@ export default function Title() {
             <Link href="#form-section" scroll={false}>
               <Button variant="register">Register for your reminder</Button>
             </Link>
+            <Image src={ballotBox} alt="ballot-box"></Image>
           </Stack>
           <About />
         </Stack>
