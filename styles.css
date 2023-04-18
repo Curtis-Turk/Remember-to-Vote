@@ -41,10 +41,6 @@ h4 {
   color: #adadad;
 }
 
-#title-card {
-  background-image: url(assets/pattern\ background.jpg);
-}
-
 .vstack {
   flex: none !important;
 }

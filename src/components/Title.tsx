@@ -5,10 +5,16 @@ import Image from 'next/image';
 import ballotIcon from '../../assets/icon.svg';
 import pinkOval from '../../assets/pink oval line.svg';
 import ballotBox from '../../assets/Ballot box.svg';
+import headerEllipse from '../../assets/header.svg';
 
 export default function Title() {
   return (
     <div id="title-card">
+      <Image
+        src={headerEllipse}
+        alt="header-ellipse"
+        style={{ position: 'absolute', left: '50%', transform: 'translate(-50%, 0%)' }}
+      ></Image>
       <Container>
         <Stack direction="horizontal" style={{ gap: '89px' }}>
           <Stack>
