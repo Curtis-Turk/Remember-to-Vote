@@ -10,6 +10,14 @@ code {
   font-family: 'Inter', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+#red-header {
+  /* position: absolute; */
+  /* width: 1639px; */
+  height: -1450px;
+  /* left: -64px; */
+  /* top: -1000px; */
+}
+
 h1,
 h2 {
   text-align: center;
