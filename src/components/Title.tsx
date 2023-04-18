@@ -3,7 +3,7 @@ import About from './About';
 import Link from 'next/link';
 import Image from 'next/image';
 import ballotIcon from '../../assets/icon.svg';
-import pinkOval from '../../assets/pink oval line.png';
+import pinkOval from '../../assets/pink oval line.svg';
 import ballotBox from '../../assets/Ballot box.svg';
 
 export default function Title() {
