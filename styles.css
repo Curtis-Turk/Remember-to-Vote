@@ -37,6 +37,14 @@ h4 {
   transform: translate(-50%, 0%);
 }
 
+#title-container {
+  padding-top: 107px;
+}
+
+#title-stack {
+  gap: 89px;
+}
+
 #main-title {
   text-align: left;
   margin-bottom: 89px;
@@ -94,8 +102,8 @@ weight: 600
  } */
 
 #about-section {
-  margin-top: 45px;
-  width: 495px;
+  /* margin-top: 45px; */
+  /* width: 495px; */
 }
 
 .btn {

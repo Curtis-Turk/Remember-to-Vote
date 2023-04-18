@@ -11,8 +11,8 @@ export default function Title() {
   return (
     <div id="title-card">
       <Image src={headerEllipse} alt="header-ellipse" id="header-ellipse"></Image>
-      <Container style={{ paddingTop: '107px' }}>
-        <Stack direction="horizontal" style={{ gap: '89px' }}>
+      <Container id="title-container">
+        <Stack direction="horizontal" id="title-stack">
           <Stack>
             <Image src={ballotIcon} alt="ballot-icon"></Image>
             <h1 id="main-title">
