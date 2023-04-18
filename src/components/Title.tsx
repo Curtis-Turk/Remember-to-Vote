@@ -15,7 +15,7 @@ export default function Title() {
         alt="header-ellipse"
         style={{ position: 'absolute', left: '50%', transform: 'translate(-50%, 0%)' }}
       ></Image>
-      <Container>
+      <Container style={{ paddingTop: '107px' }}>
         <Stack direction="horizontal" style={{ gap: '89px' }}>
           <Stack>
             <Image src={ballotIcon} alt="ballot-icon"></Image>
