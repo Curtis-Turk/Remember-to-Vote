@@ -19,7 +19,7 @@ export default function Title() {
   return (
     <div id="title-card">
       <Image src={headerEllipse} alt="header-ellipse" id="header-ellipse"></Image>
-      <Container id="title-container">
+      <div id="title-container">
         {/* mobile */}
         <Stack className="mobile">
           <Image src={ballotIcon} alt="ballot-icon"></Image>
@@ -82,7 +82,7 @@ export default function Title() {
             </Link>
           </Stack>
         </Stack>
-      </Container>
+      </div>
     </div>
   );
 }
