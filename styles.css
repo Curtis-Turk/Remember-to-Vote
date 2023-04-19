@@ -211,16 +211,17 @@ weight: 600
   font-style: normal !important;
   font-weight: 600 !important;
   letter-spacing: 0.02em !important;
-  padding: 25px 0px !important;
 }
 
 .btn-register-desktop {
+  padding: 25px 0px !important;
   width: 654px;
   font-size: 20px !important;
   line-height: 24px !important;
 }
 
 .btn-register-mobile {
+  padding: 12px 0px !important;
   width: 100%;
   font-size: 18px !important;
   line-height: 22px !important;
