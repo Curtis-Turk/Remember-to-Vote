@@ -7,34 +7,71 @@ import pinkOval from '../../assets/pink oval line.svg';
 import ballotBox from '../../assets/Ballot box.svg';
 import headerEllipse from '../../assets/header.svg';
 import downArrow from '../../assets/down-arrow.svg';
+import useMediaQuery from '../../lib/useMediaQuery';
+import pinkOvalMobile480 from '../../assets/pink-oval-line-mobile.svg';
+import pinkOvalMobile600 from '../../assets/pink-oval-line-mobile-600.svg';
+import pinkOvalMobile525 from '../../assets/pink-oval-line-mobile-525.svg';
 
 export default function Title() {
+  const isMobile600Breakpoint = useMediaQuery(600);
+  const isMobile525Breakpoint = useMediaQuery(525);
+  const isMobile480Breakpoint = useMediaQuery(480);
+
+  const renderStack = () => {
+    if (isMobile600Breakpoint) {
+      let pinkOvalMobileSrc = pinkOvalMobile600;
+      if (isMobile525Breakpoint) pinkOvalMobileSrc = pinkOvalMobile525;
+      if (isMobile480Breakpoint) pinkOvalMobileSrc = pinkOvalMobile480;
+      return (
+        <Stack>
+          <Image src={ballotIcon} alt="ballot-icon"></Image>
+          <h1 id="main-title">
+            Remember
+            <br />
+            to&nbsp;
+            <Image src={pinkOvalMobileSrc} alt="vote-circle" id="pink-oval"></Image>
+            <span id="vote-title">Vote</span>
+          </h1>
+          <Link href="#form-section" scroll={false}>
+            <Button variant="register" className="btn-register-mobile">
+              Register for your reminder
+            </Button>
+          </Link>
+          <About />
+        </Stack>
+      );
+    }
+    return (
+      <Stack direction="horizontal" id="title-stack">
+        <Stack>
+          <Image src={ballotIcon} alt="ballot-icon"></Image>
+          <h1 id="main-title">
+            Remember
+            <br />
+            to&nbsp;<Image src={pinkOval} alt="vote-circle" id="pink-oval"></Image>
+            <span id="vote-title">Vote</span>
+          </h1>
+          <Link href="#form-section" scroll={false}>
+            <Button variant="register" className="btn-register-desktop">
+              Register for your reminder
+            </Button>
+          </Link>
+          <Image src={ballotBox} alt="ballot-box" id="ballot-box"></Image>
+        </Stack>
+        <Stack>
+          <About />
+          <Link href="#form-section" scroll={false}>
+            <Image src={downArrow} alt="down-arrow"></Image>
+          </Link>
+        </Stack>
+      </Stack>
+    );
+  };
+
   return (
     <div id="title-card">
       <Image src={headerEllipse} alt="header-ellipse" id="header-ellipse"></Image>
-      <Container id="title-container">
-        <Stack direction="horizontal" id="title-stack">
-          <Stack>
-            <Image src={ballotIcon} alt="ballot-icon"></Image>
-            <h1 id="main-title">
-              Remember
-              <br />
-              to&nbsp;<Image src={pinkOval} alt="vote-circle" id="pink-oval"></Image>
-              <span id="vote-title">Vote</span>
-            </h1>
-            <Link href="#form-section" scroll={false}>
-              <Button variant="register">Register for your reminder</Button>
-            </Link>
-            <Image src={ballotBox} alt="ballot-box" id="ballot-box"></Image>
-          </Stack>
-          <Stack>
-            <About />
-            <Link href="#form-section" scroll={false}>
-              <Image src={downArrow} alt="down-arrow"></Image>
-            </Link>
-          </Stack>
-        </Stack>
-      </Container>
+      <Container id="title-container">{renderStack()}</Container>
     </div>
   );
 }

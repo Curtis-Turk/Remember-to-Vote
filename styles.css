@@ -57,10 +57,18 @@ h4 {
 }
 
 #header-ellipse {
+  object-fit: cover;
   position: absolute;
+  width: 100vw;
   left: 50%;
   transform: translate(-50%, 0%);
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+@media screen and (max-width: 600px) {
+  #title-container {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
 }
 
 #title-container {
@@ -72,13 +80,61 @@ h4 {
   align-items: normal !important;
 }
 
+@media screen and (max-width: 600px) {
+  #main-title {
+    font-size: 90px !important;
+    line-height: 94px !important;
+    margin-bottom: 75px !important;
+  }
+
+  #pink-oval {
+    left: 165px;
+    top: 235px;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  #main-title {
+    font-size: 80px !important;
+    line-height: 87px !important;
+  }
+
+  #pink-oval {
+    left: 130px;
+    top: 225px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #main-title {
+    font-size: 70px !important;
+    line-height: 80px !important;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  #main-title {
+    font-size: 60px !important;
+    line-height: 73px !important;
+  }
+
+  #pink-oval {
+    left: 90px;
+  }
+}
+
+#pink-oval {
+  position: absolute;
+  z-index: 0;
+}
+
 #main-title {
   text-align: left;
   margin-bottom: 89px;
   font-style: normal !important;
   font-weight: 700 !important;
-  font-size: 124px !important;
-  line-height: 150px !important;
+  font-size: 124px;
+  line-height: 150px;
   color: #adadad;
 }
 
@@ -98,11 +154,6 @@ text-align: left;
 #vote-title {
   color: #dc3545;
   position: absolute;
-}
-
-#pink-oval {
-  position: absolute;
-  z-index: 0;
 }
 
 #ballot-box {
@@ -131,6 +182,12 @@ border-radius: 8px;
 text size: 18px;
 weight: 600
  } */
+@media screen and (max-width: 600px) {
+  #about-section {
+    max-width: 100%;
+    margin-top: 44px !important;
+  }
+}
 
 #about-section {
   margin-top: 96px;
@@ -145,6 +202,7 @@ weight: 600
 }
 
 .btn-register {
+  all: unset;
   border-color: #28a745 !important;
   background-color: #e6f2ec !important;
   box-shadow: 4px 4px 0px 0px #bdccc4;
@@ -153,13 +211,22 @@ weight: 600
   border-radius: 16px !important;
   color: #107c46 !important;
   font-style: normal !important;
-  /* laptop styling */
-  width: 654px;
   font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+}
+
+.btn-register-desktop {
+  padding: 25px 0px !important;
+  width: 654px;
   font-size: 20px !important;
   line-height: 24px !important;
-  letter-spacing: 0.02em !important;
-  padding: 25px 0px !important;
+}
+
+.btn-register-mobile {
+  padding: 12px 0px !important;
+  width: 100%;
+  font-size: 18px !important;
+  line-height: 22px !important;
 }
 
 .btn-success {
