@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <div id="footer-background">
       <div id="footer">
-        <Image src={ballotIcon} alt="ballot-icon"></Image>
+        <Image src={ballotIcon} alt="ballot-icon" id="ballot-icon"></Image>
         <p>
           Made for <a href="https://www.campaignlab.uk/">Campaign lab</a>
         </p>

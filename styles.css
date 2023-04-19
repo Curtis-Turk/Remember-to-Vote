@@ -225,6 +225,10 @@ weight: 600
   #form-section {
     padding-bottom: 8rem !important;
   }
+
+  #footer {
+    width: 85% !important;
+  }
 }
 
 @media screen and (max-width: 818px) {
@@ -236,6 +240,8 @@ weight: 600
   }
   #polling-form {
     width: 100vw !important;
+    border-right: none !important;
+    border-left: none !important;
   }
 }
 
@@ -413,14 +419,13 @@ legend {
   padding-top: 86px;
   width: 60%;
 }
+#ballot-icon {
+  margin-bottom: 3rem;
+}
 
 #gdpr-text {
   color: #00000092;
   font-size: small;
-}
-
-#up-arrow {
-  /* transform: scaleY(-1); */
 }
 
 /* CSS variables. */
