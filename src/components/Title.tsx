@@ -8,20 +8,28 @@ import ballotBox from '../../assets/Ballot box.svg';
 import headerEllipse from '../../assets/header.svg';
 import downArrow from '../../assets/down-arrow.svg';
 import useMediaQuery from '../../lib/useMediaQuery';
-import pinkOvalMobile from '../../assets/pink-oval-line-mobile.svg';
+import pinkOvalMobile480 from '../../assets/pink-oval-line-mobile.svg';
+import pinkOvalMobile600 from '../../assets/pink-oval-line-mobile-600.svg';
+import pinkOvalMobile525 from '../../assets/pink-oval-line-mobile-525.svg';
 
 export default function Title() {
-  const isMobileBreakpoint = useMediaQuery(600);
+  const isMobile600Breakpoint = useMediaQuery(600);
+  const isMobile525Breakpoint = useMediaQuery(525);
+  const isMobile480Breakpoint = useMediaQuery(480);
 
   const renderStack = () => {
-    if (isMobileBreakpoint) {
+    if (isMobile600Breakpoint) {
+      let pinkOvalMobileSrc = pinkOvalMobile600;
+      if (isMobile525Breakpoint) pinkOvalMobileSrc = pinkOvalMobile525;
+      if (isMobile480Breakpoint) pinkOvalMobileSrc = pinkOvalMobile480;
       return (
         <Stack>
           <Image src={ballotIcon} alt="ballot-icon"></Image>
           <h1 id="main-title">
             Remember
             <br />
-            to&nbsp;<Image src={pinkOvalMobile} alt="vote-circle" id="pink-oval"></Image>
+            to&nbsp;
+            <Image src={pinkOvalMobileSrc} alt="vote-circle" id="pink-oval"></Image>
             <span id="vote-title">Vote</span>
           </h1>
           <Link href="#form-section" scroll={false}>
