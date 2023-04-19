@@ -19,8 +19,8 @@ export default function App() {
   return (
     <div className={inter.className} id="App">
       <Title />
-      <FormSection />
-      <Footer />
+      {/* <FormSection />
+      <Footer /> */}
     </div>
   );
 }
