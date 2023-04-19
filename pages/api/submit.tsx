@@ -66,7 +66,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     Status: 400 - something went wrong / 409 - unique conflict
     */
     const uniqueConstraintErrorCode = '23505';
-    status = supabaseResponse.error.code === uniqueConstraintErrorCode ? 409 : 400;
+    status = supabaseResponse.error!.code === uniqueConstraintErrorCode ? 409 : 400;
   } else {
     // if supabase did not throw an error, send a confirmation text using Twilio
     const isConfirmationTextSent: boolean = await sendConfirmationText(name, phone, messageType);
