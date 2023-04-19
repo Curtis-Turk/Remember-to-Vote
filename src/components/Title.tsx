@@ -27,7 +27,27 @@ export default function Title() {
             Remember
             <br />
             to&nbsp;
-            <Image src={pinkOvalMobile480} alt="vote-circle" id="pink-oval"></Image>
+            {/* 600 width */}
+            <Image
+              src={pinkOvalMobile600}
+              alt="vote-circle"
+              className="pink-oval"
+              id="pink-oval-600"
+            />
+            {/* 525 width */}
+            <Image
+              src={pinkOvalMobile525}
+              alt="vote-circle"
+              className="pink-oval"
+              id="pink-oval-525"
+            />
+            {/* 480 width */}
+            <Image
+              src={pinkOvalMobile480}
+              alt="vote-circle"
+              className="pink-oval"
+              id="pink-oval-480"
+            />
             <span id="vote-title">Vote</span>
           </h1>
           <Link href="#form-section" scroll={false}>
@@ -44,7 +64,7 @@ export default function Title() {
             <h1 id="main-title">
               Remember
               <br />
-              to&nbsp;<Image src={pinkOval} alt="vote-circle" id="pink-oval"></Image>
+              to&nbsp;<Image src={pinkOval} alt="vote-circle" className="pink-oval"></Image>
               <span id="vote-title">Vote</span>
             </h1>
             <Link href="#form-section" scroll={false}>
