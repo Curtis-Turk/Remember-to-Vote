@@ -16,20 +16,18 @@ export default function Title() {
   const isMobile600Breakpoint = useMediaQuery(600);
   const isMobile525Breakpoint = useMediaQuery(525);
   const isMobile480Breakpoint = useMediaQuery(480);
-
-  const renderStack = () => {
-    if (isMobile600Breakpoint) {
-      let pinkOvalMobileSrc = pinkOvalMobile600;
-      if (isMobile525Breakpoint) pinkOvalMobileSrc = pinkOvalMobile525;
-      if (isMobile480Breakpoint) pinkOvalMobileSrc = pinkOvalMobile480;
-      return (
-        <Stack>
+  return (
+    <div id="title-card">
+      <Image src={headerEllipse} alt="header-ellipse" id="header-ellipse"></Image>
+      <Container id="title-container">
+        {/* mobile */}
+        <Stack className="mobile">
           <Image src={ballotIcon} alt="ballot-icon"></Image>
           <h1 id="main-title">
             Remember
             <br />
             to&nbsp;
-            <Image src={pinkOvalMobileSrc} alt="vote-circle" id="pink-oval"></Image>
+            <Image src={pinkOvalMobile480} alt="vote-circle" id="pink-oval"></Image>
             <span id="vote-title">Vote</span>
           </h1>
           <Link href="#form-section" scroll={false}>
@@ -39,39 +37,31 @@ export default function Title() {
           </Link>
           <About />
         </Stack>
-      );
-    }
-    return (
-      <Stack direction="horizontal" id="title-stack">
-        <Stack>
-          <Image src={ballotIcon} alt="ballot-icon"></Image>
-          <h1 id="main-title">
-            Remember
-            <br />
-            to&nbsp;<Image src={pinkOval} alt="vote-circle" id="pink-oval"></Image>
-            <span id="vote-title">Vote</span>
-          </h1>
-          <Link href="#form-section" scroll={false}>
-            <Button variant="register" className="btn-register-desktop">
-              Register for your reminder
-            </Button>
-          </Link>
-          <Image src={ballotBox} alt="ballot-box" id="ballot-box"></Image>
+        {/* desktop */}
+        <Stack direction="horizontal" id="title-stack" className="desktop">
+          <Stack>
+            <Image src={ballotIcon} alt="ballot-icon"></Image>
+            <h1 id="main-title">
+              Remember
+              <br />
+              to&nbsp;<Image src={pinkOval} alt="vote-circle" id="pink-oval"></Image>
+              <span id="vote-title">Vote</span>
+            </h1>
+            <Link href="#form-section" scroll={false}>
+              <Button variant="register" className="btn-register-desktop">
+                Register for your reminder
+              </Button>
+            </Link>
+            <Image src={ballotBox} alt="ballot-box" id="ballot-box"></Image>
+          </Stack>
+          <Stack>
+            <About />
+            <Link href="#form-section" scroll={false}>
+              <Image src={downArrow} alt="down-arrow"></Image>
+            </Link>
+          </Stack>
         </Stack>
-        <Stack>
-          <About />
-          <Link href="#form-section" scroll={false}>
-            <Image src={downArrow} alt="down-arrow"></Image>
-          </Link>
-        </Stack>
-      </Stack>
-    );
-  };
-
-  return (
-    <div id="title-card">
-      <Image src={headerEllipse} alt="header-ellipse" id="header-ellipse"></Image>
-      <Container id="title-container">{renderStack()}</Container>
+      </Container>
     </div>
   );
 }
