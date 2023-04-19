@@ -64,7 +64,8 @@ export default function Title() {
             <h1 id="main-title">
               Remember
               <br />
-              to&nbsp;<Image src={pinkOval} alt="vote-circle" className="pink-oval"></Image>
+              to&nbsp;
+              <Image src={pinkOval} alt="vote-circle" className="pink-oval desktop"></Image>
               <span id="vote-title">Vote</span>
             </h1>
             <Link href="#form-section" scroll={false}>

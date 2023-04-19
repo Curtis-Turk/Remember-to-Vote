@@ -92,6 +92,12 @@ h4 {
   align-items: normal !important;
 }
 
+@media screen and (max-width: 600px) {
+  .pink-oval {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 600px) and (min-width: 526px) {
   #main-title {
     font-size: 90px !important;
@@ -143,7 +149,6 @@ h4 {
 
 .pink-oval {
   position: absolute !important;
-  display: none;
   z-index: 0;
 }
 
