@@ -338,13 +338,21 @@ weight: 600
 }
 
 #verify-btn {
-  padding: 5px 10px;
+  /* padding: 5px 10px;
   margin: 5px;
   border: none;
   border-radius: 5px;
   color: #fff;
   font-size: 14px;
-  cursor: pointer;
+  cursor: pointer; */
+}
+
+@media screen and (max-width: 600px) {
+  #verify-btn {
+    width: 50% !important;
+    font-size: 0.8rem !important;
+    padding: 14px 1rem !important;
+  }
 }
 
 fieldset {
