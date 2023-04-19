@@ -209,7 +209,8 @@ weight: 600
 
 @media screen and (max-width: 600px) {
   #form-section-title {
-    white-space: wrap !important;
+    word-wrap: break-word !important;
+    white-space: normal !important;
     font-size: 28px;
     padding-top: 50px;
   }
