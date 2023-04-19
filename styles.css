@@ -221,6 +221,10 @@ weight: 600
     border-right: none !important;
     border-left: none !important;
   }
+
+  #form-section {
+    padding-bottom: 8rem !important;
+  }
 }
 
 @media screen and (max-width: 818px) {
@@ -416,7 +420,7 @@ legend {
 }
 
 #up-arrow {
-  transform: scaleY(-1);
+  /* transform: scaleY(0, -1); */
 }
 
 /* CSS variables. */
