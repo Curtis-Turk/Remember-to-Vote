@@ -215,6 +215,10 @@ weight: 600
     padding-top: 3vh;
     margin-bottom: 3vh;
   }
+  #polling-form {
+    border-right: none !important;
+    border-left: none !important;
+  }
 }
 
 @media screen and (max-width: 780px) {
