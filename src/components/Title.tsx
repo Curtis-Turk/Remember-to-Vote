@@ -21,27 +21,27 @@ export default function Title() {
       <Image src={headerEllipse} alt="header-ellipse" id="header-ellipse"></Image>
       <div id="title-container">
         {/* mobile */}
-        <Stack className="mobile">
+        <Stack id="title-stack-mobile" className="mobile">
           <Image src={ballotIcon} alt="ballot-icon"></Image>
           <h1 id="main-title">
             Remember
             <br />
             to&nbsp;
-            {/* 600 width */}
+            {/* 600 width display */}
             <Image
               src={pinkOvalMobile600}
               alt="vote-circle"
               className="pink-oval"
               id="pink-oval-600"
             />
-            {/* 525 width */}
+            {/* 525 width display */}
             <Image
               src={pinkOvalMobile525}
               alt="vote-circle"
               className="pink-oval"
               id="pink-oval-525"
             />
-            {/* 480 width */}
+            {/* 480 width display */}
             <Image
               src={pinkOvalMobile480}
               alt="vote-circle"
