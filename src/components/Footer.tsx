@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import ballotIcon from '../../assets/icon.svg';
-import downArrow from '../../assets/down-arrow.svg';
+import upArrow from '../../assets/up-arrow.svg';
 import Link from 'next/link';
 
 export default function Footer() {
@@ -26,7 +26,7 @@ export default function Footer() {
           <a href="https://labour.org.uk/privacy-policy">here</a>.
         </p>
         <Link href="#title-card" scroll={false}>
-          <Image src={downArrow} alt="up-arrow" id="up-arrow"></Image>
+          <Image src={upArrow} alt="up-arrow" id="up-arrow"></Image>
         </Link>
       </div>
     </div>
