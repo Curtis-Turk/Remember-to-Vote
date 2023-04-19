@@ -29,10 +29,6 @@ export default function Title() {
             </Button>
           </Link>
           <About />
-          <Link href="#form-section" scroll={false}>
-            <Image src={downArrow} alt="down-arrow"></Image>
-          </Link>
-          <Image src={ballotBox} alt="ballot-box" id="ballot-box"></Image>
         </Stack>
       );
     }
