@@ -139,7 +139,11 @@ border-radius: 8px;
 text size: 18px;
 weight: 600
  } */
-
+@media screen and (max-width: 600px) {
+  #about-section {
+    max-width: 333px;
+  }
+}
 #about-section {
   margin-top: 96px;
   width: 495px;
