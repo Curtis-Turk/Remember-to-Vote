@@ -48,7 +48,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   console.log(req.body);
   res.status(201);
 
-  return res.end();
+  // return res.end();
   // insert formData into Supabase table as new row
   const supabaseResponse: PostgrestSingleResponse<null> = await submitToSupabase(
     name,

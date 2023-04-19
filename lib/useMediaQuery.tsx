@@ -5,7 +5,7 @@ pulled from https://github.com/vercel/next.js/discussions/14810 */
 export default function useMediaQuery(width: number): boolean {
   const [targetReached, setTargetReached] = useState(false);
 
-  const updateTarget = useCallback((e) => {
+  const updateTarget = useCallback((e: any) => {
     if (e.matches) {
       setTargetReached(true);
     } else {
