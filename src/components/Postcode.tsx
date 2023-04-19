@@ -193,6 +193,7 @@ export default function Postcode({
     if (isVerifyPostcodeButtonRendered) {
       return (
         <Button
+          id="verify-btn"
           size="lg"
           variant="outline-success"
           style={{ whiteSpace: 'nowrap' }}

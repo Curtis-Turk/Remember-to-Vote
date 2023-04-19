@@ -228,32 +228,45 @@ weight: 600
   text-align: center;
 }
 
+@media screen and (max-width: 600px) {
+  #form-section-title {
+    word-wrap: break-word !important;
+    white-space: normal !important;
+    font-size: 28px;
+    padding-top: 3vh;
+    margin-bottom: 3vh;
+  }
+  #polling-form {
+    border-right: none !important;
+    border-left: none !important;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  #form-section-title {
+    white-space: wrap !important;
+    font-size: 2.2rem;
+    padding-top: 4vh;
+    margin-bottom: 4vh;
+  }
+
+  #polling-form {
+    width: 100vw !important;
+  }
+}
+
 #polling-form {
   box-shadow: 0px 4px 0px 0px #00000040;
-
   background-color: white;
-  /* max-width: 500px; */
   margin: auto;
-  /* padding: 55px; */
-
   padding-left: 55px;
   padding-right: 55px;
   padding-top: 38px;
   padding-bottom: 55px;
   border: 1px solid #000000;
   box-sizing: border-box;
-  /* display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 14px 16px;
-  gap: 8px; */
-
-  /* position: absolute; */
   width: 818px;
-  /* height: 740px; */
   left: 347px;
-  /* top: 1503px; */
-  /* background-color: #f5f5f5; */
 }
 
 .form-margin-bottom {
@@ -350,13 +363,21 @@ weight: 600
 }
 
 #verify-btn {
-  padding: 5px 10px;
+  /* padding: 5px 10px;
   margin: 5px;
   border: none;
   border-radius: 5px;
   color: #fff;
   font-size: 14px;
-  cursor: pointer;
+  cursor: pointer; */
+}
+
+@media screen and (max-width: 600px) {
+  #verify-btn {
+    width: 50% !important;
+    font-size: 0.8rem !important;
+    padding: 14px 1rem !important;
+  }
 }
 
 fieldset {
