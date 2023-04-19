@@ -108,6 +108,12 @@ text-align: left;
   position: absolute;
 }
 
+@media screen and (max-width: 600px) {
+  #pink-oval {
+    left: 88px;
+  }
+}
+
 #pink-oval {
   position: absolute;
   z-index: 0;
