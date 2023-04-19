@@ -72,13 +72,20 @@ h4 {
   align-items: normal !important;
 }
 
+@media screen and (max-width: 600px) {
+  #main-title {
+    font-size: 60px !important;
+    line-height: 73px !important;
+  }
+}
+
 #main-title {
   text-align: left;
   margin-bottom: 89px;
   font-style: normal !important;
   font-weight: 700 !important;
-  font-size: 124px !important;
-  line-height: 150px !important;
+  font-size: 124px;
+  line-height: 150px;
   color: #adadad;
 }
 
