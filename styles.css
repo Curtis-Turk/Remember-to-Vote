@@ -64,6 +64,12 @@ h4 {
   transform: translate(-50%, 0%);
 }
 
+@media screen and (max-width: 600px) {
+  #title-container {
+    padding-left: 30px;
+  }
+}
+
 #title-container {
   padding-top: 107px;
 }
