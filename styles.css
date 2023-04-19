@@ -381,13 +381,11 @@ legend {
 #footer {
   text-align: center;
   width: 70%;
-  /* margin: auto; */
   margin-left: auto;
   margin-right: auto;
   padding-bottom: 80px;
   padding-top: 86px;
   width: 60%;
-  /* background-image: url(assets/pattern\ background.jpg); */
 }
 
 #gdpr-text {
