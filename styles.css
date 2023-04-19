@@ -67,6 +67,7 @@ h4 {
 @media screen and (max-width: 600px) {
   #title-container {
     padding-left: 30px;
+    padding-right: 30px;
   }
 }
 
@@ -116,7 +117,7 @@ text-align: left;
 
 @media screen and (max-width: 600px) {
   #pink-oval {
-    left: 88px;
+    left: 118px;
   }
 }
 
@@ -153,9 +154,10 @@ weight: 600
  } */
 @media screen and (max-width: 600px) {
   #about-section {
-    max-width: 333px;
+    max-width: 100%;
   }
 }
+
 #about-section {
   margin-top: 96px;
   width: 495px;
@@ -190,7 +192,7 @@ weight: 600
 }
 
 .btn-register-mobile {
-  width: 333px;
+  width: 100%;
   font-size: 18px !important;
   line-height: 22px !important;
 }
