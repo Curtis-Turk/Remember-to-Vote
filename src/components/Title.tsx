@@ -11,6 +11,7 @@ import useMediaQuery from '../../lib/useMediaQuery';
 
 export default function Title() {
   const isMobileBreakpoint = useMediaQuery(600);
+
   const renderStack = () => {
     if (isMobileBreakpoint) {
       return (
@@ -23,7 +24,9 @@ export default function Title() {
             <span id="vote-title">Vote</span>
           </h1>
           <Link href="#form-section" scroll={false}>
-            <Button variant="register">Register for your reminder</Button>
+            <Button variant="register" className="btn-register-mobile">
+              Register for your reminder
+            </Button>
           </Link>
           <About />
           <Link href="#form-section" scroll={false}>
@@ -44,7 +47,9 @@ export default function Title() {
             <span id="vote-title">Vote</span>
           </h1>
           <Link href="#form-section" scroll={false}>
-            <Button variant="register">Register for your reminder</Button>
+            <Button variant="register" className="btn-register-desktop">
+              Register for your reminder
+            </Button>
           </Link>
           <Image src={ballotBox} alt="ballot-box" id="ballot-box"></Image>
         </Stack>

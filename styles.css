@@ -153,6 +153,7 @@ weight: 600
 }
 
 .btn-register {
+  all: unset;
   border-color: #28a745 !important;
   background-color: #e6f2ec !important;
   box-shadow: 4px 4px 0px 0px #bdccc4;
@@ -161,13 +162,21 @@ weight: 600
   border-radius: 16px !important;
   color: #107c46 !important;
   font-style: normal !important;
-  /* laptop styling */
-  width: 654px;
   font-weight: 600 !important;
-  font-size: 20px !important;
-  line-height: 24px !important;
   letter-spacing: 0.02em !important;
   padding: 25px 0px !important;
+}
+
+.btn-register-desktop {
+  width: 654px;
+  font-size: 20px !important;
+  line-height: 24px !important;
+}
+
+.btn-register-mobile {
+  width: 333px;
+  font-size: 18px !important;
+  line-height: 22px !important;
 }
 
 .btn-success {
