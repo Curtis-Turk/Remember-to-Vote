@@ -211,9 +211,11 @@ weight: 600
   #form-section-title {
     word-wrap: break-word !important;
     white-space: normal !important;
-    font-size: 28px;
+    font-size: 28px !important;
     padding-top: 3vh;
     margin-bottom: 3vh;
+    padding-left: 4vh;
+    padding-right: 4vh;
   }
   #polling-form {
     border-right: none !important;
