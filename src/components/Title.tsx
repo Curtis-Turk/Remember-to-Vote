@@ -23,6 +23,8 @@ export default function Title() {
             Remember
             <br />
             to&nbsp;
+            {/* 1094 width display */}
+            <Image src={pinkOval} alt="vote-circle" className="pink-oval" id="pink-oval-1094" />
             {/* 600 width display */}
             <Image
               src={pinkOvalMobile600}

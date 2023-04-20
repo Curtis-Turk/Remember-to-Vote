@@ -130,6 +130,14 @@ h4 {
   }
 }
 
+@media screen and (max-width: 1094px) and (min-width: 769px) {
+  #pink-oval-1094 {
+    display: inline !important;
+    left: 200px;
+    top: 250px;
+  }
+}
+
 @media screen and (max-width: 768px) and (min-width: 682px) {
   #main-title {
     font-size: 90px !important;
