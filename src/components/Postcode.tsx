@@ -188,11 +188,11 @@ export default function Postcode({
   };
 
   const VerifyPostcodeButton = () => {
-    let verifyPostCodeButtonText = 'Verify postcode';
-    if ((isVerifyPostcodeDisabled && !isPostcodeVerified) || isPostcodeVerified) {
-      verifyPostCodeButtonText = 'Postcode verified!';
-    }
     if (isVerifyPostcodeButtonRendered) {
+      const verifyPostCodeButtonText =
+        addresses.length || selectedAddress.address.length || isPostcodeVerified
+          ? 'Postcode verified!'
+          : 'Verify postcode';
       return (
         <Button
           id="verify-btn"
