@@ -4,7 +4,8 @@ import { formData } from './Form';
 import { Form, Stack } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import CancelButton from './CancelButton';
-interface addressObject {
+import AddressSelector from './AddressSelector';
+export interface addressObject {
   address: string;
   postcode: string;
   slug: string;
@@ -114,59 +115,6 @@ export default function Postcode({
     setPostcodeError(false);
   };
 
-  const AddressSelector = () => {
-    const handleAddressChange = (addressObject: addressObject): void => {
-      /* takes an addressObject and sets the address in the form data to be the value of the object
-      removes addresses from addresses array state to clear addresses from the DOM
-      */
-      setFormData((formData: formData) => ({
-        ...formData,
-        addressSlug: addressObject.slug,
-      }));
-      setSelectedAddress(addressObject);
-      setAddresses([]);
-      setIsPostCodeVerified(true);
-    };
-
-    // only render the address selection if the address picker is returned by API
-    let addressesFormSelect;
-
-    if (addresses.length) {
-      addressesFormSelect = (
-        <Form.Select
-          onChange={(event) => {
-            if (event.target.value !== '') handleAddressChange(JSON.parse(event.target.value));
-          }}
-        >
-          <option value={''}>Select your address here</option>
-          {addresses.map((addressObject) => (
-            <option key={addressObject.address} value={JSON.stringify(addressObject)}>
-              {addressObject.address}
-            </option>
-          ))}
-        </Form.Select>
-      );
-    }
-
-    if (selectedAddress.address.length) {
-      addressesFormSelect = (
-        <Form.Select disabled={true}>
-          <option>{selectedAddress.address}</option>
-        </Form.Select>
-      );
-    }
-
-    if (addresses.length || selectedAddress.address.length) {
-      return (
-        <Form.Group>
-          <Form.Label>Address</Form.Label>
-          {addressesFormSelect}
-        </Form.Group>
-      );
-    }
-    return <></>;
-  };
-
   const VerifyPostcodeButton = () => {
     if (isVerifyPostcodeButtonRendered) {
       const verifyPostCodeButtonText =
@@ -216,7 +164,16 @@ export default function Postcode({
         </Stack>
         <VerifyPostcodeMessage />
       </Form.Group>
-      <AddressSelector />
+      <AddressSelector
+        {...{
+          setFormData,
+          setSelectedAddress,
+          setAddresses,
+          setIsPostCodeVerified,
+          addresses,
+          selectedAddress,
+        }}
+      />
       <CancelButton
         {...{
           setIsCancelButtonRendered,
