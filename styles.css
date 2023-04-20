@@ -80,7 +80,7 @@ h4 {
   transform: translate(-50%, 0%);
 }
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 1094px) {
   #title-card {
     width: 100%;
     text-align: center;
@@ -92,7 +92,7 @@ h4 {
   }
 }
 
-@media screen and (max-width: 768px) and (min-width: 601px) {
+@media screen and (max-width: 1094px) and (min-width: 601px) {
   #title-container {
     padding-left: 105px;
     padding-right: 105px;
@@ -257,7 +257,7 @@ weight: 600
   }
 }
 
-@media screen and (max-width: 768px) and (min-width: 601px) {
+@media screen and (max-width: 1094px) and (min-width: 601px) {
   #about-section {
     margin-top: 81px !important;
     width: auto !important;
