@@ -1,5 +1,6 @@
 import { Button } from 'react-bootstrap';
-import { addressObject } from './Postcode';
+import { addressObject, setStateAddresses, setStateBoolean } from './Postcode';
+import { Dispatch, SetStateAction } from 'react';
 
 interface pollingStationsObject {
   pollingStationFound: boolean;
@@ -7,7 +8,22 @@ interface pollingStationsObject {
   errorMessage?: string;
 }
 
-export default function VerifyPostcodeButton(props) {
+interface verifyPostcodeButtonProps {
+  postcode: string;
+  setIsVerifyPostcodeDisabled: setStateBoolean;
+  setPostcodeError: setStateBoolean;
+  setVerifyPostcodeMessage: Dispatch<SetStateAction<string>>;
+  setIsPostcodeVerified: setStateBoolean;
+  setAddresses: setStateAddresses;
+  setIsCancelButtonRendered: setStateBoolean;
+  isVerifyPostcodeButtonRendered: boolean;
+  addresses: addressObject[];
+  selectedAddress: addressObject;
+  isVerifyPostcodeDisabled: boolean;
+  isPostcodeVerified: boolean;
+}
+
+export default function VerifyPostcodeButton(props: verifyPostcodeButtonProps) {
   const {
     postcode,
     setIsVerifyPostcodeDisabled,
