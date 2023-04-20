@@ -135,7 +135,7 @@ export default function Postcode({
   };
 
   const AddressSelector = () => {
-    const setAddress = (addressObject: addressObject): void => {
+    const handleAddressChange = (addressObject: addressObject): void => {
       /* takes an addressObject and sets the address in the form data to be the value of the object
       removes addresses from addresses array state to clear addresses from the DOM
       */
@@ -155,7 +155,7 @@ export default function Postcode({
       addressesFormSelect = (
         <Form.Select
           onChange={(event) => {
-            if (event.target.value !== '') setAddress(JSON.parse(event.target.value));
+            if (event.target.value !== '') handleAddressChange(JSON.parse(event.target.value));
           }}
         >
           <option value={''}>Select your address here</option>
