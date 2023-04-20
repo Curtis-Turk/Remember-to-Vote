@@ -1,4 +1,4 @@
-import { Button, Container, Stack } from 'react-bootstrap';
+import { Button, Stack } from 'react-bootstrap';
 import About from './About';
 import Link from 'next/link';
 import Image from 'next/image';
