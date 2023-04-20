@@ -146,7 +146,7 @@ export default function Postcode({
     }
   };
 
-  const renderAddressesSelectionDiv = (): JSX.Element | undefined => {
+  const AddressSelector = () => {
     // only render the address selection if the address picker is returned by API
     let addressesFormSelect;
 
@@ -183,6 +183,7 @@ export default function Postcode({
         </Form.Group>
       );
     }
+    return <></>;
   };
 
   const VerifyPostcodeButton = () => {
@@ -234,7 +235,7 @@ export default function Postcode({
         </Stack>
         <VerifyPostcodeMessage />
       </Form.Group>
-      {renderAddressesSelectionDiv()}
+      <AddressSelector />
       {renderCancelButton()}
     </div>
   );
