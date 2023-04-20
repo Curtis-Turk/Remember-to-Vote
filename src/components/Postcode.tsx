@@ -2,7 +2,6 @@ import { useState, Dispatch, SetStateAction } from 'react';
 import { formData } from './Form';
 
 import { Form, Stack } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
 import CancelButton from './CancelButton';
 import AddressSelector from './AddressSelector';
 import VerifyPostcodeButton from './VerifyPostcodeButton';
