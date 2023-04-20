@@ -54,12 +54,6 @@ export default function Postcode({
 
   // object of the selected address object
   const [selectedAddress, setSelectedAddress] = useState<addressObject>(defaultAddressObject);
-
-  // // checks postcode only has alphanumeric characters and whitespace
-  // const checkValidChars = (postcode: string): boolean => {
-  //   return /^[A-Za-z0-9 ]*$/.test(postcode);
-  // };
-
   const VerifyPostcodeMessage = () => {
     if (verifyPostcodeMessage.length) {
       return <div>{verifyPostcodeMessage}</div>;
