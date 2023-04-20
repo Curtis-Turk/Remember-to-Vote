@@ -215,8 +215,16 @@ text-align: left;
   position: absolute;
 }
 
-#ballot-box {
-  margin-top: 55px;
+@media screen and (min-width: 1387px) {
+  #ballot-box {
+    margin-top: 218px;
+  }
+}
+
+@media screen and (max-width: 1386px) and (min-width: 769px) {
+  #ballot-box {
+    margin-top: 218px;
+  }
 }
 
 /* .register-button-desktop {
