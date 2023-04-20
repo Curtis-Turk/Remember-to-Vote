@@ -13,9 +13,6 @@ import pinkOvalMobile600 from '../../assets/pink-oval-line-mobile-600.svg';
 import pinkOvalMobile525 from '../../assets/pink-oval-line-mobile-525.svg';
 
 export default function Title() {
-  const isMobile600Breakpoint = useMediaQuery(600);
-  const isMobile525Breakpoint = useMediaQuery(525);
-  const isMobile480Breakpoint = useMediaQuery(480);
   return (
     <div id="title-card">
       <Image src={headerEllipse} alt="header-ellipse" id="header-ellipse"></Image>
