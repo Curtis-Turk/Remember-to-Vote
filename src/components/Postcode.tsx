@@ -33,7 +33,6 @@ export default function Postcode({
   postcode,
   handleTextChange,
 }: postcodeProps) {
-  // boolean for if postcode is being checked by the Electoral Commission API
   const [isVerifyPostcodeDisabled, setIsVerifyPostcodeDisabled] = useState(false);
 
   const [isVerifyPostcodeButtonRendered, setIsVerifyPostcodeButtonRendered] = useState(true);
