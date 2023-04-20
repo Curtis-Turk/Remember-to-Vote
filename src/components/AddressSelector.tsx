@@ -1,19 +1,18 @@
 import {
   addressObject,
   setFormDataType,
+  setStateAddresses,
   setStateBoolean,
   setStateSelectedAddress,
 } from './Postcode';
 import { formData } from './Form';
 import { Form } from 'react-bootstrap';
-import { Dispatch, SetStateAction } from 'react';
-import { JsxElement } from 'typescript';
 
 interface addressSelectorProps {
   setFormData: setFormDataType;
   setIsPostcodeVerified: setStateBoolean;
   setSelectedAddress: setStateSelectedAddress;
-  setAddresses: Dispatch<SetStateAction<addressObject[]>>;
+  setAddresses: setStateAddresses;
   selectedAddress: addressObject;
   addresses: addressObject[];
 }

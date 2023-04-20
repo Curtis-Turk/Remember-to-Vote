@@ -21,6 +21,7 @@ interface pollingStationsObject {
 export type setFormDataType = Dispatch<SetStateAction<formData>>;
 export type setStateBoolean = Dispatch<SetStateAction<boolean>>;
 export type setStateSelectedAddress = Dispatch<SetStateAction<addressObject>>;
+export type setStateAddresses = Dispatch<SetStateAction<addressObject[]>>;
 
 interface postcodeProps {
   isPostcodeVerified: boolean;
