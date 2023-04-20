@@ -136,7 +136,7 @@ export default function Postcode({
     setAddresses([]);
   };
 
-  const CancelButton = () => {
+  const CancelButton = ({ isCancelButtonRendered, cancelPostcodeSelection }) => {
     if (isCancelButtonRendered) {
       return (
         <Button variant="outline-danger" onClick={cancelPostcodeSelection}>
@@ -237,7 +237,7 @@ export default function Postcode({
         <VerifyPostcodeMessage />
       </Form.Group>
       <AddressSelector />
-      <CancelButton />
+      <CancelButton {...{ isCancelButtonRendered, cancelPostcodeSelection }} />
     </div>
   );
 }
