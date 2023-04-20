@@ -234,9 +234,14 @@ text size: 18px;
 weight: 600
  } */
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   #about-section {
     max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #about-section {
     margin-top: 44px !important;
   }
 }
