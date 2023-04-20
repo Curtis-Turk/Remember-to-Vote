@@ -207,10 +207,11 @@ export default function Postcode({
     return <></>;
   };
 
-  const verifyPostcodeMessageElement = () => {
+  const VerifyPostcodeMessage = () => {
     if (verifyPostcodeMessage.length) {
       return <div>{verifyPostcodeMessage}</div>;
     }
+    return <></>;
   };
 
   return (
@@ -231,7 +232,7 @@ export default function Postcode({
           />
           <VerifyPostcodeButton />
         </Stack>
-        {verifyPostcodeMessageElement()}
+        <VerifyPostcodeMessage />
       </Form.Group>
       {renderAddressesSelectionDiv()}
       {renderCancelButton()}
