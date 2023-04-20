@@ -5,6 +5,7 @@ import { Form, Stack } from 'react-bootstrap';
 import CancelButton from './CancelButton';
 import AddressSelector from './AddressSelector';
 import VerifyPostcodeButton from './VerifyPostcodeButton';
+import VerifyPostcodeErrorMessage from './VerifyPostcodeErrorMessage';
 
 export interface addressObject {
   address: string;
@@ -55,13 +56,6 @@ export default function Postcode({
   // object of the selected address object
   const [selectedAddress, setSelectedAddress] = useState<addressObject>(defaultAddressObject);
 
-  const VerifyPostcodeMessage = () => {
-    if (verifyPostcodeMessage.length) {
-      return <div>{verifyPostcodeMessage}</div>;
-    }
-    return <></>;
-  };
-
   const verifyPostcodeButtonProps = {
     postcode,
     setIsVerifyPostcodeDisabled,
@@ -95,7 +89,7 @@ export default function Postcode({
           />
           <VerifyPostcodeButton {...verifyPostcodeButtonProps} />
         </Stack>
-        <VerifyPostcodeMessage />
+        <VerifyPostcodeErrorMessage {...{ verifyPostcodeMessage }} />
       </Form.Group>
       <AddressSelector
         {...{
