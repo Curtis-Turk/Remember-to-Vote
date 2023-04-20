@@ -43,7 +43,7 @@ export default function AddressSelector({
       </Form.Select>
     );
   }
-
+  if (!selectedAddress) return;
   if (selectedAddress.address.length) {
     addressesFormSelect = (
       <Form.Select disabled={true}>
