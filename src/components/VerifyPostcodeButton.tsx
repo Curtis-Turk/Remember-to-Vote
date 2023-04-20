@@ -40,13 +40,6 @@ export default function VerifyPostcodeButton(props: verifyPostcodeButtonProps) {
   } = props;
 
   const verifyPostCode = async (): Promise<void> => {
-    // if (!checkValidChars(postcode)) {
-    //   setPostcodeError(true);
-    //   // setVerifyPostcodeMessage('Please only use alphanumeric characters and spaces');
-    //   return;
-    // }
-    // console.log('Is this happening');
-
     // strip postcode of whitespace
     const strippedPostcode = postcode.replace(' ', '');
 
