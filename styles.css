@@ -137,11 +137,11 @@ h4 {
     margin-bottom: 75px !important;
   }
 
-  /* #pink-oval-600 {
+  #pink-oval-600 {
     display: inline !important;
-    left: 135px;
-    top: 225px;
-  } */
+    left: 205px;
+    top: 215px;
+  }
 }
 
 @media screen and (max-width: 681px) and (min-width: 601px) {
