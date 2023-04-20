@@ -442,6 +442,7 @@ weight: 600
 }
 
 #polling-form {
+  min-height: 605px;
   box-shadow: 0px 4px 0px 0px #00000040;
   background-color: white;
   margin: auto;
