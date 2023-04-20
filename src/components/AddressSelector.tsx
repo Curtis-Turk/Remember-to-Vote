@@ -24,9 +24,9 @@ export default function AddressSelector({
     setIsPostCodeVerified(true);
   };
 
+  if (!addresses) return;
   // only render the address selection if the address picker is returned by API
   let addressesFormSelect;
-
   if (addresses.length) {
     addressesFormSelect = (
       <Form.Select
