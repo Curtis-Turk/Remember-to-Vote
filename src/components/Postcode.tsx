@@ -114,15 +114,6 @@ export default function Postcode({
     setPostcodeError(false);
   };
 
-  const cancelPostcodeSelection = (): void => {
-    setIsVerifyPostcodeDisabled(false);
-    setIsVerifyPostcodeButtonRendered(true);
-    setIsPostCodeVerified(false);
-    setIsCancelButtonRendered(false);
-    setSelectedAddress(defaultAddressObject);
-    setAddresses([]);
-  };
-
   const AddressSelector = () => {
     const handleAddressChange = (addressObject: addressObject): void => {
       /* takes an addressObject and sets the address in the form data to be the value of the object
@@ -226,7 +217,18 @@ export default function Postcode({
         <VerifyPostcodeMessage />
       </Form.Group>
       <AddressSelector />
-      <CancelButton {...{ isCancelButtonRendered, cancelPostcodeSelection }} />
+      <CancelButton
+        {...{
+          setIsCancelButtonRendered,
+          isCancelButtonRendered,
+          setIsVerifyPostcodeDisabled,
+          setIsVerifyPostcodeButtonRendered,
+          setIsPostCodeVerified,
+          setSelectedAddress,
+          setAddresses,
+          defaultAddressObject,
+        }}
+      />
     </div>
   );
 }
