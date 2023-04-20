@@ -185,7 +185,7 @@ export default function Postcode({
     }
   };
 
-  const renderVerifyPostcodeButton = (): JSX.Element | undefined => {
+  const VerifyPostcodeButton = () => {
     let verifyPostCodeButtonText = 'Verify postcode';
     if ((isVerifyPostcodeDisabled && !isPostcodeVerified) || isPostcodeVerified) {
       verifyPostCodeButtonText = 'Postcode verified!';
@@ -204,6 +204,7 @@ export default function Postcode({
         </Button>
       );
     }
+    return <></>;
   };
 
   const verifyPostcodeMessageElement = () => {
@@ -228,7 +229,7 @@ export default function Postcode({
             disabled={isVerifyPostcodeDisabled}
             onChange={handleTextChange}
           />
-          {renderVerifyPostcodeButton()}
+          <VerifyPostcodeButton />
         </Stack>
         {verifyPostcodeMessageElement()}
       </Form.Group>
