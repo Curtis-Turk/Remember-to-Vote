@@ -90,84 +90,82 @@ export default function Form({ setIsFormSubmitted }: formProps) {
   };
 
   return (
-    <div id="polling-form">
-      <BForm>
-        <BForm.Group className="form-margin-bottom" controlId="name">
-          <BForm.Label>Name</BForm.Label>
-          <BForm.Control
-            type="text"
-            placeholder="Jane Appleseed"
-            name="name"
-            className={isNameValid ? '' : 'invalid'}
-            onChange={handleTextChange}
-          />
-        </BForm.Group>
-
-        <BForm.Group className="form-margin-bottom" controlId="phone">
-          <BForm.Label>Phone number</BForm.Label>
-          <PhoneInput
-            style={{ '--PhoneInputCountryFlag-height': '20px' }}
-            defaultCountry="GB"
-            onChange={handlePhoneInputChange}
-            numberInputProps={{ className: phoneNumberClassName() }}
-            placeholder="07700 900684"
-          />
-        </BForm.Group>
-
-        <Postcode
-          {...{
-            isPostcodeVerified,
-            setIsPostcodeVerified,
-            postcode: formData.postcode,
-            setFormData,
-            handleTextChange,
-          }}
+    <BForm>
+      <BForm.Group className="form-margin-bottom" controlId="name">
+        <BForm.Label>Name</BForm.Label>
+        <BForm.Control
+          type="text"
+          placeholder="Jane Appleseed"
+          name="name"
+          className={isNameValid ? '' : 'invalid'}
+          onChange={handleTextChange}
         />
-        <BForm.Group className="form-margin-bottom">
-          <BForm.Label>How would you like your reminder?</BForm.Label>
-          <BForm.Check
-            inline
-            label="SMS"
-            name="messageType"
-            type={'radio'}
-            id={`inline-radio`}
-            value="Sms"
-            onChange={handleTextChange}
-          />
-          <BForm.Check
-            inline
-            label="WhatsApp"
-            name="messageType"
-            type={'radio'}
-            id={`inline-radio`}
-            defaultChecked={true}
-            value="WhatsApp"
-            onChange={handleTextChange}
-          />
-        </BForm.Group>
-        <BForm.Group>
-          <div>
-            <div className="d-grid">
-              <Button
-                size="lg"
-                variant="success"
-                className="joe"
-                style={{
-                  textAlign: 'left',
-                }}
-                onClick={handleSubmit}
-                disabled={!canUserSubmit}
-                onKeyDown={(e: any) => {
-                  if (e.key === 'Enter') handleSubmit();
-                }}
-              >
-                {submitting ? 'Submitting...' : 'Submit'}
-              </Button>
-            </div>
-            <div>{submitError ? submitError : null}</div>
+      </BForm.Group>
+
+      <BForm.Group className="form-margin-bottom" controlId="phone">
+        <BForm.Label>Phone number</BForm.Label>
+        <PhoneInput
+          style={{ '--PhoneInputCountryFlag-height': '20px' }}
+          defaultCountry="GB"
+          onChange={handlePhoneInputChange}
+          numberInputProps={{ className: phoneNumberClassName() }}
+          placeholder="07700 900684"
+        />
+      </BForm.Group>
+
+      <Postcode
+        {...{
+          isPostcodeVerified,
+          setIsPostcodeVerified,
+          postcode: formData.postcode,
+          setFormData,
+          handleTextChange,
+        }}
+      />
+      <BForm.Group className="form-margin-bottom">
+        <BForm.Label>How would you like your reminder?</BForm.Label>
+        <BForm.Check
+          inline
+          label="SMS"
+          name="messageType"
+          type={'radio'}
+          id={`inline-radio`}
+          value="Sms"
+          onChange={handleTextChange}
+        />
+        <BForm.Check
+          inline
+          label="WhatsApp"
+          name="messageType"
+          type={'radio'}
+          id={`inline-radio`}
+          defaultChecked={true}
+          value="WhatsApp"
+          onChange={handleTextChange}
+        />
+      </BForm.Group>
+      <BForm.Group>
+        <div>
+          <div className="d-grid">
+            <Button
+              size="lg"
+              variant="success"
+              className="joe"
+              style={{
+                textAlign: 'left',
+              }}
+              onClick={handleSubmit}
+              disabled={!canUserSubmit}
+              onKeyDown={(e: any) => {
+                if (e.key === 'Enter') handleSubmit();
+              }}
+            >
+              {submitting ? 'Submitting...' : 'Submit'}
+            </Button>
           </div>
-        </BForm.Group>
-      </BForm>
-    </div>
+          <div>{submitError ? submitError : null}</div>
+        </div>
+      </BForm.Group>
+    </BForm>
   );
 }
