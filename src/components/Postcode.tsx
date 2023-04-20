@@ -114,19 +114,6 @@ export default function Postcode({
     setPostcodeError(false);
   };
 
-  const setAddress = (addressObject: addressObject): void => {
-    /* takes an addressObject and sets the address in the form data to be the value of the object
-    removes addresses from addresses array state to clear addresses from the DOM
-    */
-    setFormData((formData: formData) => ({
-      ...formData,
-      addressSlug: addressObject.slug,
-    }));
-    setSelectedAddress(addressObject);
-    setAddresses([]);
-    setIsPostCodeVerified(true);
-  };
-
   const cancelPostcodeSelection = (): void => {
     setIsVerifyPostcodeDisabled(false);
     setIsVerifyPostcodeButtonRendered(true);
@@ -148,6 +135,19 @@ export default function Postcode({
   };
 
   const AddressSelector = () => {
+    const setAddress = (addressObject: addressObject): void => {
+      /* takes an addressObject and sets the address in the form data to be the value of the object
+      removes addresses from addresses array state to clear addresses from the DOM
+      */
+      setFormData((formData: formData) => ({
+        ...formData,
+        addressSlug: addressObject.slug,
+      }));
+      setSelectedAddress(addressObject);
+      setAddresses([]);
+      setIsPostCodeVerified(true);
+    };
+
     // only render the address selection if the address picker is returned by API
     let addressesFormSelect;
 
