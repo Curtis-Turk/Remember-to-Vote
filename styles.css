@@ -124,6 +124,13 @@ h4 {
   }
 }
 
+@media screen and (max-width: 1386px) and (min-width: 1095px) {
+  .pink-oval {
+    left: 158px;
+    top: 253px;
+  }
+}
+
 @media screen and (max-width: 1094px) {
   .pink-oval {
     display: none;
