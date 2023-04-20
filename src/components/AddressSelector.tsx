@@ -1,6 +1,6 @@
 import {
   addressObject,
-  setFormDataType,
+  setFormData,
   setStateAddresses,
   setStateBoolean,
   setStateSelectedAddress,
@@ -9,7 +9,7 @@ import { formData } from './Form';
 import { Form } from 'react-bootstrap';
 
 interface addressSelectorProps {
-  setFormData: setFormDataType;
+  setFormData: setFormData;
   setIsPostcodeVerified: setStateBoolean;
   setSelectedAddress: setStateSelectedAddress;
   setAddresses: setStateAddresses;
