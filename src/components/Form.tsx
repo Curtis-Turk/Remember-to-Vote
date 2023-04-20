@@ -91,6 +91,10 @@ export default function Form({ setIsFormSubmitted }: formProps) {
 
   return (
     <BForm>
+      Sign up to be sent a reminder with your polling station details for the local elections on 4th
+      May, 2023.
+      <br />
+      <br />
       <BForm.Group className="form-margin-bottom" controlId="name">
         <BForm.Label>Name</BForm.Label>
         <BForm.Control
@@ -101,7 +105,6 @@ export default function Form({ setIsFormSubmitted }: formProps) {
           onChange={handleTextChange}
         />
       </BForm.Group>
-
       <BForm.Group className="form-margin-bottom" controlId="phone">
         <BForm.Label>Phone number</BForm.Label>
         <PhoneInput
@@ -112,7 +115,6 @@ export default function Form({ setIsFormSubmitted }: formProps) {
           placeholder="07700 900684"
         />
       </BForm.Group>
-
       <Postcode
         {...{
           isPostcodeVerified,
@@ -160,7 +162,7 @@ export default function Form({ setIsFormSubmitted }: formProps) {
                 if (e.key === 'Enter') handleSubmit();
               }}
             >
-              {submitting ? 'Submitting...' : 'Submit'}
+              {submitting ? 'Submitting...' : 'Sign up'}
             </Button>
           </div>
           <div>{submitError ? submitError : null}</div>
