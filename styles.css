@@ -226,6 +226,7 @@ border-radius: 8px;
 text size: 18px;
 weight: 600
  } */
+
 @media screen and (max-width: 600px) {
   #about-section {
     max-width: 100%;
