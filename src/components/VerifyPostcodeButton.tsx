@@ -86,6 +86,7 @@ export default function VerifyPostcodeButton(props: verifyPostcodeButtonProps) {
     setIsCancelButtonRendered(true);
     setPostcodeError(false);
   };
+
   if (isVerifyPostcodeButtonRendered) {
     const verifyPostCodeButtonText =
       addresses.length || selectedAddress.address.length || isPostcodeVerified
