@@ -2,6 +2,7 @@ import { addressObject, setFormDataType, setIsPostcodeVerifiedType } from './Pos
 import { formData } from './Form';
 import { Form } from 'react-bootstrap';
 import { Dispatch, SetStateAction } from 'react';
+import { JsxElement } from 'typescript';
 
 interface addressSelectorProps {
   setFormData: setFormDataType;
@@ -35,7 +36,6 @@ export default function AddressSelector({
 
   // only render the address selection if the address picker is returned by API
   let addressesFormSelect;
-
   if (addresses.length) {
     addressesFormSelect = (
       <Form.Select
