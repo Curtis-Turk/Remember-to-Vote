@@ -116,6 +116,12 @@ h4 {
   align-items: normal !important;
 }
 
+@media screen and (max-width: 768px) and (min-width: 601px) {
+  #main-title {
+    margin-bottom: 60px !important;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .pink-oval {
     display: none;
