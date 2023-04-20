@@ -338,10 +338,20 @@ weight: 600
   line-height: 24px !important;
 }
 
-.btn-register-mobile {
-  padding: 12px 0px !important;
-  font-size: 18px !important;
-  line-height: 22px !important;
+@media screen and (max-width: 1094px) and (min-width: 601px) {
+  .btn-register-mobile {
+    padding: 25px 0px !important;
+    font-size: 20px !important;
+    line-height: 24px !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .btn-register-mobile {
+    padding: 12px 0px !important;
+    font-size: 18px !important;
+    line-height: 22px !important;
+  }
 }
 
 .btn-success {
