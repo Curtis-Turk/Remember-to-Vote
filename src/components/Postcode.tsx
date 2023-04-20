@@ -13,12 +13,6 @@ export interface addressObject {
   slug: string;
 }
 
-interface pollingStationsObject {
-  pollingStationFound: boolean;
-  pollingStations: addressObject[];
-  errorMessage?: string;
-}
-
 export type setFormData = Dispatch<SetStateAction<formData>>;
 export type setStateBoolean = Dispatch<SetStateAction<boolean>>;
 export type setStateSelectedAddress = Dispatch<SetStateAction<addressObject>>;
