@@ -44,7 +44,7 @@ export default function VerifyPostcodeButton(props: verifyPostcodeButtonProps) {
     const strippedPostcode = postcode.replace(' ', '');
 
     await setIsVerifyPostcodeDisabled(true);
-
+    console.log(process.env.NEXT_PUBLIC_API);
     const response = await fetch(`${process.env.NEXT_PUBLIC_API as string}/api/postcode`, {
       method: 'POST',
       body: JSON.stringify({ postcode: strippedPostcode }),
