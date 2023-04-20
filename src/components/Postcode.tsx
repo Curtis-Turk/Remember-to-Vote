@@ -18,12 +18,16 @@ interface pollingStationsObject {
   errorMessage?: string;
 }
 
-interface postcodeProps {
-  isPostcodeVerified: boolean;
-  setIsPostCodeVerified: Dispatch<SetStateAction<boolean>>;
-  setFormData: Dispatch<SetStateAction<formData>>;
-  postcode: string;
-  handleTextChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+export interface postcodeProps {
+  isPostcodeVerified?: boolean;
+  setIsPostCodeVerified?: Dispatch<SetStateAction<boolean>>;
+  setFormData?: Dispatch<SetStateAction<formData>>;
+  postcode?: string;
+  handleTextChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  setSelectedAddress?: Dispatch<SetStateAction<addressObject>>;
+  setAddresses?: Dispatch<SetStateAction<addressObject[]>>;
+  selectedAddress?: addressObject;
+  addresses?: addressObject[];
 }
 
 export default function Postcode({

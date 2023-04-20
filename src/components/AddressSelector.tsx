@@ -1,4 +1,4 @@
-import { addressObject } from './Postcode';
+import { addressObject, postcodeProps } from './Postcode';
 import { formData } from './Form';
 import { Form } from 'react-bootstrap';
 
@@ -9,11 +9,12 @@ export default function AddressSelector({
   setIsPostCodeVerified,
   addresses,
   selectedAddress,
-}) {
+}: postcodeProps) {
   const handleAddressChange = (addressObject: addressObject): void => {
     /* takes an addressObject and sets the address in the form data to be the value of the object
     removes addresses from addresses array state to clear addresses from the DOM
     */
+    if (!(setFormData && setSelectedAddress && setAddresses && setIsPostCodeVerified)) return;
     setFormData((formData: formData) => ({
       ...formData,
       addressSlug: addressObject.slug,
