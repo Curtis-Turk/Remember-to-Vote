@@ -16,7 +16,7 @@ code {
   }
 }
 
-@media screen and (min-width: 769) {
+@media screen and (min-width: 769px) {
   .mobile {
     display: none !important;
   }
