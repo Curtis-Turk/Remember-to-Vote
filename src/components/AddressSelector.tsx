@@ -34,7 +34,7 @@ export default function AddressSelector({
         }}
       >
         <option value={''}>Select your address here</option>
-        {addresses.map((addressObject) => (
+        {addresses.map((addressObject: addressObject) => (
           <option key={addressObject.address} value={JSON.stringify(addressObject)}>
             {addressObject.address}
           </option>
