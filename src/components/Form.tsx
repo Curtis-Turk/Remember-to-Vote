@@ -162,7 +162,7 @@ export default function Form({ setIsFormSubmitted }: formProps) {
                 if (e.key === 'Enter') handleSubmit();
               }}
             >
-              {submitting ? 'Submitting...' : 'Sign up'}
+              {submitting ? 'Signing up...' : 'Sign up'}
             </Button>
           </div>
           <div>{submitError ? submitError : null}</div>
