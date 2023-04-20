@@ -18,7 +18,7 @@ interface pollingStationsObject {
   errorMessage?: string;
 }
 
-interface props {
+interface postcodeProps {
   isPostcodeVerified: boolean;
   setIsPostCodeVerified: Dispatch<SetStateAction<boolean>>;
   setFormData: Dispatch<SetStateAction<formData>>;
@@ -32,7 +32,7 @@ export default function Postcode({
   setFormData,
   postcode,
   handleTextChange,
-}: props) {
+}: postcodeProps) {
   // boolean for if postcode is being checked by the Electoral Commission API
   const [isVerifyPostcodeDisabled, setIsVerifyPostcodeDisabled] = useState(false);
 
