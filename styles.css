@@ -124,13 +124,13 @@ h4 {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1094px) {
   .pink-oval {
     display: none;
   }
 }
 
-@media screen and (max-width: 600px) and (min-width: 526px) {
+@media screen and (max-width: 768px) and (min-width: 526px) {
   #main-title {
     font-size: 90px !important;
     line-height: 94px !important;
@@ -257,10 +257,15 @@ weight: 600
   }
 }
 
+@media screen and (max-width: 1094px) {
+  #about-section {
+    width: auto !important;
+  }
+}
+
 @media screen and (max-width: 1094px) and (min-width: 601px) {
   #about-section {
     margin-top: 81px !important;
-    width: auto !important;
   }
 }
 
