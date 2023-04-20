@@ -54,6 +54,7 @@ export default function Postcode({
 
   // object of the selected address object
   const [selectedAddress, setSelectedAddress] = useState<addressObject>(defaultAddressObject);
+
   const VerifyPostcodeMessage = () => {
     if (verifyPostcodeMessage.length) {
       return <div>{verifyPostcodeMessage}</div>;
