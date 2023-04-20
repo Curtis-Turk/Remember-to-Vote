@@ -3,7 +3,7 @@ import { formData } from './Form';
 
 import { Form, Stack } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-
+import CancelButton from './CancelButton';
 interface addressObject {
   address: string;
   postcode: string;
@@ -121,17 +121,6 @@ export default function Postcode({
     setIsCancelButtonRendered(false);
     setSelectedAddress(defaultAddressObject);
     setAddresses([]);
-  };
-
-  const CancelButton = ({ isCancelButtonRendered, cancelPostcodeSelection }) => {
-    if (isCancelButtonRendered) {
-      return (
-        <Button variant="outline-danger" onClick={cancelPostcodeSelection}>
-          Cancel
-        </Button>
-      );
-    }
-    return <></>;
   };
 
   const AddressSelector = () => {
