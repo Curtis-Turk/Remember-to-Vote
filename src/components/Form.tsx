@@ -90,8 +90,8 @@ export default function Form({ setIsFormSubmitted }: formProps) {
   };
 
   return (
-    <BForm>
-      <div id="polling-form">
+    <div id="polling-form">
+      <BForm>
         <BForm.Group className="form-margin-bottom" controlId="name">
           <BForm.Label>Name</BForm.Label>
           <BForm.Control
@@ -167,7 +167,7 @@ export default function Form({ setIsFormSubmitted }: formProps) {
             <div>{submitError ? submitError : null}</div>
           </div>
         </BForm.Group>
-      </div>
-    </BForm>
+      </BForm>
+    </div>
   );
 }
