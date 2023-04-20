@@ -44,17 +44,13 @@ export default function VerifyPostcodeButton(props: verifyPostcodeButtonProps) {
     const strippedPostcode = postcode.replace(' ', '');
 
     await setIsVerifyPostcodeDisabled(true);
-    const apiUrl = process.env.NEXT_PUBLIC_API as string;
-    const response = await fetch(
-      `${apiUrl.slice(-1) === '/' ? apiUrl.slice(0, -1) : apiUrl}/api/postcode`,
-      {
-        method: 'POST',
-        body: JSON.stringify({ postcode: strippedPostcode }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API as string}/api/postcode`, {
+      method: 'POST',
+      body: JSON.stringify({ postcode: strippedPostcode }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
     // TODO: implement error checking if fetch fails
 
