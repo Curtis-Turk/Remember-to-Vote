@@ -7,7 +7,6 @@ import pinkOval from '../../assets/pink oval line.svg';
 import ballotBox from '../../assets/Ballot box.svg';
 import headerEllipse from '../../assets/header.svg';
 import downArrow from '../../assets/down-arrow.svg';
-import useMediaQuery from '../../lib/useMediaQuery';
 import pinkOvalMobile480 from '../../assets/pink-oval-line-mobile.svg';
 import pinkOvalMobile600 from '../../assets/pink-oval-line-mobile-600.svg';
 import pinkOvalMobile525 from '../../assets/pink-oval-line-mobile-525.svg';
