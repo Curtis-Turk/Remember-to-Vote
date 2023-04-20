@@ -19,7 +19,7 @@ export interface formData {
 
 export default function Form({ setIsFormSubmitted }: formProps) {
   // boolean for if postcode has been verified with the Electoral Commission API
-  const [isPostcodeVerified, setIsPostCodeVerified] = useState(false);
+  const [isPostcodeVerified, setIsPostcodeVerified] = useState(false);
   const [isNameValid, setIsNameValid] = useState(true);
   const [isNumberValid, setIsNumberValid] = useState(true);
   const [submitError, setSubmitError] = useState('');
@@ -117,7 +117,7 @@ export default function Form({ setIsFormSubmitted }: formProps) {
         <Postcode
           {...{
             isPostcodeVerified,
-            setIsPostCodeVerified,
+            setIsPostcodeVerified,
             postcode: formData.postcode,
             setFormData,
             handleTextChange,

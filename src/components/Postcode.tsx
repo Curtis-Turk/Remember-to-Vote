@@ -18,17 +18,20 @@ interface pollingStationsObject {
   errorMessage?: string;
 }
 
+export type setFormDataType = Dispatch<SetStateAction<formData>>;
+export type setIsPostcodeVerifiedType = Dispatch<SetStateAction<boolean>>;
+
 interface postcodeProps {
   isPostcodeVerified: boolean;
-  setIsPostCodeVerified: Dispatch<SetStateAction<boolean>>;
-  setFormData: Dispatch<SetStateAction<formData>>;
+  setIsPostcodeVerified: setIsPostcodeVerifiedType;
+  setFormData: setFormDataType;
   postcode: string;
   handleTextChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function Postcode({
   isPostcodeVerified,
-  setIsPostCodeVerified,
+  setIsPostcodeVerified,
   setFormData,
   postcode,
   handleTextChange,
@@ -105,7 +108,7 @@ export default function Postcode({
     // on single result
     if (result.pollingStationFound) {
       // if postcode is verified, then form can be submitted.
-      setIsPostCodeVerified(true);
+      setIsPostcodeVerified(true);
     }
 
     if (result.pollingStations.length) {
@@ -170,7 +173,7 @@ export default function Postcode({
           setFormData,
           setSelectedAddress,
           setAddresses,
-          setIsPostCodeVerified,
+          setIsPostcodeVerified,
           addresses,
           selectedAddress,
         }}
@@ -181,7 +184,7 @@ export default function Postcode({
           isCancelButtonRendered,
           setIsVerifyPostcodeDisabled,
           setIsVerifyPostcodeButtonRendered,
-          setIsPostCodeVerified,
+          setIsPostcodeVerified,
           setSelectedAddress,
           setAddresses,
           defaultAddressObject,
