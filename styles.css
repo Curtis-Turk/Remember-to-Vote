@@ -116,7 +116,7 @@ h4 {
   align-items: normal !important;
 }
 
-@media screen and (max-width: 1386px) and (min-width: 601px) {
+@media screen and (max-width: 1386px) and (min-width: 682px) {
   #main-title {
     margin-bottom: 60px !important;
     font-size: 100px !important;
