@@ -10,13 +10,13 @@ code {
   font-family: 'Inter', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   .desktop {
     display: none !important;
   }
 }
 
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 769) {
   .mobile {
     display: none !important;
   }
