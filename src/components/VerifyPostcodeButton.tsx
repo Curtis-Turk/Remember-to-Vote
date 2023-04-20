@@ -87,23 +87,21 @@ export default function VerifyPostcodeButton(props: verifyPostcodeButtonProps) {
     setPostcodeError(false);
   };
 
-  if (isVerifyPostcodeButtonRendered) {
-    const verifyPostCodeButtonText =
-      addresses.length || selectedAddress.address.length || isPostcodeVerified
-        ? 'Postcode verified!'
-        : 'Verify postcode';
-    return (
-      <Button
-        id="verify-btn"
-        size="lg"
-        variant="outline-success"
-        style={{ whiteSpace: 'nowrap' }}
-        disabled={isVerifyPostcodeDisabled}
-        onClick={verifyPostCode}
-      >
-        {verifyPostCodeButtonText}
-      </Button>
-    );
-  }
-  return <></>;
+  if (!isVerifyPostcodeButtonRendered) return <></>;
+  const verifyPostCodeButtonText =
+    addresses.length || selectedAddress.address.length || isPostcodeVerified
+      ? 'Postcode verified!'
+      : 'Verify postcode';
+  return (
+    <Button
+      id="verify-btn"
+      size="lg"
+      variant="outline-success"
+      style={{ whiteSpace: 'nowrap' }}
+      disabled={isVerifyPostcodeDisabled}
+      onClick={verifyPostCode}
+    >
+      {verifyPostCodeButtonText}
+    </Button>
+  );
 }
