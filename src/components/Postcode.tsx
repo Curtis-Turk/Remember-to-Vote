@@ -19,11 +19,11 @@ interface pollingStationsObject {
 }
 
 export type setFormDataType = Dispatch<SetStateAction<formData>>;
-export type setIsPostcodeVerifiedType = Dispatch<SetStateAction<boolean>>;
+export type setStateBoolean = Dispatch<SetStateAction<boolean>>;
 
 interface postcodeProps {
   isPostcodeVerified: boolean;
-  setIsPostcodeVerified: setIsPostcodeVerifiedType;
+  setIsPostcodeVerified: setStateBoolean;
   setFormData: setFormDataType;
   postcode: string;
   handleTextChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
