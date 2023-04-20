@@ -16,7 +16,7 @@ export default function Title() {
     <div id="title-card">
       <Image src={headerEllipse} alt="header-ellipse" id="header-ellipse"></Image>
       <div id="title-container">
-        {/* mobile */}
+        {/* mobile && tablet */}
         <Stack id="title-stack-mobile" className="mobile">
           <Image src={ballotIcon} alt="ballot-icon"></Image>
           <h1 id="main-title">
