@@ -24,15 +24,16 @@ export default function About() {
       sending you the address of your polling station, we want to remind everyone about this new
       photo ID requirement.
       <br />
-      <br />
+      <hr id="half-break1" />
       <h4>Does this cost me money?</h4>
-      No. However, if you have been signed up in error, you will be able to remove yourself from the
-      service by texting 'STOP'. This text would be under your normal price plan.
+      No, this service is completely free to use.
       <br />
-      <br />
+      <hr id="half-break2" />
       <h4>What happens to my data?</h4>
-      We delete it after the election. If you opt in to sharing your email, we will not delete it,
-      but you will have the right to deletion in any further communications.
+      We delete it after the election.
+      {/* If you opt in to sharing your email, we will not delete it,
+      but you will have the right to deletion in any further communications. */}
+      <br />
       <br />
       <br />
     </div>

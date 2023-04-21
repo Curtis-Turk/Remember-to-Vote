@@ -310,6 +310,16 @@ weight: 600
   width: 495px;
 }
 
+#half-break1 {
+  margin-top: 11px;
+  visibility: hidden;
+}
+
+#half-break2 {
+  margin-top: 14px;
+  visibility: hidden;
+}
+
 .btn {
   padding: 14px 24px !important;
   font-size: 16px !important;

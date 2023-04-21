@@ -91,8 +91,8 @@ export default function Form({ setIsFormSubmitted }: formProps) {
 
   return (
     <BForm>
-      Sign up to be messaged a reminder on election day with your polling station details for the
-      local elections on 4th May, 2023.
+      Sign up to be messaged a free reminder on election day with your polling station details for
+      the local elections on 4th May, 2023.
       <br />
       <br />
       <BForm.Group className="form-margin-bottom" controlId="name">
