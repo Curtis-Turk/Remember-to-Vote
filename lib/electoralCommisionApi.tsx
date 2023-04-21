@@ -60,7 +60,7 @@ export default class ElectoralCommisionApi {
       const errorMessage =
         e.response && e.response.data.message === 'Could not geocode from any source'
           ? e.response?.data.message
-          : 'Connection issue whilst verifying postcode';
+          : 'Issue whilst verifying postcode';
       return { errorMessage, pollingStationFound: false, pollingStations: [] };
     }
   }

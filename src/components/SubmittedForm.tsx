@@ -13,7 +13,11 @@ export default function SubmittedForm({ setIsFormSubmitted }: formProps) {
       <Alert.Heading>Submitted</Alert.Heading>
       <br />
       <p>
-        You will receive a message on the day of the election with your polling station information.
+        You should receive a message shortly, confirming you will be reminded on the day of the
+        election with your polling station information.
+        <br />
+        <br />
+        You're all set!
       </p>
       {/* <hr />
       <Button
