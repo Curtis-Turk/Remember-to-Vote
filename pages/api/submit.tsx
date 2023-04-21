@@ -45,7 +45,6 @@ export const submitToSupabase = async (
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { name, phone, postcode, messageType, addressSlug } = req.body as formData;
-  console.log(req.body);
   res.status(201);
 
   // return res.end();
