@@ -1,4 +1,3 @@
-// happy: postcode, cancel postcode, address picker, cancel postcode after address picker, submit
 // blocked: need all form details for submit, bad postcode doesnt verify, non-address picker doesnt give you address picker
 // blocked: no submit without verified postcode. no verified postcode for bad postcode
 //
@@ -60,6 +59,21 @@ describe('Homepage', () => {
       cy.get('#verify-btn').click();
       cy.get('.joe').click();
       cy.get('.alert-heading h4').should('not.exist');
+    });
+
+    it('Can not submit a form without number', () => {
+      cy.get('#name').type('harry fox');
+      cy.get('#postcode').type('ST7 2AE');
+      cy.get('#verify-btn').click();
+      cy.get('.joe').click();
+      cy.get('.alert-heading h4').should('not.exist');
+    });
+
+    it('Can not submit a form without postcode', () => {
+      cy.get('#name').type('harry fox');
+      cy.get('#postcode').type('ST7 2AE');
+      cy.get('#verify-btn').click();
+      cy.get('.joe').should('be.disabled');
     });
 
     it('bad postcode wont verify', () => {
