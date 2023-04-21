@@ -37,7 +37,7 @@ describe('Homepage', () => {
       cy.get('.alert-heading').contains('Submitted');
     });
 
-    it.only('Can cancel a verified postcode', () => {
+    it('Can cancel a verified postcode', () => {
       cy.get('#postcode').type('ST7 2AE');
       cy.get('#verify-btn').click().contains('Postcode verified!');
       cy.get('#cancel-button').click();
@@ -46,12 +46,10 @@ describe('Homepage', () => {
 
     it('Can cancel an address that has been picked', () => {
       cy.get('#postcode').type('ST7 2AF');
-      const verifyBtn = cy.get('#verify-btn');
-      verifyBtn.click();
-      verifyBtn.contains('Postcode verified!');
+      cy.get('#verify-btn').click().contains('Postcode verified!');
       cy.get('.form-select').select('6 LAWTON ROAD, ALSAGER, STOKE-ON-TRENT');
       cy.get('.btn-outline-danger').click();
-      verifyBtn.contains('Verify postcode');
+      cy.get('#verify-btn').contains('Verify postcode');
     });
   });
 
