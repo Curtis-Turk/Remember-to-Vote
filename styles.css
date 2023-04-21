@@ -23,11 +23,7 @@ code {
 }
 
 #red-header {
-  /* position: absolute; */
-  /* width: 1639px; */
   height: -1450px;
-  /* left: -64px; */
-  /* top: -1000px; */
 }
 
 h1,
@@ -219,7 +215,7 @@ h4 {
 
 #main-title {
   text-align: left;
-  margin-bottom: 89px;
+  margin-bottom: 60px;
   font-style: normal !important;
   font-weight: 700 !important;
   font-size: 124px;
@@ -231,54 +227,14 @@ h4 {
   flex: none !important;
 }
 
-/* //styleName: Desktop title;
-font-family: Inter;
-font-size: 124px;
-font-weight: 700;
-line-height: 150px;
-letter-spacing: 0em;
-text-align: left;
- */
-
 #vote-title {
   color: #dc3545;
   position: absolute;
 }
 
-@media screen and (min-width: 1387px) {
-  #ballot-box {
-    margin-top: 218px;
-  }
+#ballot-box {
+  margin-top: 60px;
 }
-
-@media screen and (max-width: 1386px) and (min-width: 769px) {
-  #ballot-box {
-    margin-top: 218px;
-  }
-}
-
-/* .register-button-desktop {
-  height: 74px;
-  width: 654px;
-  border-radius: 16px;
-  font-size: 20px;
-  font-weight: 600; } */
-
-/* .register-button-tablet {
-  height: 74px;
-width: 619px;
-border-radius: 14px;
-text size: 20px;
-weight: 600
- } */
-
-/* .register-button-mobile {
-  height: 46px;
-width: 333px;
-border-radius: 8px;
-text size: 18px;
-weight: 600
- } */
 
 @media screen and (max-width: 1386px) {
   #about-section {
@@ -395,7 +351,7 @@ weight: 600
   /* background-color: #f9d9dc; */
   background-image: url('assets/Pink\ background.jpg');
   /* height: 1160px; */
-  padding-bottom: 168px;
+  padding-bottom: 160px;
   background-color: #f9d9dc;
   background-position: center;
   background-repeat: no-repeat;
@@ -408,8 +364,8 @@ weight: 600
   font-weight: 700;
   font-size: 58px;
   line-height: 70px;
-  padding-top: 104px;
-  margin-bottom: 78px;
+  padding-top: 55px;
+  padding-bottom: 55px;
   align-items: center;
   text-align: center;
 }
@@ -558,16 +514,6 @@ weight: 600
   justify-content: 'center';
   align-items: 'center';
   flex-direction: row;
-}
-
-#verify-btn {
-  /* padding: 5px 10px;
-  margin: 5px;
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  font-size: 14px;
-  cursor: pointer; */
 }
 
 @media screen and (max-width: 600px) {
