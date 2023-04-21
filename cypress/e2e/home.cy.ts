@@ -1,5 +1,6 @@
-// blocked: need all form details for submit, bad postcode doesnt verify, non-address picker doesnt give you address picker
-// blocked: no submit without verified postcode. no verified postcode for bad postcode
+// tests remaining to write (non-exhaustive list):
+// bad paths:  non-address picker postcode doesnt give you address picker
+// bad paths: no submit without verified postcode
 //
 
 describe('Homepage', () => {
