@@ -58,9 +58,9 @@ export default class ElectoralCommisionApi {
       };
     } catch (e: any) {
       const errorMessage =
-        e.response && e.response.data.message === 'Could not geocode from any source'
-          ? e.response?.data.message
-          : 'Issue whilst verifying postcode';
+        e.response && e.response.data.error === 'Could not geocode from any source'
+          ? e.response?.data.error
+          : 'Connection issue whilst verifying postcode';
       return { errorMessage, pollingStationFound: false, pollingStations: [] };
     }
   }
@@ -88,8 +88,8 @@ export default class ElectoralCommisionApi {
       };
     } catch (e: any) {
       const errorMessage =
-        e.response && e.response.data.message === 'Could not geocode from any source'
-          ? e.response?.data.message
+        e.response && e.response.data.error === 'Could not geocode from any source'
+          ? e.response?.data.error
           : 'Connection issue whilst verifying postcode';
       return { errorMessage, pollingStationFound: false, pollingStations: [] };
     }

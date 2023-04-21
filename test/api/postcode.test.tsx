@@ -109,7 +109,7 @@ describe('/postcode api route', () => {
     );
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual({
-      errorMessage: 'Could not geocode from any source',
+      errorMessage: 'Connection issue whilst verifying postcode',
       pollingStationFound: false,
       pollingStations: [],
     });

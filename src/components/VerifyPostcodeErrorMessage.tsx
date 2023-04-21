@@ -3,5 +3,9 @@ export default function VerifyPostcodeErrorMessage({
 }: {
   verifyPostcodeMessage: string;
 }) {
-  return verifyPostcodeMessage.length ? <div>{verifyPostcodeMessage}</div> : <></>;
+  return verifyPostcodeMessage.length ? (
+    <div id="verify-postcode-message">{verifyPostcodeMessage}</div>
+  ) : (
+    <></>
+  );
 }

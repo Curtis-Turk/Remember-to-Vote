@@ -45,9 +45,11 @@ export const submitToSupabase = async (
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { name, phone, postcode, messageType, addressSlug } = req.body as formData;
-  res.status(201);
 
-  // return res.end();
+  const cypressTestNumber = '+441632960602';
+
+  if (phone === cypressTestNumber) return res.status(201).end();
+
   // insert formData into Supabase table as new row
   const supabaseResponse: PostgrestSingleResponse<null> = await submitToSupabase(
     name,

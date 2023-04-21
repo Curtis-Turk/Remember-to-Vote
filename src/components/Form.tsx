@@ -74,6 +74,9 @@ export default function Form({ setIsFormSubmitted }: formProps) {
 
       if (response.ok) {
         setIsFormSubmitted(true);
+      }
+      if (response.statusText === 'Conflict') {
+        setSubmitError('Number already added - this number is set to receive a reminder');
       } else {
         setSubmitError('Something went wrong');
       }
@@ -153,6 +156,7 @@ export default function Form({ setIsFormSubmitted }: formProps) {
               size="lg"
               variant="success"
               className="joe"
+              id="submit-btn"
               style={{
                 textAlign: 'left',
               }}
