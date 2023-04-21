@@ -35,7 +35,7 @@ export default function CancelButton({
       setAddresses([]);
     };
     return (
-      <Button variant="outline-danger" onClick={handleCancelButtonClick}>
+      <Button id="cancel-button" variant="outline-danger" onClick={handleCancelButtonClick}>
         Cancel
       </Button>
     );

@@ -37,13 +37,11 @@ describe('Homepage', () => {
       cy.get('.alert-heading').contains('Submitted');
     });
 
-    it('Can cancel a verified postcode', () => {
+    it.only('Can cancel a verified postcode', () => {
       cy.get('#postcode').type('ST7 2AE');
-      const verifyBtn = cy.get('#verify-btn');
-      verifyBtn.click();
-      verifyBtn.contains('Postcode verified!');
-      cy.get('btn btn-outline-danger').click();
-      verifyBtn.contains('Verify postcode');
+      cy.get('#verify-btn').click().contains('Postcode verified!');
+      cy.get('#cancel-button').click();
+      cy.get('#verify-btn').contains('Verify postcode');
     });
 
     it('Can cancel an address that has been picked', () => {
@@ -52,7 +50,7 @@ describe('Homepage', () => {
       verifyBtn.click();
       verifyBtn.contains('Postcode verified!');
       cy.get('.form-select').select('6 LAWTON ROAD, ALSAGER, STOKE-ON-TRENT');
-      cy.get('btn btn-outline-danger').click();
+      cy.get('.btn-outline-danger').click();
       verifyBtn.contains('Verify postcode');
     });
   });
@@ -66,14 +64,11 @@ describe('Homepage', () => {
       cy.get('.alert-heading h4').should('not.exist');
     });
 
-    // it('bad postcode wont verify', () => {
-    //   cy.get('#postcode').type('aaaaaaa');
-    //   const verifyBtn = cy.get('#verify-btn');
-    //   verifyBtn.click();
-    //   verifyBtn.contains('Postcode verified!');
-    //   cy.get('.form-select').select('6 LAWTON ROAD, ALSAGER, STOKE-ON-TRENT');
-    //   cy.get('btn btn-outline-danger').click();
-    //   verifyBtn.contains('Verify postcode');
-    // });
+    it('bad postcode wont verify', () => {
+      cy.get('#postcode').type('aaaaaaa');
+      const verifyBtn = cy.get('#verify-btn');
+      verifyBtn.click();
+      cy.get('#verify-postcode-message').contains('Postcode could not be found');
+    });
   });
 });
