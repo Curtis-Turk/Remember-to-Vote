@@ -1,3 +1,7 @@
+import { getAllUsers } from './supabase';
+import ElectoralCommisionApi from './electoralCommisionApi';
+import * as TwilioApi from '../lib/twilioApi';
+import { PostgrestError } from '@supabase/supabase-js';
 // get all users from database
 // Loop over users
 //   check confirmation text sent
@@ -12,8 +16,6 @@
 
 // return returns a list of error codes with user Ids
 
-import { PostgrestError } from '@supabase/supabase-js';
-
 interface userObject {
   id: number;
   created_at: Date;
@@ -21,7 +23,7 @@ interface userObject {
   phone_number: string;
   address_slug: string;
   postcode: string;
-  message_type: 'SMS' | 'WhatsApp';
+  message_type: 'Sms' | 'WhatsApp';
   sent_confirmation_text: boolean;
 }
 
@@ -41,9 +43,6 @@ interface pollingStationRequest {
 const messageBody = (name: string, postcode: string, pollingStation: string) =>
   `Hello ${name},\n\n 🗳️ It's election day! 🗳️\n\nThe polling station for your postcode ${postcode} is:\n\n${pollingStation}\n\nRemember to bring your ID.`;
 
-import { getAllUsers } from './supabase';
-import ElectoralCommisionApi from './electoralCommisionApi';
-
 export default async function sendElectionDayText() {
   const supabaseResponse: supabaseResponse = (await getAllUsers()) as supabaseResponse;
   const ECApi = new ElectoralCommisionApi(process.env.EC_API_KEY as string);
@@ -56,14 +55,26 @@ export default async function sendElectionDayText() {
       request = { postcode: user.postcode, address_slug: user.address_slug };
 
       const pollingStationResponse = await ECApi.getPollingStation(request);
-      console.log(
-        '🚀 ~ file: sendElectionDayText.ts:59 ~ sendElectionDayText ~ pollingStationResponse:',
-        pollingStationResponse
-      );
+
       const pollingStation = `${pollingStationResponse?.address} ${pollingStationResponse?.postcode}`;
 
       const message = messageBody(user.name, user.postcode, pollingStation);
-      // console.log('🚀 ~ file: sendElectionDayText.ts:60 ~ sendElectionDayText ~ message:', message);
+
+      const messageFunction =
+        user.message_type === 'Sms' ? TwilioApi.sendSmsMessage : TwilioApi.sendWhatsAppMessage;
+
+      await messageFunction(message, user.phone_number);
     }
   }
 }
+
+// export const sendConfirmationText = async (
+//   name: string,
+//   phone: string,
+//   messageType: string
+// ): Promise<boolean> => {
+//   const messageFunction =
+//     messageType === 'Sms' ? TwilioApi.sendSmsMessage : TwilioApi.sendWhatsAppMessage;
+//   const body = `Hello ${name}, You have been signed up to RememberToVote.org.uk \n\n If you think this was in error, reply 'STOP' and we won't text you again.`;
+//   return await messageFunction(body, phone);
+// };
