@@ -96,11 +96,6 @@ export default class ElectoralCommisionApi {
   }
 
   async getPollingStation(request: { postcode: string; address_slug: string }) {
-    console.log(
-      '🚀 ~ file: electoralCommisionApi.tsx:99 ~ ElectoralCommisionApi ~ getPollingStationAddressInfo ~ postcode:',
-      request.postcode
-    );
-
     let response;
 
     if (request.address_slug !== '') {

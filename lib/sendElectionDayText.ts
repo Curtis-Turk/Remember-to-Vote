@@ -38,6 +38,9 @@ interface pollingStationRequest {
   address_slug: string;
 }
 
+const messageBody = (name: string, postcode: string, pollingStation: string) =>
+  `Hello ${name},\n\n 🗳️ It's election day! 🗳️\n\nThe polling station for your postcode ${postcode} is:\n\n${pollingStation}\n\nRemember to bring your ID.`;
+
 import { getAllUsers } from './supabase';
 import ElectoralCommisionApi from './electoralCommisionApi';
 
@@ -52,7 +55,15 @@ export default async function sendElectionDayText() {
     if (user.sent_confirmation_text) {
       request = { postcode: user.postcode, address_slug: user.address_slug };
 
-      const pollingStation = await ECApi.getPollingStation(request);
+      const pollingStationResponse = await ECApi.getPollingStation(request);
+      console.log(
+        '🚀 ~ file: sendElectionDayText.ts:59 ~ sendElectionDayText ~ pollingStationResponse:',
+        pollingStationResponse
+      );
+      const pollingStation = `${pollingStationResponse?.address} ${pollingStationResponse?.postcode}`;
+
+      const message = messageBody(user.name, user.postcode, pollingStation);
+      // console.log('🚀 ~ file: sendElectionDayText.ts:60 ~ sendElectionDayText ~ message:', message);
     }
   }
 }

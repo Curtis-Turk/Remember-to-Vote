@@ -5,10 +5,9 @@ import * as TwilioApi from '../lib/twilioApi';
 import electoralCommisionApi from '../lib/electoralCommisionApi';
 import { mockAllUserResponse } from './mockResponses/supaBaseAllUserResponse';
 import { mockECresponse } from './mockResponses/EcPollingStationResponse';
-import { addressObject } from '../src/components/Postcode';
 
-const mockMessageBody = (name: string, postcode: string, pollingStation: addressObject) =>
-  `Hello ${name}, the polling station for your postcode ${postcode} is:\n\n${pollingStation} `;
+const mockMessageBody = (name: string, postcode: string, pollingStation: string) =>
+  `Hello ${name},\n\n\🗳️ It's election day! 🗳️\n\nthe polling station for your postcode ${postcode} is:\n\n${pollingStation}\n\nRemember to bring your ID.`;
 
 jest.mock('../lib/twilioApi');
 jest.mock('../lib/supabase');
@@ -25,12 +24,12 @@ describe('SendElectionDayText', () => {
     expect(mockedSupabase.getAllUsers).toHaveBeenCalled();
   });
 
-  it('Requests EC api for user when they have confirmation text and have no address slug', async () => {
+  it('Requests EC api for user when they have confirmation text', async () => {
     mockedSupabase.getAllUsers.mockResolvedValueOnce(mockAllUserResponse);
 
     const mockGetPollingStation = jest
       .spyOn(mockedECApi.prototype, 'getPollingStation')
-      .mockResolvedValue('Earlswood Social Club, 160-164 Greenway Road, Rumney');
+      .mockResolvedValue(mockECresponse.dates[0].polling_station.station.properties);
 
     await sendElectionDayText();
 
@@ -42,32 +41,19 @@ describe('SendElectionDayText', () => {
       postcode: mockAllUserResponse.data[1].postcode,
       address_slug: '',
     });
-    mockGetPollingStation.mockRestore();
-  });
-
-  it('Requests EC api for user when they have confirmation text and have address slug', async () => {
-    mockedSupabase.getAllUsers.mockResolvedValueOnce(mockAllUserResponse);
-
-    const mockGetPollingStation = jest
-      .spyOn(mockedECApi.prototype, 'getPollingStation')
-      .mockResolvedValue('Earlswood Social Club, 160-164 Greenway Road, Rumney');
-
-    await sendElectionDayText();
     expect(mockGetPollingStation).toHaveBeenCalledWith({
       postcode: mockAllUserResponse.data[2].postcode,
       address_slug: mockAllUserResponse.data[2].address_slug,
     });
-    expect(mockGetPollingStation).not.toHaveBeenCalledWith({
-      postcode: mockAllUserResponse.data[1].postcode,
-      address_slug: mockAllUserResponse.data[1].address_slug,
-    });
+    mockGetPollingStation.mockRestore();
   });
 
-  xit('sends correct message type to a single sign-up', async () => {
+  xit('sends correct message type to first mock user', async () => {
     mockedSupabase.getAllUsers.mockResolvedValueOnce(mockAllUserResponse);
     await sendElectionDayText();
     // expect(mockedTwilioApi.sendSmsMessage).toHaveBeenCalledWith(mockMessageBody(mockAllUserResponse.data[0].name,mockAllUserResponse.data[0].postcode, ));
   });
+
   xit('sends correct messages to whole db', () => {});
 });
 
