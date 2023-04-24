@@ -50,7 +50,6 @@ export default async function sendElectionDayText() {
 
   for (const user of users) {
     if (user.sent_confirmation_text) {
-      console.log('logging postcode inside sendElectionDayText', user.postcode);
       request = { postcode: user.postcode, address_slug: user.address_slug };
 
       const pollingStation = await ECApi.getPollingStation(request);

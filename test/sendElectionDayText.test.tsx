@@ -34,12 +34,18 @@ describe('SendElectionDayText', () => {
 
     await sendElectionDayText();
 
-    expect(mockGetPollingStation).toHaveBeenCalledWith(mockAllUserResponse.data[0].postcode);
-    expect(mockGetPollingStation).not.toHaveBeenCalledWith(mockAllUserResponse.data[1].postcode);
+    expect(mockGetPollingStation).toHaveBeenCalledWith({
+      postcode: mockAllUserResponse.data[0].postcode,
+      address_slug: '',
+    });
+    expect(mockGetPollingStation).not.toHaveBeenCalledWith({
+      postcode: mockAllUserResponse.data[1].postcode,
+      address_slug: '',
+    });
     mockGetPollingStation.mockRestore();
   });
 
-  it.only('Requests EC api for user when they have confirmation text and have address slug', async () => {
+  it('Requests EC api for user when they have confirmation text and have address slug', async () => {
     mockedSupabase.getAllUsers.mockResolvedValueOnce(mockAllUserResponse);
 
     const mockGetPollingStation = jest

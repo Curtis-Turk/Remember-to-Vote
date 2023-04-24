@@ -116,9 +116,6 @@ export default class ElectoralCommisionApi {
     if (result.dates.length)
       // return the properties object with postcode and address string values if polling data exists
       return result.dates[0].polling_station.station.properties;
-    if (result.address_picker)
-      // throw an error if multiple addresses were returned for the supplied postcode
-      throw Error('Electoral Commision API returned address picker');
     // throw an error if no polling data exists for the supplied postcode
     throw Error('EC API returned no polling info');
   }
