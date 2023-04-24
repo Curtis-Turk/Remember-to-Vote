@@ -25,6 +25,7 @@ returns the object:
   count: number of data objects | null if no number
 }
 */
+
 export const submitToVotersTable = async (
   voterTableRow: voterTableRow
 ): Promise<PostgrestSingleResponse<null>> => {
@@ -41,4 +42,8 @@ export const updateSentConfirmationTextField = async (
     .update({ sent_confirmation_text: true })
     .eq('phone_number', phone_number);
   return response;
+};
+
+export const getAllUsers = async () => {
+  return await supabaseDb.from('voters').select();
 };
