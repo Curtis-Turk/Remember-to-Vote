@@ -3,7 +3,7 @@
     {
       "path": "/api/testText",
 
-      "schedule": "08 14 * * *"
+      "schedule": "*/15 * * * *"
     }
   ]
 }
