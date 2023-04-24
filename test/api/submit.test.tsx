@@ -2,6 +2,7 @@ import submit, { sendConfirmationText, submitToSupabase } from '../../pages/api/
 import * as supabase from '../../lib/supabase';
 import * as TwilioApi from '../../lib/twilioApi';
 import { mockRequestResponse } from './apiSetup';
+import { expect } from '@jest/globals';
 
 // mocking the message body for if/when copy changes
 const mockMessageBody = (name: string) =>

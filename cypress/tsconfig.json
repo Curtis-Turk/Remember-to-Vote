@@ -1,7 +1,7 @@
 {
   "extends": "../tsconfig.json",
   "include": ["./**/*.ts", "../cypress.d.ts"],
-  "exclude": [],
+  "exclude": ["**/*.spec.ts"],
   "compilerOptions": {
     "types": ["cypress"],
     "lib": ["es2015", "dom"],

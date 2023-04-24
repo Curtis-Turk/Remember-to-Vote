@@ -1,5 +1,6 @@
 import ping from '../../pages/api/ping';
 import { mockRequestResponse } from './apiSetup';
+import { expect } from '@jest/globals';
 
 describe('ping method', () => {
   it('pings', () => {

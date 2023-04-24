@@ -1,6 +1,7 @@
 import { mockRequestResponse } from './apiSetup';
 import postcode from '../../pages/api/postcode';
 import axios, { AxiosError } from 'axios';
+import { expect } from '@jest/globals';
 
 // mockApi Responses
 import pollingDataExistsResponse from './mockApiResponses/pollingDataExistsResponse';
