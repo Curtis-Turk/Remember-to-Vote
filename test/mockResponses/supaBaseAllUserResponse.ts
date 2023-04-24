@@ -28,7 +28,7 @@ export const mockAllUserResponse = {
       phone_number: '+447777777777',
       address_slug: '123456',
       postcode: 'WC1 TEST',
-      message_type: 'Sms',
+      message_type: 'WhatsApp',
       sent_confirmation_text: true,
     },
   ],

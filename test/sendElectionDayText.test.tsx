@@ -50,7 +50,7 @@ describe('SendElectionDayText', () => {
     mockGetPollingStation.mockRestore();
   });
 
-  it.only('sends correct message type to first mock user', async () => {
+  it('sends correct message type to first mock user', async () => {
     mockedSupabase.getAllUsers.mockResolvedValueOnce(mockSingleUserResponse);
 
     const mockGetPollingStation = jest
@@ -72,7 +72,37 @@ describe('SendElectionDayText', () => {
     );
   });
 
-  xit('sends correct messages to whole db', () => {});
+  it('sends correct messages to whole db', async () => {
+    mockedSupabase.getAllUsers.mockResolvedValueOnce(mockAllUserResponse);
+
+    const mockGetPollingStation = jest
+      .spyOn(mockedECApi.prototype, 'getPollingStation')
+      .mockResolvedValue(mockECresponse.dates[0].polling_station.station.properties);
+
+    const fullPollingStation = mockPollingStation(
+      mockECresponse.dates[0].polling_station.station.properties.address,
+      mockECresponse.dates[0].polling_station.station.properties.postcode
+    );
+    await sendElectionDayText();
+
+    expect(mockedTwilioApi.sendSmsMessage).toHaveBeenCalledWith(
+      mockMessageBody(
+        mockAllUserResponse.data[0].name,
+        mockAllUserResponse.data[0].postcode,
+        fullPollingStation
+      ),
+      mockAllUserResponse.data[0].phone_number
+    );
+
+    expect(mockedTwilioApi.sendWhatsAppMessage).toHaveBeenCalledWith(
+      mockMessageBody(
+        mockAllUserResponse.data[2].name,
+        mockAllUserResponse.data[2].postcode,
+        fullPollingStation
+      ),
+      mockAllUserResponse.data[2].phone_number
+    );
+  });
 });
 
 // jest.mock('../../utils/supabaseClient', () => ({
