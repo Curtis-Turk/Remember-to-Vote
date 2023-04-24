@@ -5,7 +5,6 @@ import * as TwilioApi from '../lib/twilioApi';
 import electoralCommisionApi from '../lib/electoralCommisionApi';
 import { mockAllUserResponse } from './mockResponses/supaBaseAllUserResponse';
 import { mockECresponse } from './mockResponses/EcPollingStationResponse';
-
 import { addressObject } from '../src/components/Postcode';
 
 const mockMessageBody = (name: string, postcode: string, pollingStation: addressObject) =>
@@ -26,7 +25,7 @@ describe('SendElectionDayText', () => {
     expect(mockedSupabase.getAllUsers).toHaveBeenCalled();
   });
 
-  it('Requests EC api for user when they have been sent a confirmation text and have no address slug', async () => {
+  it('Requests EC api for user when they have confirmation text and have no address slug', async () => {
     mockedSupabase.getAllUsers.mockResolvedValueOnce(mockAllUserResponse);
 
     const mockGetPollingStation = jest
@@ -40,7 +39,7 @@ describe('SendElectionDayText', () => {
     mockGetPollingStation.mockRestore();
   });
 
-  it.only('Gets a users polling station when they have been sent a confirmation text and have address slug', async () => {
+  it.only('Requests EC api for user when they have confirmation text and have address slug', async () => {
     mockedSupabase.getAllUsers.mockResolvedValueOnce(mockAllUserResponse);
 
     const mockGetPollingStation = jest
@@ -48,10 +47,14 @@ describe('SendElectionDayText', () => {
       .mockResolvedValue('Earlswood Social Club, 160-164 Greenway Road, Rumney');
 
     await sendElectionDayText();
-    expect(mockGetPollingStation).toHaveBeenCalledWith(mockAllUserResponse.data[2].address_slug);
-    expect(mockGetPollingStation).not.toHaveBeenCalledWith(
-      mockAllUserResponse.data[1].address_slug
-    );
+    expect(mockGetPollingStation).toHaveBeenCalledWith({
+      postcode: mockAllUserResponse.data[2].postcode,
+      address_slug: mockAllUserResponse.data[2].address_slug,
+    });
+    expect(mockGetPollingStation).not.toHaveBeenCalledWith({
+      postcode: mockAllUserResponse.data[1].postcode,
+      address_slug: mockAllUserResponse.data[1].address_slug,
+    });
   });
 
   xit('sends correct message type to a single sign-up', async () => {

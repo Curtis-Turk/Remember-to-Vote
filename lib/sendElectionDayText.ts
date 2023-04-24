@@ -33,6 +33,11 @@ interface supabaseResponse {
   statusText: string;
 }
 
+interface pollingStationRequest {
+  postcode: string;
+  address_slug: string;
+}
+
 import { getAllUsers } from './supabase';
 import ElectoralCommisionApi from './electoralCommisionApi';
 
@@ -41,11 +46,14 @@ export default async function sendElectionDayText() {
   const ECApi = new ElectoralCommisionApi(process.env.EC_API_KEY as string);
   const users = supabaseResponse.data;
 
-  for (const user of users) {
-    if (user.sent_confirmation_text && user.address_slug === '') {
-      console.log('logging postcode inside sendElectionDayText', user.postcode);
+  let request: pollingStationRequest;
 
-      const pollingStation = await ECApi.getPollingStation(user.postcode);
+  for (const user of users) {
+    if (user.sent_confirmation_text) {
+      console.log('logging postcode inside sendElectionDayText', user.postcode);
+      request = { postcode: user.postcode, address_slug: user.address_slug };
+
+      const pollingStation = await ECApi.getPollingStation(request);
     }
   }
 }

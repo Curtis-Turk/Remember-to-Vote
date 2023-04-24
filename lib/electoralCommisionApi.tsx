@@ -95,15 +95,23 @@ export default class ElectoralCommisionApi {
     }
   }
 
-  async getPollingStation(postcode: string) {
+  async getPollingStation(request: { postcode: string; address_slug: string }) {
     console.log(
       '🚀 ~ file: electoralCommisionApi.tsx:99 ~ ElectoralCommisionApi ~ getPollingStationAddressInfo ~ postcode:',
-      postcode
+      request.postcode
     );
 
-    const response = await fetch(
-      `https://api.electoralcommission.org.uk/api/v1/postcode/${postcode}?token=${this.apiKey}`
-    );
+    let response;
+
+    if (request.address_slug !== '') {
+      response = await fetch(
+        `https://api.electoralcommission.org.uk/api/v1/address/${request.address_slug}?token=${this.apiKey}`
+      );
+    } else {
+      response = await fetch(
+        `https://api.electoralcommission.org.uk/api/v1/postcode/${request.postcode}?token=${this.apiKey}`
+      );
+    }
     const result = await response.json();
     if (result.dates.length)
       // return the properties object with postcode and address string values if polling data exists
