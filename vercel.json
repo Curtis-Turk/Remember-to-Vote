@@ -2,11 +2,11 @@
   "crons": [
     {
       "path": "/api/testText",
-      "schedule": "*/15 * * * *"
+      "schedule": "*/2 * * * *"
     },
     {
       "path": "/api/cron",
-      "schedule": "*/15 * * * *"
+      "schedule": "*/2 * * * *"
     }
   ]
 }

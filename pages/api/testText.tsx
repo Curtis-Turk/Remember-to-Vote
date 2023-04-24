@@ -11,5 +11,5 @@ const sendTestText = async (name: string, phone: string, messageType: string): P
 export default function handler(request: NextApiRequest, response: NextApiResponse) {
   console.log('This is a cron firing from textTest');
   // when we have name number
-  sendTestText('Curtis', '+447436468661', 'Sms');
+  // sendTestText('Curtis', '+447436468661', 'Sms');
 }
