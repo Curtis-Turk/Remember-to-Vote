@@ -26,31 +26,30 @@ describe('SendElectionDayText', () => {
     expect(mockedSupabase.getAllUsers).toHaveBeenCalled();
   });
 
-  it.only('Gets a users polling station when they have been sent a confirmation text and have no address slug', async () => {
+  it('Requests EC api for user when they have been sent a confirmation text and have no address slug', async () => {
     mockedSupabase.getAllUsers.mockResolvedValueOnce(mockAllUserResponse);
 
-    const mockGetPollingStationAddressInfo = jest
-      .spyOn(mockedECApi.prototype, 'getPollingStationAddressInfo')
+    const mockGetPollingStation = jest
+      .spyOn(mockedECApi.prototype, 'getPollingStation')
       .mockResolvedValue('Earlswood Social Club, 160-164 Greenway Road, Rumney');
 
     await sendElectionDayText();
 
-    expect(mockGetPollingStationAddressInfo).toHaveBeenCalledWith(
-      mockAllUserResponse.data[0].postcode
-    );
-    expect(mockGetPollingStationAddressInfo).not.toHaveBeenCalledWith(
-      mockAllUserResponse.data[1].postcode
-    );
+    expect(mockGetPollingStation).toHaveBeenCalledWith(mockAllUserResponse.data[0].postcode);
+    expect(mockGetPollingStation).not.toHaveBeenCalledWith(mockAllUserResponse.data[1].postcode);
+    mockGetPollingStation.mockRestore();
   });
 
-  it('Gets a users polling station when they have been sent a confirmation text and have address slug', async () => {
+  it.only('Gets a users polling station when they have been sent a confirmation text and have address slug', async () => {
     mockedSupabase.getAllUsers.mockResolvedValueOnce(mockAllUserResponse);
-    const mockECApi = new mockedECApi('17589104375');
+
+    const mockGetPollingStation = jest
+      .spyOn(mockedECApi.prototype, 'getPollingStation')
+      .mockResolvedValue('Earlswood Social Club, 160-164 Greenway Road, Rumney');
+
     await sendElectionDayText();
-    expect(mockECApi.getPollingStationAddressInfo).toHaveBeenCalledWith(
-      mockAllUserResponse.data[2].address_slug
-    );
-    expect(mockECApi.getPollingStationAddressInfo).not.toHaveBeenCalledWith(
+    expect(mockGetPollingStation).toHaveBeenCalledWith(mockAllUserResponse.data[2].address_slug);
+    expect(mockGetPollingStation).not.toHaveBeenCalledWith(
       mockAllUserResponse.data[1].address_slug
     );
   });

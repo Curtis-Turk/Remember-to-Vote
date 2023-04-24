@@ -45,7 +45,7 @@ export default async function sendElectionDayText() {
     if (user.sent_confirmation_text && user.address_slug === '') {
       console.log('logging postcode inside sendElectionDayText', user.postcode);
 
-      const pollingStation = await ECApi.getPollingStationAddressInfo(user.postcode);
+      const pollingStation = await ECApi.getPollingStation(user.postcode);
     }
   }
 }
