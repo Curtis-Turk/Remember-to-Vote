@@ -4,7 +4,6 @@ import ElectoralCommisionApi from '../../lib/electoralCommisionApi';
 
 const electoralCommission = new ElectoralCommisionApi(process.env.EC_API_KEY as string);
 const cors = Cors({
-  methods: ['GET'],
   origin: 'react-polling-front-end-git-development-curtis-turk.vercel.app',
 });
 
