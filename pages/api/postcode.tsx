@@ -1,17 +1,28 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import Cors from 'cors';
 import ElectoralCommisionApi from '../../lib/electoralCommisionApi';
 
 const electoralCommission = new ElectoralCommisionApi(process.env.EC_API_KEY as string);
+const cors = Cors({
+  methods: ['GET'],
+  origin: 'react-polling-front-end-git-development-curtis-turk.vercel.app',
+});
+
+// Helper method to wait for a middleware to execute before continuing
+// And to throw an error when an error happens in a middleware
+function runMiddleware(req: NextApiRequest, res: NextApiResponse, fn: Function) {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result: any) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+      return resolve(result);
+    });
+  });
+}
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  // if (req.headers.origin !== process.env.NEXT_PUBLIC_API) {
-  //   return res.status(401);
-  // }
-
-  if (req.method == 'OPTIONS') {
-    res.setHeader('Allow', 'POST');
-    return res.status(202).json({});
-  }
+  await runMiddleware(req, res, cors);
 
   // using EC API
   // const pollingStationResponse = await electoralCommission.verifyPostcode(
