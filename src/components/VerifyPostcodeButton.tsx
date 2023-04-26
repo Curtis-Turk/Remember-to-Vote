@@ -42,6 +42,10 @@ export default function VerifyPostcodeButton(props: verifyPostcodeButtonProps) {
   const verifyPostCode = async (): Promise<void> => {
     // strip postcode of whitespace
     const strippedPostcode = postcode.replace(' ', '');
+    if (strippedPostcode === '') {
+      setVerifyPostcodeMessage('Please enter a postcode');
+      return;
+    }
 
     await setIsVerifyPostcodeDisabled(true);
     const response = await fetch(`${process.env.NEXT_PUBLIC_API as string}/api/postcode`, {
