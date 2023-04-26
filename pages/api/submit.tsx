@@ -46,7 +46,7 @@ export const submitToSupabase = async (
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { name, phone, postcode, messageType, addressSlug } = req.body as formData;
 
-  const cypressTestNumber = '+441632960602';
+  const cypressTestNumber = '+15005550006';
 
   if (phone === cypressTestNumber) return res.status(201).end();
 

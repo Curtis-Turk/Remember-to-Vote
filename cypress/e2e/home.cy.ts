@@ -30,7 +30,7 @@ describe('Homepage', () => {
 
     it('Can submit the form', () => {
       cy.get('#name').type('Curtis Turk');
-      cy.get('.PhoneInputInput').type('01632960602');
+      cy.get('.PhoneInputInput').type('+15005550006');
       cy.get('#postcode').type('ST7 2AE');
       cy.get('#verify-btn').click();
       cy.get('.joe').click();
@@ -55,7 +55,7 @@ describe('Homepage', () => {
 
   describe('Bad paths', () => {
     it('Can not submit a form without a name', () => {
-      cy.get('.PhoneInputInput').type('01632960602');
+      cy.get('.PhoneInputInput').type('+15005550006');
       cy.get('#postcode').type('ST7 2AE');
       cy.get('#verify-btn').click();
       cy.get('.joe').click();
