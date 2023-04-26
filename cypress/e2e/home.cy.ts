@@ -72,6 +72,13 @@ describe('Homepage', () => {
 
     it('Can not submit a form without postcode', () => {
       cy.get('#name').type('harry fox');
+      cy.get('.PhoneInputInput').type('+15005550006');
+      cy.get('.joe').should('be.disabled');
+      cy.get('.alert-heading h4').should('not.exist');
+    });
+
+    it('Sign up button should be disabled without phone number', () => {
+      cy.get('#name').type('harry fox');
       cy.get('#postcode').type('ST7 2AE');
       cy.get('#verify-btn').click();
       cy.get('.joe').should('be.disabled');
