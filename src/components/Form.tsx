@@ -29,7 +29,7 @@ export default function Form({ setIsFormSubmitted }: formProps) {
     name: '',
     phone: '',
     postcode: '',
-    messageType: 'WhatsApp',
+    messageType: 'Sms',
     addressSlug: '',
   });
 
@@ -127,7 +127,7 @@ export default function Form({ setIsFormSubmitted }: formProps) {
           handleTextChange,
         }}
       />
-      <BForm.Group className="form-margin-bottom">
+      {/* <BForm.Group className="form-margin-bottom">
         <BForm.Label>How would you like your reminder?</BForm.Label>
         <BForm.Check
           inline
@@ -148,7 +148,7 @@ export default function Form({ setIsFormSubmitted }: formProps) {
           value="WhatsApp"
           onChange={handleTextChange}
         />
-      </BForm.Group>
+      </BForm.Group> */}
       <BForm.Group>
         <div>
           <div className="d-grid">

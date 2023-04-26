@@ -327,6 +327,7 @@ h4 {
 .btn-success {
   background-color: #28a745 !important;
   border-color: #28a745 !important;
+  border-color: #28a745 !important;
   text-align: left !important;
 }
 
@@ -476,6 +477,7 @@ h4 {
 }
 .btn-outline-danger {
   margin-top: 14px !important;
+  padding: 12.5px 24px !important;
 }
 
 #cancel-btn {
