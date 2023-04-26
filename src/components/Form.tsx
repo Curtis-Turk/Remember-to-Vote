@@ -1,6 +1,9 @@
 import { useState, Dispatch, SetStateAction } from 'react';
 import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
-import { Postcode } from './Postcode';
+import Postcode from './Postcode';
+
+import { Form as BForm } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 
 interface formProps {
   setIsFormSubmitted: Dispatch<SetStateAction<boolean>>;
@@ -13,9 +16,10 @@ export interface formData {
   messageType: string;
   addressSlug: string;
 }
-export const Form = ({ setIsFormSubmitted }: formProps) => {
+
+export default function Form({ setIsFormSubmitted }: formProps) {
   // boolean for if postcode has been verified with the Electoral Commission API
-  const [isPostcodeVerified, setIsPostCodeVerified] = useState(false);
+  const [isPostcodeVerified, setIsPostcodeVerified] = useState(false);
   const [isNameValid, setIsNameValid] = useState(true);
   const [isNumberValid, setIsNumberValid] = useState(true);
   const [submitError, setSubmitError] = useState('');
@@ -70,6 +74,9 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
 
       if (response.ok) {
         setIsFormSubmitted(true);
+      }
+      if (response.statusText === 'Conflict') {
+        setSubmitError('Number already added - this number is set to receive a reminder');
       } else {
         setSubmitError('Something went wrong');
       }
@@ -77,99 +84,94 @@ export const Form = ({ setIsFormSubmitted }: formProps) => {
     if (!formData.name) setIsNameValid(false);
     if (!formData.phone) setIsNumberValid(false);
     setSubmitting(false);
+  };
 
-    setTimeout(
-      () =>
-        fetch(`${process.env.NEXT_PUBLIC_API as string}/api/demoSubmit`, {
-          method: 'POST',
-          body: JSON.stringify(formData),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }),
-      7000
-    );
+  const phoneNumberClassName = () => {
+    const invalidClass =
+      isNumberValid || (!isNumberValid && formData.phone === undefined) ? '' : ' is-invalid';
+    return 'form-control' + invalidClass;
   };
 
   return (
-    <div id="polling-form">
-      <div id="user-details">
-        <label htmlFor="name">Name:</label>
-        <input
+    <BForm>
+      Get a free SMS reminder of your polling station details for the local elections on 4th May,
+      2023.
+      <br />
+      <br />
+      <BForm.Group className="form-margin-bottom" controlId="name">
+        <BForm.Label>Name</BForm.Label>
+        <BForm.Control
           type="text"
-          id="name"
+          placeholder="Jane Appleseed"
           name="name"
           className={isNameValid ? '' : 'invalid'}
           onChange={handleTextChange}
         />
-        <label htmlFor="phone">Phone Number:</label>
+      </BForm.Group>
+      <BForm.Group className="form-margin-bottom" controlId="phone">
+        <BForm.Label>Phone number</BForm.Label>
         <PhoneInput
+          style={{ '--PhoneInputCountryFlag-height': '20px' }}
           defaultCountry="GB"
           onChange={handlePhoneInputChange}
-          className={isNumberValid ? '' : 'invalid'}
+          numberInputProps={{ className: phoneNumberClassName() }}
+          placeholder="07700 900684"
         />
-        <Postcode
-          {...{
-            isPostcodeVerified,
-            setIsPostCodeVerified,
-            postcode: formData.postcode,
-            setFormData,
-            handleTextChange,
-          }}
+      </BForm.Group>
+      <Postcode
+        {...{
+          isPostcodeVerified,
+          setIsPostcodeVerified,
+          postcode: formData.postcode,
+          setFormData,
+          handleTextChange,
+        }}
+      />
+      {/* <BForm.Group className="form-margin-bottom">
+        <BForm.Label>How would you like your reminder?</BForm.Label>
+        <BForm.Check
+          inline
+          label="SMS"
+          name="messageType"
+          type={'radio'}
+          id={`inline-radio`}
+          value="Sms"
+          onChange={handleTextChange}
         />
-      </div>
-
-      <fieldset id="message-type">
-        {/* <legend>How would you like your reminder?</legend> */}
-        <legend>How would you like your demo text?</legend>
-        <span>
-          SMS
-          <input
-            type="radio"
-            name="messageType"
-            defaultChecked={true}
-            id="Sms"
-            value="Sms"
-            onChange={handleTextChange}
-          />
-        </span>
-        <span>
-          WhatsApp
-          <input
-            type="radio"
-            name="messageType"
-            id="WhatsApp"
-            value="WhatsApp"
-            disabled={true}
-            onChange={handleTextChange}
-          />
-        </span>
-        <p>Note: Whatsapp not available for the demo</p>
-      </fieldset>
-      {/* <div>We will send you a reminder on the day of the election</div> */}
-      <div>
-        <div
-          style={{
-            fontWeight: 'bold',
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <p>All fields are required including a verified postcode</p>
+        <BForm.Check
+          inline
+          label="WhatsApp"
+          name="messageType"
+          type={'radio'}
+          id={`inline-radio`}
+          defaultChecked={true}
+          value="WhatsApp"
+          onChange={handleTextChange}
+        />
+      </BForm.Group> */}
+      <BForm.Group>
+        <div>
+          <div className="d-grid">
+            <Button
+              size="lg"
+              variant="success"
+              className="joe"
+              id="submit-btn"
+              style={{
+                textAlign: 'left',
+              }}
+              onClick={handleSubmit}
+              disabled={!canUserSubmit}
+              onKeyDown={(e: any) => {
+                if (e.key === 'Enter') handleSubmit();
+              }}
+            >
+              {submitting ? 'Signing up...' : 'Sign up'}
+            </Button>
+          </div>
+          <div>{submitError ? submitError : null}</div>
         </div>
-        <button
-          onClick={handleSubmit}
-          id="submit-form-btn"
-          disabled={!canUserSubmit}
-          className={canUserSubmit ? 'submitEnabled' : 'submitDisabled'}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') handleSubmit();
-          }}
-        >
-          {submitting ? 'Submitting...' : 'Submit'}
-        </button>
-        <div>{submitError ? submitError : null}</div>
-      </div>
-    </div>
+      </BForm.Group>
+    </BForm>
   );
-};
+}

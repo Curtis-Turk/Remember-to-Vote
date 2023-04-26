@@ -1,0 +1,38 @@
+export const mockAllUserResponse = {
+  error: null,
+  data: [
+    {
+      id: 1,
+      created_at: '2023-04-21T13:16:37.478+00:00',
+      name: 'Mr Mock',
+      phone_number: '+4499999999',
+      address_slug: '',
+      postcode: 'N5 MOCK',
+      message_type: 'Sms',
+      sent_confirmation_text: true,
+    },
+    {
+      id: 2,
+      created_at: '2023-04-21T13:10:09.008+00:00',
+      name: 'Mrs Test',
+      phone_number: '+4488888888',
+      address_slug: '456789',
+      postcode: 'E5 TEST',
+      message_type: 'WhatsApp',
+      sent_confirmation_text: false,
+    },
+    {
+      id: 3,
+      created_at: '2023-04-22T13:11:11.008+00:00',
+      name: 'Thirdem Test',
+      phone_number: '+447777777777',
+      address_slug: '123456',
+      postcode: 'WC1 TEST',
+      message_type: 'WhatsApp',
+      sent_confirmation_text: true,
+    },
+  ],
+  count: null,
+  status: 200,
+  statusText: 'OK',
+};

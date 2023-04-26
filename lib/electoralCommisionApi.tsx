@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from 'axios';
 
 interface addressObject {
   address: string;
@@ -42,12 +42,10 @@ export default class ElectoralCommisionApi {
         };
 
       if (result.address_picker) {
-        const pollingStations = result.addresses.map(
-          (addressObject: responseAddressObject) => {
-            const { address, postcode, slug } = addressObject;
-            return { address, postcode, slug };
-          }
-        );
+        const pollingStations = result.addresses.map((addressObject: responseAddressObject) => {
+          const { address, postcode, slug } = addressObject;
+          return { address, postcode, slug };
+        });
         return {
           pollingStationFound: false,
           pollingStations,
@@ -60,10 +58,9 @@ export default class ElectoralCommisionApi {
       };
     } catch (e: any) {
       const errorMessage =
-        e.response &&
-        e.response.data.message === "Could not geocode from any source"
-          ? e.response?.data.message
-          : "Connection issue whilst verifying postcode";
+        e.response && e.response.data.error === 'Could not geocode from any source'
+          ? e.response?.data.error
+          : 'Connection issue whilst verifying postcode';
       return { errorMessage, pollingStationFound: false, pollingStations: [] };
     }
   }
@@ -91,11 +88,30 @@ export default class ElectoralCommisionApi {
       };
     } catch (e: any) {
       const errorMessage =
-        e.response &&
-        e.response.data.message === "Could not geocode from any source"
-          ? e.response?.data.message
-          : "Connection issue whilst verifying postcode";
+        e.response && e.response.data.error === 'Could not geocode from any source'
+          ? e.response?.data.error
+          : 'Connection issue whilst verifying postcode';
       return { errorMessage, pollingStationFound: false, pollingStations: [] };
     }
+  }
+
+  async getPollingStation(request: { postcode: string; address_slug: string }) {
+    let response;
+
+    if (request.address_slug !== '') {
+      response = await fetch(
+        `https://api.electoralcommission.org.uk/api/v1/address/${request.address_slug}?token=${this.apiKey}`
+      );
+    } else {
+      response = await fetch(
+        `https://api.electoralcommission.org.uk/api/v1/postcode/${request.postcode}?token=${this.apiKey}`
+      );
+    }
+    const result = await response.json();
+    if (result.dates.length)
+      // return the properties object with postcode and address string values if polling data exists
+      return result.dates[0].polling_station.station.properties;
+    // throw an error if no polling data exists for the supplied postcode
+    throw Error('EC API returned no polling info');
   }
 }

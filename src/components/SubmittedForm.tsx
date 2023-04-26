@@ -1,46 +1,33 @@
 import { SetStateAction, Dispatch } from 'react';
+import { Alert, Button } from 'react-bootstrap';
 
 interface formProps {
+  // TODO: may delete this eventually.
   setIsFormSubmitted: Dispatch<SetStateAction<boolean>>;
 }
 
+// Waiting on Joe's design thoughts.
 export default function SubmittedForm({ setIsFormSubmitted }: formProps) {
   return (
-    <div id="polling-form">
-      <h2>Submitted</h2>
-      {/* <p>
-    You will receive a message on the day of the election with your
-    polling station information
-  </p> */}
-      <p>You should now receive 2 test texts</p>
+    <Alert variant="success">
+      <Alert.Heading>Submitted</Alert.Heading>
+      <br />
       <p>
-        The first will have a confirmation text example with the instructions to cancel if needed
+        You should receive a message shortly, confirming you will be reminded on the day of the
+        election with your polling station information.
+        <br />
+        <br />
+        You're all set!
       </p>
-      <p>
-        The second will an example of what to expect on the day and have an example polling station
-        of:
-        <h4>Earlswood Social Club, 160-164 Greenway Road, Rumney.</h4>
-      </p>
-      <p>
-        For the live version you would be messaged on the day of the election with the current
-        polling station for your address.
-      </p>
-      <p>No details have been saved for this demo</p>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
+      {/* <hr />
+      <Button
+        variant="success"
+        // id="submit-form-btn"
+        // className="submitEnabled"
+        onClick={() => setIsFormSubmitted(false)}
       >
-        <button
-          id="submit-form-btn"
-          className="submitEnabled"
-          onClick={() => setIsFormSubmitted(false)}
-        >
-          Back to main page
-        </button>
-      </div>
-    </div>
+        Back to main page
+      </Button> */}
+    </Alert>
   );
 }
