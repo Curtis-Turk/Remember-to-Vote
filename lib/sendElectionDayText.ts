@@ -67,14 +67,3 @@ export default async function sendElectionDayText() {
     }
   }
 }
-
-// export const sendConfirmationText = async (
-//   name: string,
-//   phone: string,
-//   messageType: string
-// ): Promise<boolean> => {
-//   const messageFunction =
-//     messageType === 'Sms' ? TwilioApi.sendSmsMessage : TwilioApi.sendWhatsAppMessage;
-//   const body = `Hello ${name}, You have been signed up to RememberToVote.org.uk \n\n If you think this was in error, reply 'STOP' and we won't text you again.`;
-//   return await messageFunction(body, phone);
-// };
