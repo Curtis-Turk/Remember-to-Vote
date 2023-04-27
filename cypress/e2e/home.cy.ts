@@ -1,10 +1,25 @@
+// import * as supabase from '../../lib/supabase';
+import { createClient } from '@supabase/supabase-js';
+
 // tests remaining to write (non-exhaustive list):
 // bad paths:  non-address picker postcode doesnt give you address picker
 // bad paths: no submit without verified postcode
 //
 
+// const supabaseDb = createClient(
+//   Cypress.env('supabaseURL' as string),
+//   Cypress.env('supabaseAnonKey' as string)
+// );
+
+// const deleteTestUser = async () => {
+//   return await supabaseDb
+//     .from('voters')
+//     .delete()
+//     .or('phone_number.eq.07813667642, phone_number.eq.+447813667642');
+// };
+
 describe('Homepage', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     cy.visit('http://localhost:3000');
   });
 
@@ -30,7 +45,7 @@ describe('Homepage', () => {
 
     it('Can submit the form', () => {
       cy.get('#name').type('Curtis Turk');
-      cy.get('.PhoneInputInput').type('+15005550006');
+      cy.get('.PhoneInputInput').type('07813667642');
       cy.get('#postcode').type('ST7 2AE');
       cy.get('#verify-btn').click();
       cy.get('.joe').click();
@@ -55,7 +70,7 @@ describe('Homepage', () => {
 
   describe('Bad paths', () => {
     it('Can not submit a form without a name', () => {
-      cy.get('.PhoneInputInput').type('+15005550006');
+      cy.get('.PhoneInputInput').type('07813667642');
       cy.get('#postcode').type('ST7 2AE');
       cy.get('#verify-btn').click();
       cy.get('.joe').click();
@@ -72,7 +87,7 @@ describe('Homepage', () => {
 
     it('Can not submit a form without postcode', () => {
       cy.get('#name').type('harry fox');
-      cy.get('.PhoneInputInput').type('+15005550006');
+      cy.get('.PhoneInputInput').type('07813667642');
       cy.get('.joe').should('be.disabled');
       cy.get('.alert-heading h4').should('not.exist');
     });

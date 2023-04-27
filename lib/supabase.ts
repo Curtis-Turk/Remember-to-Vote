@@ -47,3 +47,10 @@ export const updateSentConfirmationTextField = async (
 export const getAllUsers = async () => {
   return await supabaseDb.from('voters').select();
 };
+
+export const deleteTestUser = async () => {
+  return await supabaseDb
+    .from('voters')
+    .delete()
+    .or('phone_number.eq.07813667642, phone_number.eq.+447813667642');
+};

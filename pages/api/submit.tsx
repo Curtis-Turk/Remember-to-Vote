@@ -46,9 +46,13 @@ export const submitToSupabase = async (
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { name, phone, postcode, messageType, addressSlug } = req.body as formData;
 
-  const cypressTestNumber = '+15005550006';
+  const cypressTestNumber = '+447813667642';
 
-  if (phone === cypressTestNumber) return res.status(201).end();
+  if (phone === cypressTestNumber) {
+    //   console.log('cypress bypass twilio');
+    //   return res.status(201).end();
+    supabase.deleteTestUser();
+  }
 
   // insert formData into Supabase table as new row
   const supabaseResponse: PostgrestSingleResponse<null> = await submitToSupabase(
