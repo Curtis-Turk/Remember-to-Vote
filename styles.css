@@ -375,11 +375,11 @@ h4 {
   #form-section-title {
     word-wrap: break-word !important;
     white-space: normal !important;
-    font-size: 28px !important;
-    padding-top: 3vh;
-    margin-bottom: 3vh;
-    padding-left: 4vh;
-    padding-right: 4vh;
+    /* font-size: 28px !important; */
+    padding-top: 3vh !important;
+    padding-bottom: 3vh !important;
+    padding-left: 4vh !important;
+    padding-right: 4vh !important;
   }
   #polling-form {
     border-right: none !important;
@@ -398,9 +398,9 @@ h4 {
 @media screen and (max-width: 818px) {
   #form-section-title {
     white-space: wrap !important;
-    font-size: 2.2rem;
-    padding-top: 4vh;
-    margin-bottom: 4vh;
+    font-size: 7vw !important;
+    padding-top: 4vh !important;
+    padding-bottom: 4vh !important;
   }
   #polling-form {
     width: 100vw !important;
