@@ -3,31 +3,43 @@ import { Alert, Button } from 'react-bootstrap';
 
 interface formProps {
   // TODO: may delete this eventually.
-  setIsFormSubmitted: Dispatch<SetStateAction<boolean>>;
+  setFormSubmittedState: Dispatch<
+    SetStateAction<{ formSubmitted: boolean; numberSubmitted: string }>
+  >;
+  formSubmissionState: {
+    formSubmitted: boolean;
+    numberSubmitted: string;
+  };
 }
 
 // Waiting on Joe's design thoughts.
-export default function SubmittedForm({ setIsFormSubmitted }: formProps) {
+export default function SubmittedForm({ setFormSubmittedState, formSubmissionState }: formProps) {
   return (
-    <Alert variant="success">
-      <Alert.Heading>Submitted</Alert.Heading>
-      <br />
-      <p>
-        You should receive a message shortly, confirming you will be reminded on the day of the
-        election with your polling station information.
+    <>
+      <Alert variant="success">
+        <Alert.Heading>Submitted</Alert.Heading>
         <br />
-        <br />
-        You're all set!
-      </p>
-      {/* <hr />
+        <p>
+          You should now receive a message from us, confirming that you will receive your polling
+          station information on election day.
+          <br />
+          <br />
+        </p>
+        <hr />
+        <p>
+          {' '}
+          If you don't receive a message within a few minutes, please check your details and try
+          again. Your number was {formSubmissionState.numberSubmitted}
+        </p>
+      </Alert>
       <Button
-        variant="success"
+        variant="secondary soft"
         // id="submit-form-btn"
         // className="submitEnabled"
-        onClick={() => setIsFormSubmitted(false)}
+        onClick={() => setFormSubmittedState({ formSubmitted: false, numberSubmitted: '' })}
       >
-        Back to main page
-      </Button> */}
-    </Alert>
+        Go Back
+      </Button>
+    </>
   );
 }

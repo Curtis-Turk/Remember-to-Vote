@@ -4,8 +4,10 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID as string;
 const authToken = process.env.TWILIO_AUTH_TOKEN as string;
 const fromNumberWhatsapp = process.env.TWILIO_FROM_NUMBER_WHATSAPP as string;
 const messagingServiceSid = process.env.TWILIO_MESSAGING_SERVICE_SID as string;
-const testingServiceSid = process.env.TWILIO_TESTING_SERVICE_SID as string;
-const client = new Twilio(accountSid, authToken);
+const testSid = process.env.TWILIO_TESTING_SERVICE_SID as string;
+const testAuth = process.env.TWILIO_TESTING_AUTH_TOKEN as string;
+let client = new Twilio(accountSid, authToken);
+const testClient = new Twilio(testSid, testAuth);
 
 interface createParams {
   body: string;
@@ -16,9 +18,10 @@ interface createParams {
 
 const sendMessage = async (createParams: createParams): Promise<boolean> => {
   //catch testing
-  // if (createParams.to === '+447813667642') {
-  //   createParams.from = '+15005550006';
-  // }
+  if (createParams.to === '+447813667642') {
+    createParams.from = '+15005550006';
+    client = testClient;
+  }
 
   // send message
   try {

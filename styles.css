@@ -502,6 +502,18 @@ h4 {
   cursor: pointer;
 }
 
+.btn-secondary {
+  background: #e9ecef !important;
+  color: black !important;
+  border-color: #e9ecef !important;
+  padding: 10px 16px !important;
+  margin-top: 1rem;
+}
+
+.alert-heading {
+  font-weight: bold;
+}
+
 .unVerifiedPostcode {
   background-color: #4caf50;
 }

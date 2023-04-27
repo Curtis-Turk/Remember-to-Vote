@@ -1,22 +1,7 @@
-// import * as supabase from '../../lib/supabase';
-import { createClient } from '@supabase/supabase-js';
-
 // tests remaining to write (non-exhaustive list):
 // bad paths:  non-address picker postcode doesnt give you address picker
 // bad paths: no submit without verified postcode
 //
-
-// const supabaseDb = createClient(
-//   Cypress.env('supabaseURL' as string),
-//   Cypress.env('supabaseAnonKey' as string)
-// );
-
-// const deleteTestUser = async () => {
-//   return await supabaseDb
-//     .from('voters')
-//     .delete()
-//     .or('phone_number.eq.07813667642, phone_number.eq.+447813667642');
-// };
 
 describe('Homepage', () => {
   beforeEach(async () => {

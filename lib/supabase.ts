@@ -49,8 +49,5 @@ export const getAllUsers = async () => {
 };
 
 export const deleteTestUser = async () => {
-  return await supabaseDb
-    .from('voters')
-    .delete()
-    .or('phone_number.eq.07813667642, phone_number.eq.+447813667642');
+  return await supabaseDb.from('voters').delete().eq('phone_number', '+447813667642');
 };

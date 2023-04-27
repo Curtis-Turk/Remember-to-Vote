@@ -4,16 +4,23 @@ import SubmittedForm from './SubmittedForm';
 import { useState } from 'react';
 
 export default function FormSection() {
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [formSubmissionState, setFormSubmittedState] = useState({
+    formSubmitted: false,
+
+    numberSubmitted: '',
+  });
 
   return (
     <div id="form-section">
       <h2 id="form-section-title">Get your reminder here</h2>
       <div id="polling-form">
-        {isFormSubmitted ? (
-          <SubmittedForm setIsFormSubmitted={setIsFormSubmitted} />
+        {formSubmissionState.formSubmitted ? (
+          <SubmittedForm
+            setFormSubmittedState={setFormSubmittedState}
+            formSubmissionState={formSubmissionState}
+          />
         ) : (
-          <Form setIsFormSubmitted={setIsFormSubmitted} />
+          <Form setFormSubmittedState={setFormSubmittedState} />
         )}
       </div>
     </div>

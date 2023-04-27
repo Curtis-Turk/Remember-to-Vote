@@ -44,8 +44,6 @@ const messageBody = (name: string, postcode: string, pollingStation: string) =>
   `Hello ${name},\n\n 🗳️ It's election day! 🗳️\n\nThe polling station for your postcode ${postcode} is:\n\n${pollingStation}\n\nRemember to bring your ID.`;
 
 export default async function sendElectionDayText() {
-  console.log('inside sendElectionDayText');
-
   const supabaseResponse: supabaseResponse = (await getAllUsers()) as supabaseResponse;
   const ECApi = new ElectoralCommisionApi(process.env.EC_API_KEY as string);
   const users = supabaseResponse.data;

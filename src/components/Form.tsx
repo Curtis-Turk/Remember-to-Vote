@@ -6,7 +6,9 @@ import { Form as BForm } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 
 interface formProps {
-  setIsFormSubmitted: Dispatch<SetStateAction<boolean>>;
+  setFormSubmittedState: Dispatch<
+    SetStateAction<{ formSubmitted: boolean; numberSubmitted: string }>
+  >;
 }
 
 export interface formData {
@@ -17,7 +19,7 @@ export interface formData {
   addressSlug: string;
 }
 
-export default function Form({ setIsFormSubmitted }: formProps) {
+export default function Form({ setFormSubmittedState }: formProps) {
   // boolean for if postcode has been verified with the Electoral Commission API
   const [isPostcodeVerified, setIsPostcodeVerified] = useState(false);
   const [isNameValid, setIsNameValid] = useState(true);
@@ -73,7 +75,7 @@ export default function Form({ setIsFormSubmitted }: formProps) {
       });
 
       if (response.ok) {
-        setIsFormSubmitted(true);
+        setFormSubmittedState({ formSubmitted: true, numberSubmitted: formData.phone });
       }
       if (response.statusText === 'Conflict') {
         setSubmitError('Number already added - this number is set to receive a reminder');

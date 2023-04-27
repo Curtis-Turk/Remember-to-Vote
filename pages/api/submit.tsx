@@ -49,8 +49,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const cypressTestNumber = '+447813667642';
 
   if (phone === cypressTestNumber) {
-    //   console.log('cypress bypass twilio');
-    //   return res.status(201).end();
     supabase.deleteTestUser();
   }
 
