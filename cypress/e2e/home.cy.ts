@@ -44,7 +44,7 @@ describe('Homepage', () => {
     });
 
     it('Can submit the form', () => {
-      cy.get('#name').type('Curtis Turk');
+      cy.get('#name').type('Cypress Test');
       cy.get('.PhoneInputInput').type('07813667642');
       cy.get('#postcode').type('ST7 2AE');
       cy.get('#verify-btn').click();
