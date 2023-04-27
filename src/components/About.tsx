@@ -30,7 +30,8 @@ export default function About() {
       <br />
       <hr id="half-break2" />
       <h4>What happens to my data?</h4>
-      We delete it after the election.
+      This site is part of a pilot to see if reminding people about the election increases voter
+      turnout. As soon as the pilot is evaluated, all data will be deleted.{' '}
       {/* If you opt in to sharing your email, we will not delete it,
       but you will have the right to deletion in any further communications. */}
       <br />

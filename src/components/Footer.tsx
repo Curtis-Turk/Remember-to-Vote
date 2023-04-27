@@ -17,10 +17,10 @@ export default function Footer() {
         </p>
         <p>Created by Curtis, Harry, Joe, and Zac</p>
         <p id="gdpr-text">
-          This is a service specifically for the May Elections. All of the user data will be deleted
+          {/* This is a service specifically for the May Elections. All of the user data will be deleted
           after the election.
-          <br />
-          If you have any further questions, want to be removed from the service or want to find out
+          <br /> */}
+          If you have further questions, want to be removed from the service or want to find out
           more: contact us on <a href="mailto:mail@campaignlab.org.uk">mail@campaignlab.org.uk</a>
           {/* You can manage your preferences or unsubscribe at any time. We may use the information you
           provide, such as name and postcode, to match the data provided to your electoral register
