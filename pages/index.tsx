@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
 import { useEffect } from 'react';
 import { Inter } from 'next/font/google';
 
