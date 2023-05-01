@@ -1,11 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import Cors from 'cors';
 import ElectoralCommisionApi from '../../lib/electoralCommisionApi';
 
 const electoralCommission = new ElectoralCommisionApi(process.env.EC_API_KEY as string);
 
 // Demo responses
-
 // const pollingStationResponse = {
 //   pollingStationFound: true,
 //   pollingStations: [],
@@ -27,7 +25,6 @@ const electoralCommission = new ElectoralCommisionApi(process.env.EC_API_KEY as 
 //     },
 //   ],
 // };
-
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const pollingStationResponse = await electoralCommission.verifyPostcode(req.body.postcode);
