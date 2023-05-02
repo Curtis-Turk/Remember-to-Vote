@@ -13,6 +13,7 @@ export interface voterTableRow {
   message_type: string;
   created_at: Date;
   sent_confirmation_text: boolean;
+  sent_election_text: boolean;
 }
 
 /*
@@ -40,6 +41,17 @@ export const updateSentConfirmationTextField = async (
   const response = await supabaseDb
     .from('voters')
     .update({ sent_confirmation_text: true })
+    .eq('phone_number', phone_number);
+  return response;
+};
+
+export const updateSentElectionTextField = async (
+  phone_number: string
+): Promise<PostgrestSingleResponse<null>> => {
+  // updates filtering for phone_number as it a unique field
+  const response = await supabaseDb
+    .from('voters')
+    .update({ sent_election_text: true })
     .eq('phone_number', phone_number);
   return response;
 };

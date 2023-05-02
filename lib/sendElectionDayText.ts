@@ -1,4 +1,4 @@
-import { getAllUsers } from './supabase';
+import { getAllUsers, updateSentElectionTextField } from './supabase';
 import ElectoralCommisionApi from './electoralCommisionApi';
 import * as TwilioApi from '../lib/twilioApi';
 import { PostgrestError } from '@supabase/supabase-js';
@@ -43,6 +43,15 @@ interface pollingStationRequest {
 const messageBody = (name: string, postcode: string, pollingStation: string) =>
   `Hello ${name},\n\n 🗳️ It's election day! 🗳️\n\nThe polling station for your postcode ${postcode} is:\n\n${pollingStation}\n\nRemember to bring your ID.`;
 
+// let remainingAttempts = 3;
+
+// function trySendingAgain() {
+//   if (remainingAttempts !== 0) {
+//     sendElectionDayText();
+//     remainingAttempts -= 1;
+//   }
+// }
+
 export default async function sendElectionDayText() {
   const supabaseResponse: supabaseResponse = (await getAllUsers()) as supabaseResponse;
   const ECApi = new ElectoralCommisionApi(process.env.EC_API_KEY as string);
@@ -63,7 +72,11 @@ export default async function sendElectionDayText() {
       const messageFunction =
         user.message_type === 'Sms' ? TwilioApi.sendSmsMessage : TwilioApi.sendWhatsAppMessage;
 
-      await messageFunction(message, user.phone_number);
+      const twilioResult = await messageFunction(message, user.phone_number);
+
+      if (twilioResult === true) await updateSentElectionTextField(user.phone_number);
+
+      // setTimeout(trySendingAgain, 15*60*1000);
     }
   }
 }

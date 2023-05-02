@@ -57,6 +57,7 @@ describe('/submit submitToSupabase method', () => {
       postcode,
       created_at: mockedDateNow,
       sent_confirmation_text: false,
+      sent_election_text: false,
     });
     expect(result).toBe(successfulSupabaseResponse);
   });
