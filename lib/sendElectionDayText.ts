@@ -25,6 +25,7 @@ interface userObject {
   postcode: string;
   message_type: 'Sms' | 'WhatsApp';
   sent_confirmation_text: boolean;
+  sent_election_text: boolean;
 }
 
 interface supabaseResponse {
@@ -60,7 +61,7 @@ export default async function sendElectionDayText() {
   let request: pollingStationRequest;
 
   for (const user of users) {
-    if (user.sent_confirmation_text) {
+    if (user.sent_confirmation_text && !user.sent_election_text) {
       request = { postcode: user.postcode, address_slug: user.address_slug };
 
       const pollingStationResponse = await ECApi.getPollingStation(request);
@@ -116,5 +117,6 @@ export async function sendElectionDayTextTest() {
 
       setTimeout(trySendingAgainTest, 30 * 1000);
     }
+    console.log(user);
   }
 }

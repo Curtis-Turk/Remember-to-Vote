@@ -16,8 +16,7 @@ export interface voterTableRow {
   sent_election_text: boolean;
 }
 
-/*
-returns the object:
+/*returns the object:
 {
   status: number, status code for request made to server
   statusText: string, description of status response (eg. "Created")
