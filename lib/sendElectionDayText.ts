@@ -43,14 +43,14 @@ interface pollingStationRequest {
 const messageBody = (name: string, postcode: string, pollingStation: string) =>
   `Hello ${name},\n\n 🗳️ It's election day! 🗳️\n\nThe polling station for your postcode ${postcode} is:\n\n${pollingStation}\n\nRemember to bring your ID.`;
 
-// let remainingAttempts = 3;
+let remainingAttempts: number = 3;
 
-// function trySendingAgain() {
-//   if (remainingAttempts !== 0) {
-//     sendElectionDayText();
-//     remainingAttempts -= 1;
-//   }
-// }
+async function trySendingAgain() {
+  if (remainingAttempts !== 0) {
+    await sendElectionDayText();
+    remainingAttempts -= 1;
+  }
+}
 
 export default async function sendElectionDayText() {
   const supabaseResponse: supabaseResponse = (await getAllUsers()) as supabaseResponse;
@@ -76,7 +76,7 @@ export default async function sendElectionDayText() {
 
       if (twilioResult === true) await updateSentElectionTextField(user.phone_number);
 
-      // setTimeout(trySendingAgain, 15*60*1000);
+      setTimeout(trySendingAgain, 10 * 60 * 1000);
     }
   }
 }
