@@ -39,6 +39,7 @@ export const submitToSupabase = async (
     postcode,
     created_at: new Date(),
     sent_confirmation_text: false,
+    sent_election_text: false,
   };
   return await supabase.submitToVotersTable(voterTableRow);
 };
@@ -49,7 +50,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const cypressTestNumber = '+447813667642';
 
   if (phone === cypressTestNumber) {
-    supabase.deleteTestUser();
+    await supabase.deleteTestUser();
   }
 
   // insert formData into Supabase table as new row
