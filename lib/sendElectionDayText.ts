@@ -80,3 +80,41 @@ export default async function sendElectionDayText() {
     }
   }
 }
+
+let remainingTestAttempts: number = 3;
+
+async function trySendingAgainTest() {
+  if (remainingTestAttempts !== 0) {
+    await sendElectionDayTextTest();
+    remainingAttempts -= 1;
+  }
+}
+
+export async function sendElectionDayTextTest() {
+  const supabaseResponse: supabaseResponse = (await getAllUsers()) as supabaseResponse;
+  const ECApi = new ElectoralCommisionApi(process.env.EC_API_KEY as string);
+  const users = supabaseResponse.data;
+
+  let request: pollingStationRequest;
+
+  for (const user of users) {
+    if (user.sent_confirmation_text && user.phone_number == '+447813667642') {
+      request = { postcode: user.postcode, address_slug: user.address_slug };
+
+      const pollingStationResponse = await ECApi.getPollingStation(request);
+
+      const pollingStation = `${pollingStationResponse?.address} ${pollingStationResponse?.postcode}`;
+
+      const message = messageBody(user.name, user.postcode, pollingStation);
+
+      const messageFunction =
+        user.message_type === 'Sms' ? TwilioApi.sendSmsMessage : TwilioApi.sendWhatsAppMessage;
+
+      const twilioResult = await messageFunction(message, user.phone_number);
+
+      if (twilioResult === true) await updateSentElectionTextField(user.phone_number);
+
+      setTimeout(trySendingAgainTest, 30 * 1000);
+    }
+  }
+}
