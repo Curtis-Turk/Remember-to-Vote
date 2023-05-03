@@ -47,7 +47,7 @@ const messageBody = (name: string, postcode: string, pollingStation: string) =>
 let remainingAttempts: number = 3;
 
 async function trySendingAgain() {
-  if (remainingAttempts !== 0) {
+  if (remainingAttempts >= 0) {
     await sendElectionDayText();
     remainingAttempts -= 1;
   }
@@ -85,7 +85,7 @@ export default async function sendElectionDayText() {
 let remainingTestAttempts: number = 3;
 
 async function trySendingAgainTest() {
-  if (remainingTestAttempts !== 0) {
+  if (remainingTestAttempts >= 0) {
     await sendElectionDayTextTest();
     remainingAttempts -= 1;
   }
@@ -117,6 +117,5 @@ export async function sendElectionDayTextTest() {
 
       setTimeout(trySendingAgainTest, 30 * 1000);
     }
-    console.log(user);
   }
 }
