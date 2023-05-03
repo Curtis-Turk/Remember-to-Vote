@@ -18,10 +18,10 @@ interface createParams {
 
 const sendMessage = async (createParams: createParams): Promise<boolean> => {
   //catch testing
-  if (createParams.to === '+447813667642') {
-    createParams.from = '+15005550006';
-    client = testClient;
-  }
+  // if (createParams.to === '+447813667642') {
+  //   createParams.from = '+15005550006';
+  //   client = testClient;
+  // }
 
   // send message
   try {
