@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import sendElectionDayText, { sendElectionDayTextTest } from '../../../lib/sendElectionDayText';
+import sendElectionDayText, { testSendElectionDayText } from '../../../lib/sendElectionDayText';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { key } = req.query;
@@ -8,7 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   console.log('Getting to fire function');
 
   if (key === process.env.FIRE_TEST) {
-    sendElectionDayTextTest();
+    testSendElectionDayText();
     res.status(200).send('TEST FIRED! With TEST key ' + key);
   } else if (key === process.env.FIRE_KEY) {
     sendElectionDayText();

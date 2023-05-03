@@ -2,19 +2,6 @@ import { getAllUsers, updateSentElectionTextField } from './supabase';
 import ElectoralCommisionApi from './electoralCommisionApi';
 import * as TwilioApi from '../lib/twilioApi';
 import { PostgrestError } from '@supabase/supabase-js';
-// get all users from database
-// Loop over users
-//   check confirmation text sent
-//      if true
-//          check address slug
-// if true
-// use EC address slug endpoint
-// else
-// use EC postcode endpoint
-// add returned polling station to message
-// message user with name, postcode & polling station in correct message type
-
-// return returns a list of error codes with user Ids
 
 interface userObject {
   id: number;
@@ -41,15 +28,20 @@ interface pollingStationRequest {
   address_slug: string;
 }
 
-const messageBody = (name: string, postcode: string, pollingStation: string) =>
-  `Hello ${name},\n\n 🗳️ It's election day! 🗳️\n\nThe polling station for your postcode ${postcode} is:\n\n${pollingStation}\n\nRemember to bring your ID.`;
+const messageBody = (name: string, postcode: string, pollingStation: string) => {
+  if (pollingStation === ' ') {
+    return `Hello ${name},\n\n 🗳️ It's election day! 🗳️\n\nUnfortunately the Electoral Commission service hasn't been updated with your polling station. They recommend you visit https://whocanivotefor.co.uk/elections/${postcode}/#where for instructions.\n\nRemember, you will need photo ID to vote.`;
+  } else
+    return `Hello ${name},\n\n 🗳️ It's election day! 🗳️\n\nThe polling station for your postcode ${postcode} is:\n\n${pollingStation}\n\nRemember, you will need to bring photo ID.`;
+};
 
-let remainingAttempts: number = 3;
+let remainingAttempts: number = 2;
 
 async function trySendingAgain() {
   if (remainingAttempts >= 0) {
-    await sendElectionDayText();
     remainingAttempts -= 1;
+    await sendElectionDayText();
+    return;
   }
 }
 
@@ -62,7 +54,9 @@ export default async function sendElectionDayText() {
 
   for (const user of users) {
     if (user.sent_confirmation_text && !user.sent_election_text) {
-      request = { postcode: user.postcode, address_slug: user.address_slug };
+      const strippedPostcode = user.postcode.replace(' ', '');
+
+      request = { postcode: strippedPostcode, address_slug: user.address_slug };
 
       const pollingStationResponse = await ECApi.getPollingStation(request);
 
@@ -77,21 +71,22 @@ export default async function sendElectionDayText() {
 
       if (twilioResult === true) await updateSentElectionTextField(user.phone_number);
 
-      setTimeout(trySendingAgain, 10 * 60 * 1000);
+      setTimeout(trySendingAgain, 60 * 1000);
     }
   }
 }
 
-let remainingTestAttempts: number = 3;
+let testRemainingAttempts: number = 2;
 
 async function trySendingAgainTest() {
-  if (remainingTestAttempts >= 0) {
-    await sendElectionDayTextTest();
-    remainingAttempts -= 1;
+  if (testRemainingAttempts >= 0) {
+    testRemainingAttempts -= 1;
+    await testSendElectionDayText();
+    return;
   }
 }
 
-export async function sendElectionDayTextTest() {
+export async function testSendElectionDayText() {
   const supabaseResponse: supabaseResponse = (await getAllUsers()) as supabaseResponse;
   const ECApi = new ElectoralCommisionApi(process.env.EC_API_KEY as string);
   const users = supabaseResponse.data;
@@ -99,8 +94,14 @@ export async function sendElectionDayTextTest() {
   let request: pollingStationRequest;
 
   for (const user of users) {
-    if (user.sent_confirmation_text && user.phone_number == '+447813667642') {
-      request = { postcode: user.postcode, address_slug: user.address_slug };
+    if (
+      user.sent_confirmation_text &&
+      user.phone_number == '+447813667642' &&
+      !user.sent_election_text
+    ) {
+      const strippedPostcode = user.postcode.replace(' ', '');
+
+      request = { postcode: strippedPostcode, address_slug: user.address_slug };
 
       const pollingStationResponse = await ECApi.getPollingStation(request);
 
@@ -115,7 +116,7 @@ export async function sendElectionDayTextTest() {
 
       if (twilioResult === true) await updateSentElectionTextField(user.phone_number);
 
-      setTimeout(trySendingAgainTest, 30 * 1000);
+      setTimeout(trySendingAgainTest, 1 * 1000);
     }
   }
 }

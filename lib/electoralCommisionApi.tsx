@@ -109,9 +109,10 @@ export default class ElectoralCommisionApi {
     }
     const result = await response.json();
     if (result.dates.length)
-      // return the properties object with postcode and address string values if polling data exists
-      return result.dates[0].polling_station.station.properties;
+      return result.dates[0].polling_station.station?.properties
+        ? result.dates[0].polling_station.station.properties
+        : { address: '', postcode: '' };
     // throw an error if no polling data exists for the supplied postcode
-    throw Error('EC API returned no polling info');
+    else throw Error('EC API returned no polling info');
   }
 }
