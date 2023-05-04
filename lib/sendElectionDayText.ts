@@ -53,7 +53,11 @@ export default async function sendElectionDayText() {
   let request: pollingStationRequest;
 
   for (const user of users) {
-    if (user.sent_confirmation_text && !user.sent_election_text) {
+    console.log(user);
+
+    if (user.sent_confirmation_text && user.sent_election_text === false) {
+      console.log('Sending text');
+
       const strippedPostcode = user.postcode.replace(' ', '');
 
       request = { postcode: strippedPostcode, address_slug: user.address_slug };
