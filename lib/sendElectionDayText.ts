@@ -49,16 +49,11 @@ export default async function sendElectionDayText() {
   const supabaseResponse: supabaseResponse = (await getAllUsers()) as supabaseResponse;
   const ECApi = new ElectoralCommisionApi(process.env.EC_API_KEY as string);
   const users = supabaseResponse.data;
-  console.log('🚀 ~ file: sendElectionDayText.ts:52 ~ sendElectionDayText ~ users:', users);
 
   let request: pollingStationRequest;
 
   for (const user of users) {
-    console.log(user);
-
     if (user.sent_confirmation_text && user.sent_election_text === false) {
-      console.log('Sending text');
-
       const strippedPostcode = user.postcode.replace(' ', '');
 
       request = { postcode: strippedPostcode, address_slug: user.address_slug };
